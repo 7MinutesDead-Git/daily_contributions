@@ -1,0 +1,43 @@
+body {
+    background: #87ceec;
+    display: flex;
+    max-width: 800px;
+    justify-content: center;
+}
+body > div {
+    font-family: "Fira Sans", sans-serif;
+    border: 0.25rem solid #48cd2f;
+    color: whitesmoke;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+h1 {
+    font-weight: 400;
+    font-style: italic;
+}
+ul {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    color: #808181;
+}
+li {
+    padding: 0.5rem;
+    list-style: none;
+}
+a {
+    color: #4acd98;
+}
+p {
+    font-weight: 100;
+    margin: 1rem;
+}
+section > h2 {
+    margin-left: 1rem;
+}
+section > img {
+    max-width: 30%;
+    float: right;
+    margin: 1rem;
+}
