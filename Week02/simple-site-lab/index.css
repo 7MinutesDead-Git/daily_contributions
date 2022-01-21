@@ -1,7 +1,7 @@
 body {
     background: #87ceec;
     display: flex;
-    max-width: 800px;
+    max-width: 900px;
     justify-content: center;
     /*Auto margin will center the entire page via div.*/
     margin: 0 auto;
@@ -21,7 +21,8 @@ header {
     flex-direction: column;
 }
 h1 {
-    font-weight: 400;
+    font-family: "Luxurious Roman", "Fira Sans", sans-serif;
+    font-weight: 600;
     font-style: italic;
     margin-top: 3rem;
 }
@@ -31,6 +32,7 @@ ul {
     align-items: center;
     margin-bottom: 1rem;
     color: #808181;
+    font-weight: 500;
 }
 li {
     color: whitesmoke;
@@ -42,7 +44,7 @@ a {
     font-weight: bold;
 }
 p {
-    font-weight: 100;
+    font-weight: 400;
     margin: 2rem;
 }
 section > h2 {
@@ -51,5 +53,7 @@ section > h2 {
 section > img {
     max-width: 30%;
     float: right;
-    margin: 1rem;
+    margin-left: 1rem;
+    margin-right: 3rem;
+    margin-bottom: 2rem;
 }
