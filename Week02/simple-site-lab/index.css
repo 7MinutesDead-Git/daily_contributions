@@ -3,11 +3,18 @@ body {
     display: flex;
     max-width: 800px;
     justify-content: center;
+    /*Auto margin will center the entire page via div.*/
+    margin: 0 auto;
 }
 body > div {
     font-family: "Fira Sans", sans-serif;
     border: 0.25rem solid #48cd2f;
     color: whitesmoke;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+header {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -18,23 +25,25 @@ h1 {
 }
 ul {
     display: flex;
-    justify-content: space-evenly;
+    flex-direction: row;
     align-items: center;
     color: #808181;
 }
 li {
+    color: whitesmoke;
     padding: 0.5rem;
     list-style: none;
 }
 a {
     color: #4acd98;
+    font-weight: bold;
 }
 p {
     font-weight: 100;
-    margin: 1rem;
+    margin: 2rem;
 }
 section > h2 {
-    margin-left: 1rem;
+    margin-left: 2rem;
 }
 section > img {
     max-width: 30%;
