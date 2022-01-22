@@ -1,12 +1,10 @@
 body {
     background: #87ceec;
-    display: flex;
     max-width: 900px;
-    justify-content: center;
     /*Auto margin will center the entire page via div.*/
     margin: 0 auto;
 }
-body > div {
+body > main {
     margin-top: 1.5rem;
     font-family: "Fira Sans", sans-serif;
     border: 0.25rem solid #48cd2f;
