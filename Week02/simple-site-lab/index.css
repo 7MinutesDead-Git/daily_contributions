@@ -1,3 +1,8 @@
+* {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
 body {
     background: #87ceec;
     max-width: 900px;
@@ -22,7 +27,6 @@ h1 {
     font-family: "Luxurious Roman", "Fira Sans", sans-serif;
     font-weight: 600;
     font-style: italic;
-    margin-top: 3rem;
 }
 ul {
     display: flex;
