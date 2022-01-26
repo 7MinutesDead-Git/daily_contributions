@@ -1,0 +1,30 @@
+* {
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+body {
+    background: #2c2c2c;
+    color: #4acd98;
+}
+.container > section, header, footer {
+    border: #336f4e 1px solid;
+    padding-left: 3vw;
+    padding-top: 3vh;
+}
+header, footer {
+    height: 20vh;
+    clear: both;
+}
+.b-section {
+    height: 35vh;
+    float: left;
+}
+.a-section {
+    height: 25vh;
+}
+#b-left {
+    width: 40vw;
+}
+#b-right {
+    width: 60vw;
+}
