@@ -8,7 +8,6 @@ body {
 }
 .container > section, header, footer {
     border: #336f4e 1px solid;
-    border-collapse: collapse;
     padding-left: 3vw;
     padding-top: 3vh;
 }
