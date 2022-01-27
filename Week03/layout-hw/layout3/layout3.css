@@ -15,13 +15,13 @@ header, footer {
     height: 20vh;
     clear: both;
 }
-.container > section {
+.a-section-thin, .a-section-wide {
     height: 60vh;
     float: left;
 }
 .a-section-thin {
-    width: 20vw;
+    width: 20%;
 }
 .a-section-wide {
-    width: 40vw;
+    width: 40%;
 }

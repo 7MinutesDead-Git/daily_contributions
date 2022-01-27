@@ -15,16 +15,16 @@ header, footer {
     height: 20vh;
     clear: both;
 }
+.a-section {
+    height: 25vh;
+}
 .b-section {
     height: 35vh;
     float: left;
 }
-.a-section {
-    height: 25vh;
-}
 #b-left {
-    width: 40vw;
+    width: 40%;
 }
 #b-right {
-    width: 60vw;
+    width: 60%;
 }
