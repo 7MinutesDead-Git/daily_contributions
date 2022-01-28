@@ -1,19 +1,7 @@
-/* Please Make only Rhino and Zebra Blue */
-#rhino, #zebra {
-    color: blue;
-}
+/* Please make "This is an ad..." blue, but make sure it is specific enough that you could add other h3's somewhere eles in the document. */
 
-/* Please Make only Hufflepuff Gold */
-#bestHouse {
-    color: gold;
-}
+/* Please make "I like turtles." red */
 
-/* Please select Duck with the highest level of specificity possible */
-article.areDucksDinosaurs > h2.likesToQuack.fight1Or100 {
+/* Please select "Hello, world!" with the highest level of specificity possible*/
 
-}
-
-/* Please select Rhino with the highest level of specificity possible */
-html > body > .top > #rhino {
-
-}
+/* Please select "Let's get down to business..." with the highest level of specificity possible */

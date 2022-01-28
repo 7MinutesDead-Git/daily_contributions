@@ -1,19 +1,9 @@
 /* NO classes or IDs */
-/* Please Make only World and Zebra Blue */
-section > h2 {
-    color: blue;
-}
-/* Please Make only Zebra Purple */
-section > h2 ~ h2 {
-    color: purple;
-}
 
-/* Please Make only Hufflepuff Gold */
-section > article > h2 ~ h2 {
-    color: gold;
-}
+/* Please make only "Just kidding!" yellow */
 
-/* Please keep Hufflepuff Gold and make ONLY Unicorn Gray  */
-section > article {
-    color: grey;
-}
+/* Please make only "twitter" red and 20px */
+
+/* Please make "Really hot" purple & "Like WILD hot" larger and blue  */
+
+/* Please make only bob and pizza green */
