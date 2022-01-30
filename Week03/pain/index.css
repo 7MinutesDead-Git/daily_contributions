@@ -21,6 +21,10 @@ article {
 }
 footer {
     clear: left;
+    background: rgb(22, 22, 22);
+}
+header {
+    background: #4acd98;
 }
 
 /* Ultrawide. */
