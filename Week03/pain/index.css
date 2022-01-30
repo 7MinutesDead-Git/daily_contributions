@@ -1,20 +1,107 @@
 * {
     box-sizing: border-box;
+    margin: 0;
+    background: #2c2c2c;
+    color: #fff;
 }
-
-header, section, footer {
-    border: grey 2px solid;
-    height: 200px;
+section > article, section > section > article {
+    display:none;
 }
-header {
-
+header, article, footer {
+    border: #4acd98 1px dashed;
+    padding-left: 5vw;
+    padding-top: 3vh;
+    height: 20vh;
 }
-section {
+article {
     width: 33.3333%;
-    height: 400px;
+    height: 60vh;
     margin: 0 auto;
     float: left;
 }
 footer {
     clear: left;
+}
+
+/* Ultrawide. */
+@media screen and (min-width: 2400px){
+    section > section > article {
+        display:block;
+        float: right;
+        padding-left: 2vw;
+        color: #4acd98;
+    }
+    section > article {
+        width: 10%;
+        padding-left: 2vw;
+        padding-top: 3vh;
+        color: orange;
+    }
+    article {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: indianred;
+        padding: 0;
+    }
+}
+
+/* Regular. */
+@media screen and (min-width: 1500px) {
+    article {
+        float: left;
+        width: 30%;
+        height: 50vh;
+    }
+    section > article {
+        display:block;
+    }
+    header {
+        float: left;
+        width: 10%;
+        height: 100vh;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    footer {
+        display: none;
+    }
+}
+
+/* Mobile */
+@media screen and (max-width: 750px) {
+    article {
+        float: none;
+        height: 26.667vh;
+        width: 100%;
+    }
+    header, footer {
+        height: 10vh;
+        display: flex;
+        justify-content: center;
+    }
+}
+
+/* Squished. */
+@media screen and (max-width: 500px) {
+    article {
+        float: none;
+        height: 30vh;
+        width: 100%;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    header {
+        height: 10vh;
+        display: flex;
+        justify-content: end;
+        padding-right: 5vw;
+    }
+    footer {
+        display: none;
+    }
 }
