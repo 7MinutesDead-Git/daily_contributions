@@ -96,13 +96,13 @@ p {
      outline: inherit;
      transition:
              color 0.3s ease-in-out,
-             background 0.3s ease-in-out,
+             background 1s ease-in-out,
              transform 0.3s ease-in-out;
 }
 .btn:hover {
-     background: #4acd98;
+     background: #161f2a;
      color: #fff;
-     transform: translateY(-2px);
+     transform: translateY(-5px);
 }
 .btn-svg {
      width: 1rem;
@@ -248,35 +248,67 @@ main > .section-volunteer > p {
 
 footer {
      background: #161f2a;
+     padding: 1rem 3rem;
 }
 footer .nav-footer {
      display: block;
-     padding: 1rem 1rem;
 }
 footer h4 {
      font-size: 0.75rem;
      letter-spacing: 0.1rem;
      color: #66768a;
-     margin-left: 1.2rem;
+     width: 5rem;
 }
 footer .socials {
-     width: 15%;
+     width: 5rem;
      display: flex;
-     justify-content: space-evenly;
+     justify-content: flex-start;
+     gap: 1rem;
      padding-top: 1rem;
 }
 footer .footer-nav-links {
      text-align: left;
      line-height: 1.2rem;
-     width: 15%;
+     width: 30%;
      display: block;
      padding-top: 1rem;
 }
 footer .footer-nav-links > div {
      font-size: 0.85rem;
-     margin-left: 1.2rem;
      display: flex;
-     justify-content: space-evenly;
+     justify-content: space-between;
+     gap: 0.5rem;
+     width: 5rem;
+}
+footer .footer-bottom-row {
+     display: flex;
+     justify-content: space-between;
+     text-align: left;
+     border-top: 1px solid #66768a;
+     margin-top: 1rem;
+     padding: 1rem 0 2rem 0;
+     letter-spacing: 0.1rem;
+     word-spacing: 0.1rem;
+     font-size: 0.75rem;
+}
+footer .footer-address {
+     display: flex;
+     text-align: left;
+     flex-direction: column;
+     font-family: 'Barlow Condensed', sans-serif;
+     padding-top: 1rem;
+     font-size: 0.75rem;
+     font-weight: 100;
+     letter-spacing: 0.1rem;
+     min-width: 20%;
+}
+footer .footer-address > strong {
+     font-weight: 500;
+     padding-bottom: .2rem;
+}
+footer .footer-top-row {
+     display: flex;
+     justify-content: space-between;
 }
 
 /******************************************
