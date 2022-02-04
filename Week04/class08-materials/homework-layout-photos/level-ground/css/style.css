@@ -135,8 +135,15 @@ a:hover {
 
 /* ----------------------------------------------------- */
 /* Navigation. */
+.header-fixed {
+     position: fixed;
+     width: 100%;
+     top: 0;
+     z-index: 2;
+}
 .nav-header {
      display: flex;
+     background: #66768a;
      text-transform: uppercase;
      font-size: 0.8rem;
      padding-top: 1.5rem;
