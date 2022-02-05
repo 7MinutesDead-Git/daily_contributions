@@ -15,7 +15,7 @@
 	clear: both;
 }
 
-/******************************************
+/********************************************
 /* ANIMATIONS
 /*******************************************/
 @keyframes slideFromLeft {
@@ -49,7 +49,7 @@
      }
 }
 
-/******************************************
+/********************************************
 /* BASE STYLES
 /*******************************************/
 body {
@@ -114,9 +114,9 @@ p {
      filter: invert(60%);
 }
 
-     /******************************************
-     /* LAYOUT
-     /*******************************************/
+/********************************************
+/* LAYOUT
+/*******************************************/
 img[alt] {
      font-family: 'Barlow Condensed', sans-serif;
      font-weight: 100;
@@ -215,6 +215,7 @@ main > .section-volunteer > p {
      margin: 0 auto;
 }
 
+/* ----------------------------------------------------- */
 /* Reach. */
 main > .section-reach h3,
 main > .section-reach p {
@@ -249,10 +250,14 @@ main > .section-reach > article > .image-placeholder {
      border: 1px solid #161f2a;
      border-radius: 0;
 }
+/* ----------------------------------------------------- */
+/* Volunteer. */
 main > .section-volunteer > p {
      padding-bottom: 1rem;
 }
 
+/* ----------------------------------------------------- */
+/* Footer. */
 footer {
      background: #161f2a;
      padding: 1rem 3rem;
@@ -317,7 +322,3 @@ footer .footer-top-row {
      display: flex;
      justify-content: space-between;
 }
-
-/******************************************
-/* ADDITIONAL STYLES
-/*******************************************/
