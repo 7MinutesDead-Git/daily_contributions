@@ -131,7 +131,8 @@ header > nav {
 .btn-home, .btn-signup {
      color: #d4d7e0;
 }
-.btn-signup, .btn-hero {
+.btn-signup, .btn-hero, .btn-offers {
+     display: inline-block;
      margin-right: 5rem;
      width: 6rem;
      height: 2rem;
@@ -141,9 +142,15 @@ header > nav {
      background: rgba(246,247,249,0.2);
      transition: all 0.2s ease-in-out;
 }
-.btn-signup:hover {
+.btn-signup:hover, .btn-hero:hover, .btn-offers:hover {
      background: #336f4e;
      transform: translateY(-0.2rem);
+}
+.btn-offers {
+     background: #151a28;
+     color: #f6f7f9;
+     width: 10rem;
+     margin: 1rem 0;
 }
 
 /* --------------------------------------------------- */
@@ -174,11 +181,11 @@ header > nav {
 }
 .section-hero-left > nav {
      display: flex;
-     justify-content: center;
-     align-items: center;
-     margin-top: 2rem;
+     justify-content: flex-start;
+     align-items: flex-start;
+     margin: 2rem 0;
 }
-.section-hero-left > nav > .btn-nav {
+.section-hero-left > nav > .btn-hero {
      font-weight: bold;
      width: 10rem;
 }
