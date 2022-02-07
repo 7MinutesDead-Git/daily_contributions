@@ -20,9 +20,27 @@
 /******************************************
 /* BASE STYLES
 /*******************************************/
-
+a {
+     text-decoration: none;
+     color: #304659;
+}
 body {
-
+     background: #f5f9fc;
+     color: #304659;
+}
+.btn-nav {
+     color: #304659;
+     font-size: 0.65rem;
+     font-weight: bold;
+     margin: 0 1rem;
+}
+.btn-full {
+     border: none;
+     font-size: 0.6rem;
+     color: #f5f9fc;
+     background: #304659;
+     width: 4rem;
+     height: 1.5rem;
 }
 
 
@@ -30,7 +48,17 @@ body {
 /* LAYOUT
 /*******************************************/
 header {
-
+     display: flex;
+     justify-content: space-between;
+     padding: 1rem 3rem;
+}
+header > .site-logo {
+     font-size: 1.2rem;
+     font-weight: bold;
+}
+header > nav {
+     display: flex;
+     justify-content: space-evenly;
 }
 
 footer {
