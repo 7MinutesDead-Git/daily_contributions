@@ -18,6 +18,19 @@
 /******************************************
 /* BASE STYLES
 /*******************************************/
+label,
+header,
+header > nav,
+.source-section-hero,
+.source-feature-spread,
+.off-screen {
+     display: -webkit-box;
+     display: -moz-box;
+     display: -ms-flexbox;
+     display: -webkit-flex;
+     display: flex;
+}
+
 a,
 button,
 input,
@@ -73,7 +86,6 @@ button:hover {
      transform: scale(1.1);
 }
 label {
-     display: flex;
      margin: 0.5rem 0;
 }
 a {
@@ -115,7 +127,6 @@ h1, h2, h3, span, p, img, figcaption, a {
 /* LAYOUT
 /*******************************************/
 header {
-     display: flex;
      justify-content: space-between;
      padding: 1rem 3rem;
 }
@@ -124,13 +135,11 @@ header > .site-logo {
      font-weight: bold;
 }
 header > nav {
-     display: flex;
      justify-content: space-evenly;
 }
 .source-section-hero,
 .source-feature-spread,
 .off-screen {
-     display: flex;
      padding: 0 0 0 7rem;
      margin-top: 3rem;
 }
