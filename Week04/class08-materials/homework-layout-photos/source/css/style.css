@@ -105,6 +105,10 @@ a:hover {
 h1, h2, h3, span, p, img, figcaption, a {
      user-select: none;
 }
+.mobile-menu-expand {
+     display: none;
+     filter: grayscale(100%) contrast(50%) sepia(100%) hue-rotate(180deg) saturate(100%);
+}
 
 
 /********************************************
@@ -187,4 +191,81 @@ header > nav {
 }
 .off-screen {
      flex-direction: column;
+}
+
+@media screen and (max-width: 1100px) {
+     .source-hero-laptop {
+          display: none;
+     }
+     .source-hero-search {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: flex-start;
+          width: 70%;
+     }
+}
+@media screen and (max-width: 950px) {
+     .source-feature-spread {
+          flex-wrap: wrap;
+          justify-content: center;
+          align-items: center;
+     }
+     .source-feature-spread > figure {
+          width: 50%;
+     }
+}
+@media screen and (max-width: 727px) {
+     .mobile-menu-expand {
+          display: inherit;
+          height: 3rem;
+     }
+     header > nav > .btn-nav,
+     header > .btn-full {
+          display: none;
+     }
+     header > .site-logo {
+          font-size: 3rem;
+     }
+     .source-section-hero {
+          flex-direction: column;
+     }
+     .source-section-hero,
+     .source-feature-spread,
+     .off-screen {
+          display: flex;
+          padding: 0 2rem;
+          margin-top: 3rem;
+     }
+     .source-hero-search,
+     .source-hero-search > label {
+          width: 100%;
+     }
+     .source-hero-search > label > input,
+     .btn-full {
+          height: 3rem;
+          font-size: 1rem;
+          line-height: 3rem;
+          width: 60%;
+     }
+     .btn-full {
+          width: 40%;
+     }
+     .source-hero-search p {
+          margin-top: 1rem;
+     }
+
+}
+@media screen and (max-width: 600px) {
+     .source-hero-search > label {
+          display: flex;
+          flex-direction: column;
+     }
+     .source-feature-spread > figure {
+          width: 100%;
+     }
+     .source-hero-search > label > input,
+     .btn-full {
+          width: 100%;
+     }
 }
