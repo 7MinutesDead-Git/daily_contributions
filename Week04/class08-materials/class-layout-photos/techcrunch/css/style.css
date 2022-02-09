@@ -18,19 +18,45 @@
 }
 
 /******************************************
-/* Styles.
+/* Base
 /*******************************************/
 body {
      display: flex;
      flex-direction: row;
+     font-family: 'Roboto', sans-serif;
 }
-a, details {
+h1, h2, h3, h4 {
+     font-family: 'Anton', sans-serif;
+     font-weight: 900;
+     letter-spacing: 0.1rem;
+}
+h1 {
+     font-size: 2rem;
+     line-height: 2.5rem;
+}
+h2 {
+     font-size: 1.3rem;
+     line-height: 1.6rem;
+}
+p {
+     font-weight: 300;
+     color: #6b6b6b;
+}
+.article-author {
+     font-weight: 700;
+     font-size: 0.75rem;
+     color: #6b6b6b;
+}
+a,
+details,
+header {
      text-decoration: none;
      color: #818181;
 }
 header {
      max-width: 20%;
      padding: 1rem;
+     height: 100%;
 }
 header > nav,
 header > section {
@@ -39,8 +65,8 @@ header > section {
      justify-content: space-between;
      align-items: flex-start;
 }
-header > nav > a {
-     color: #818181;
+header > nav > * {
+     line-height: 2rem;
 }
 .section-top,
 .section-bottom,
@@ -48,6 +74,7 @@ header > nav > a {
 .article-latest {
      display: flex;
      flex-direction: row;
+     margin-top: 1rem;
 }
 .logo {
      width: 3rem;
@@ -55,4 +82,49 @@ header > nav > a {
 .join-link {
      font-weight: bolder;
      color: #f6a623
+}
+
+/******************************************
+/* Hero
+/*******************************************/
+.section-article-hero {
+     margin: 0 1.5rem 1rem 0;
+}
+.section-article-hero > span {
+     font-weight: bold;
+     color: #f6a623;
+}
+.section-article-hero > article > * {
+     margin-bottom: 0.5rem;
+}
+.section-top > .articles-list {
+     min-width: 20%;
+     display: flex;
+     flex-direction: column;
+     justify-content: flex-start;
+}
+.section-top > .articles-list > li {
+     margin-top: 1rem;
+}
+.section-top > .articles-list > li > h2 {
+     margin-bottom: 0.5rem;
+}
+.section-bottom {
+     flex-direction: column;
+     margin: 0 1.5rem 0 0;
+}
+.section-bottom > h1 {
+     font-size: 1rem;
+}
+.article-latest {
+     gap: 2rem;
+}
+.article-latest-info {
+     display: flex;
+     flex-direction: column;
+     gap: 0.3rem;
+}
+.article-latest-info > .article-timestamp {
+     color: #7b8796;
+     font-size: 0.75rem;
 }
