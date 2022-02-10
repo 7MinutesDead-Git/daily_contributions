@@ -45,6 +45,13 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+/* My own additions. */
 a {
 	text-decoration: none;
+}
+button,
+input,
+textarea,
+select {
+	font: inherit;
 }
