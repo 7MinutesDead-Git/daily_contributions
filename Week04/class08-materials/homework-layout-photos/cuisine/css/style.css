@@ -20,7 +20,9 @@
 /******************************************
 /* Base Transitions
 /*******************************************/
-header > .nav-primary > a {
+header > .nav-primary > a,
+.section-hero > .nav-socials > a > img,
+.section-hero > .nav-socials > a > span {
      transition: color 0.2s ease-in-out, background-color 0.3s ease-in-out;
 }
 .section-hero > label > .input-search {
@@ -29,14 +31,21 @@ header > .nav-primary > a {
 .section-hero > label > .input-search:focus {
      border: #ff8800 solid 0.1rem;
 }
+.section-hero > .nav-socials > a:hover > span {
+     color: #ff8800;
+}
+.section-hero > .nav-socials > a:hover > img {
+     filter: brightness(1);
+}
 
-/******************************************
-/* BASE STYLES
-/*******************************************/
+     /******************************************
+     /* BASE STYLES
+     /*******************************************/
 body {
      display: flex;
      flex-direction: column;
      justify-content: center;
+     user-select: none;
      align-items: center;
      background: url(../images/fruit-background.jpg) no-repeat center center fixed;
      background-size: cover;
@@ -46,9 +55,9 @@ main {
      position: relative;
      overflow: hidden;
      margin: 2rem 0 0 0;
-     box-shadow: rgba(23, 23, 23, 0.6) 0 0 5rem;
+     box-shadow: rgba(23, 23, 23, 0.4) 0 0 5rem;
      padding: 0 2rem;
-     border-radius: 0.3rem 0.3rem 0 0;
+     border-radius: 0.4rem 0.4rem 0 0;
 }
 main::before {
      content: "";
@@ -73,7 +82,7 @@ h1, h2 {
      font-weight: 900;
      line-height: 3rem;
      margin-bottom: 1rem;
-     color: #2c2c2c;
+     color: rgba(64,64,64,1);
 }
 h2 {
      font-size: 2.7rem;
@@ -85,8 +94,9 @@ span {
 }
 p {
      font-size: 0.8rem;
-     line-height: 1.5rem;
+     line-height: 1.7rem;
      width: 30rem;
+     color: #7b8796;
 }
 
 /* --------------------------------------------- */
@@ -131,11 +141,11 @@ header > .nav-primary > a:hover {
      color: #f95c61;
      background: rgba(75, 75, 75, 0.1);
 }
-header > .nav-primary > a:nth-child(n+4) {
+header > .nav-primary > a:nth-child(n+5) {
      color: #fff;
      text-shadow: #2c2c2c 0 0 0.5rem;
 }
-header > .nav-primary > a:nth-child(n+4):hover {
+header > .nav-primary > a:nth-child(n+5):hover {
      background: rgba(255, 255, 255, 0.8);
      color: #f95c61;
      text-shadow: none;
@@ -143,7 +153,7 @@ header > .nav-primary > a:nth-child(n+4):hover {
 
 /* --------------------------------------------- */
 .section-hero {
-     margin: 4rem 0 0 4rem;
+     margin: 4rem 0 3rem 4rem;
      width: 40%;
      display: flex;
      flex-direction: column;
@@ -187,9 +197,18 @@ header > .nav-primary > a:nth-child(n+4):hover {
 }
 .section-hero > .nav-socials {
      display: flex;
-     justify-content: space-evenly;
-     align-items: center;
+     justify-content: space-between;
+     align-items: flex-start;
      margin: 1rem 0 3rem 0;
+     width: 50%;
+}
+.section-hero > .nav-socials > a > img {
+     height: 1rem;
+     filter: grayscale(1) sepia(1) contrast(1) saturate(3) hue-rotate(-40deg) brightness(1.2);
+     margin: 0 0.1rem 0 0;
+}
+.section-hero > .nav-socials > a > span {
+     color: rgb(77,77,77);
 }
 
 /* --------------------------------------------- */
@@ -215,3 +234,81 @@ header > .nav-primary > a:nth-child(n+4):hover {
 }
 
 /* --------------------------------------------- */
+
+@media screen and (max-width: 1228px) {
+     header {
+          justify-content: center;
+     }
+     header > .nav-primary {
+          width: 100%;
+     }
+     header > .nav-primary > a {
+          font-size: 1rem;
+          line-height: 1.5rem;
+     }
+     header > .nav-primary > a:nth-child(-1n+5) {
+          color: #2c2c2c;
+          text-shadow: none;
+     }
+     header > .nav-primary > a:nth-child(-1n+5):hover {
+          color: #f95c61;
+          background: rgba(75, 75, 75, 0.1);
+          text-shadow: none;
+     }
+     header > .nav-primary > a:nth-child(5) {
+          display: none;
+     }
+     .section-hero {
+          width: 50%;
+     }
+}
+
+@media screen and (max-width: 944px) {
+     main::before {
+          background-image:
+                  linear-gradient(to right, rgba(255, 255, 255, 1), rgba(222,81,85,0.1)),
+                  url('../images/fruit-background.jpg');
+          background-size: cover;
+     }
+     header > .nav-primary > a:nth-child(n+5) {
+          display: none;
+     }
+     header > .nav-primary > img {
+          height: 1.5rem;
+          filter: contrast(0) brightness(0.7);
+          margin: 0 1.4rem;
+     }
+     .section-hero {
+          width: 70%;
+     }
+}
+
+@media screen and (max-width: 805px) {
+     header > .nav-primary > a:nth-child(-1n+2) {
+          display: none;
+     }
+     main {
+          align-items: center;
+     }
+     .section-hero > label {
+          width: 100%;
+     }
+     .section-hero .input-search {
+     }
+}
+
+@media screen and (max-width: 593px) {
+     header > .nav-primary > a:nth-child(-1n+3) {
+          display: none;
+     }
+     .section-hero {
+          width: 100%;
+          margin: 3rem 0 0 0;
+     }
+     h1 {
+          font-size: 3.2rem;
+     }
+     .section-hero > .nav-socials {
+          width: 80%
+     }
+}
