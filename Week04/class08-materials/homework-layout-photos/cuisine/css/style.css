@@ -293,7 +293,8 @@ header > .nav-primary > a:nth-child(n+5):hover {
      .section-hero > label {
           width: 100%;
      }
-     .section-hero .input-search {
+     .section-hero > .nav-socials {
+          width: 80%;
      }
 }
 
@@ -309,6 +310,12 @@ header > .nav-primary > a:nth-child(n+5):hover {
           font-size: 3.2rem;
      }
      .section-hero > .nav-socials {
-          width: 80%
+          width: 80%;
+     }
+     .section-hero > .nav-socials > a > img {
+          height: 1.5rem;
+     }
+     .section-hero > .nav-socials > a > span {
+          font-size: 1.2rem;
      }
 }
