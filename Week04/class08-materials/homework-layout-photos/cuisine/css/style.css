@@ -18,11 +18,65 @@
 }
 
 /******************************************
+/* Base Transitions
+/*******************************************/
+header > .nav-primary > a {
+    transition: color 0.2s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+/******************************************
 /* BASE STYLES
 /*******************************************/
-
 body {
-
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     background: url(../images/fruit-background.jpg) no-repeat center center fixed;
+     background-size: cover;
+     font-family: 'Roboto', sans-serif;
+}
+main {
+     position: relative;
+     overflow: hidden;
+     margin: 2rem 0 0 0;
+     box-shadow: rgba(23, 23, 23, 0.3) 0 0 5rem;
+     padding: 0 2rem;
+     border-radius: 0.3rem 0.3rem 0 0;
+}
+main::before {
+     content: "";
+     position: absolute;
+     width: 200%;
+     height: 200%;
+     top: -2%;
+     left: -68%;
+     z-index: -1;
+     background: url(../images/fruit-background.jpg) 0 0 repeat;
+     background-size: cover;
+     transform: rotate(180deg);
+}
+a {
+     display: inline-block;
+     cursor: pointer;
+}
+h1, h2 {
+     font-family: 'ITC Avant Garde Gothic', sans-serif;
+     text-transform: capitalize;
+     font-size: 3rem;
+     font-weight: 200;
+     line-height: 2.4rem;
+     margin-bottom: 1rem;
+}
+h2 {
+     font-size: 2rem;
+}
+main,
+.section-about,
+.section-menu,
+.section-contact,
+.section-testimony {
+     width: min(90%, 1200px);
 }
 
 
@@ -30,13 +84,67 @@ body {
 /* LAYOUT
 /*******************************************/
 header {
-
+     display: flex;
+     justify-content: flex-end;
+}
+header > .nav-primary {
+     display: flex;
+     justify-content: space-evenly;
+     width: 70%;
+     padding: 1rem 2rem 0 0;
+}
+header > .nav-primary > img {
+     height: 1.5rem;
+     filter: contrast(0) brightness(2);
+     margin: 0 1rem;
+     text-shadow: #2c2c2c 0 0 0.5rem;
 }
 
-footer {
-
+header > .nav-primary > a {
+     font-size: 0.8rem;
+     line-height: 1.5rem;
+     font-weight: 300;
+     width: 100%;
+     text-align: center;
+     color: #7b8796;
+}
+header > .nav-primary > a:hover {
+     color: #f95c61;
+     background: rgba(75, 75, 75, 0.1);
+}
+header > .nav-primary > a:nth-child(n+4) {
+     color: #fff;
+     text-shadow: #2c2c2c 0 0 0.5rem;
+}
+header > .nav-primary > a:nth-child(n+4):hover {
+     background: rgba(255, 255, 255, 0.8);
+     color: #f95c61;
+     text-shadow: none;
 }
 
-/******************************************
-/* ADDITIONAL STYLES
-/*******************************************/
+.section-hero {
+     margin: 4rem;
+     width: 60%;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: flex-start;
+}
+.section-hero > h1 {
+     margin-bottom: 3rem;
+}
+
+.section-about {
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: flex-end;
+     padding: 4rem;
+     width: min(90%, 1200px);
+     height: 20rem;
+     background-image:
+             linear-gradient(to right, rgba(245, 246, 252, 0.2), rgba(225, 75, 78, 0.5)),
+             url('../images/breakfast-bg.jpg');
+     background-size: cover;
+     color: #fff;
+}
