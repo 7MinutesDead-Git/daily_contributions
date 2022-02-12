@@ -62,16 +62,15 @@ main {
      border-radius: 0.4rem 0.4rem 5rem 0.4rem;
      transform: rotate(10deg) scale(1.2) translate(-5rem, -4rem);
 }
-/* This is the "welcome", search box, and header row rotated back straight. */
+/* This is the "welcome", search box, and header row rotated back straight and scale
+returned back to "1" (as close as possible anyway). */
 main > section {
      transform: rotate(-10deg) scale(.8333) translate(5rem, 4rem);
 }
 main > header {
      transform: rotate(-10deg) scale(.8333) translate(7rem, 7rem);
 }
-/* This is the background inside of main, but in a pseudo-element so it can be
-   rotated and moved freely (in my case I spun it around 180 degrees to mirror it
-   onto the right side instead) */
+/* Necessary pseudo element to allow for greater manipulation of the background image. */
 main::before {
      content: "";
      position: absolute;
@@ -236,6 +235,7 @@ header > .nav-primary > a:nth-child(n+4):hover {
              linear-gradient(to left, rgba(255, 255, 255, 1), rgba(225, 225, 225, 0.5)),
              url('../images/breakfast-bg.jpg');
      background-size: cover;
+     border-radius: 0.5rem;
 }
 .section-about > .about-block {
      width: 50%;
