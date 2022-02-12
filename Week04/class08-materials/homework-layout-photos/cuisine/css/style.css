@@ -62,7 +62,7 @@ main {
      border-radius: 0.4rem 0.4rem 5rem 0.4rem;
      transform: rotate(10deg) scale(1.2) translate(-5rem, -4rem);
 }
-/* This is the "welcome", search box, and header row rotated back straight and scale
+/* Since the child elements were also tilted, we must rotate them back to 0 and scale
 returned back to "1" (as close as possible anyway). */
 main > section {
      transform: rotate(-10deg) scale(.8333) translate(5rem, 4rem);
