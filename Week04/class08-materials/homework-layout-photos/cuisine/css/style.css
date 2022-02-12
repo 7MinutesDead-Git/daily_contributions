@@ -184,7 +184,8 @@ header > .nav-primary > a:nth-child(n+4):hover {
      margin-bottom: 1rem;
 }
 .section-hero .input-search,
-.section-hero .btn-search {
+.section-hero .btn-search,
+.btn-menu {
      border: none;
      font-size: 0.7rem;
      padding-left: 0.5rem;
@@ -202,7 +203,8 @@ header > .nav-primary > a:nth-child(n+4):hover {
 .section-hero .input-search::placeholder {
      color: #bbb;
 }
-.section-hero .btn-search {
+.section-hero .btn-search,
+.btn-menu {
      width: 5rem;
      background: rgba(255,136,0,1);
      color: #fff;
@@ -247,6 +249,27 @@ header > .nav-primary > a:nth-child(n+4):hover {
 .section-about > .about-block > span {
      display: inline-block;
      margin: 0 0 1rem 0;
+     text-shadow: white 0 0 0.5rem;
+}
+.section-about p {
+     margin: 1rem 0;
+     color: rgba(56,56,56,0.73);
+     text-shadow: white 0 0 0.5rem;
+}
+.section-about .btn-menu {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     width: 10rem;
+     margin: 2rem 0;
+     border-radius: 0.3rem;
+}
+.section-about .btn-menu-left,
+.section-about .btn-menu-right {
+     padding: 0 0.5rem;
+}
+.section-about .btn-menu-right {
+     background: #ffaa4d;
 }
 
 
