@@ -2,7 +2,6 @@
 * {
   box-sizing: border-box;
 }
-
 /* Clear fix hack */
 .clearfix:after {
      content: ".";
@@ -12,7 +11,6 @@
      line-height: 0;
      height: 0;
 }
-
 .clear {
 	clear: both;
 }
@@ -50,6 +48,7 @@ body {
      background: url(../images/fruit-background.jpg) no-repeat center center fixed;
      background-size: cover;
      font-family: 'Roboto', sans-serif;
+     overflow-x: hidden;
 }
 /* This is the main block that is tilted. */
 main {
@@ -59,7 +58,8 @@ main {
      box-shadow: rgba(23, 23, 23, 0.4) 0 0 5rem;
      padding: 0 2rem;
      border: 4px solid rgba(253,88,96,0.62);
-     border-radius: 0.4rem 0.4rem 5rem 0.4rem;
+     border-radius: 0 0 5rem 30%;
+     right: -5%;
      transform: rotate(10deg) scale(1.2) translate(-5rem, -4rem);
 }
 /* Since the child elements were also tilted, we must rotate them back to 0 and scale
@@ -230,40 +230,50 @@ header > .nav-primary > a:nth-child(n+4):hover {
      justify-content: center;
      align-items: flex-end;
      padding: 4rem;
-     width: min(90%, 1200px);
+     width: min(90%, 1300px);
      background-image:
              linear-gradient(to left, rgba(255, 255, 255, 1), rgba(225, 225, 225, 0.5)),
              url('../images/breakfast-bg.jpg');
      background-size: cover;
      border-radius: 0.5rem;
+     transform: translateY(-15rem);
+     z-index: -1;
+     box-shadow: rgba(87,87,87,0.15) 0 0 5rem 1rem;
 }
 .section-about > .about-block {
      width: 50%;
-     margin: 0 5rem 0 0;
+     margin: 13rem 5rem 0 0;
 }
 .section-about > .about-block > span {
      display: inline-block;
      margin: 0 0 1rem 0;
 }
 
-/* --------------------------------------------- */
 
-@media screen and (max-width: 1228px) {
+/******************************************
+/* Media queries
+/*******************************************/
+
+@media screen and (max-width: 1236px) {
+     main {
+          right: -10%;
+     }
      header {
           justify-content: center;
      }
      header > .nav-primary {
           width: 100%;
+          margin: 0 5rem 0 0;
      }
      header > .nav-primary > a {
           font-size: 1rem;
           line-height: 1.5rem;
      }
-     header > .nav-primary > a:nth-child(-1n+5) {
+     header > .nav-primary > a:nth-child(-1n+3) {
           color: #2c2c2c;
           text-shadow: none;
      }
-     header > .nav-primary > a:nth-child(-1n+5):hover {
+     header > .nav-primary > a:nth-child(-1n+3):hover {
           color: #f95c61;
           background: rgba(75, 75, 75, 0.1);
           text-shadow: none;
@@ -274,25 +284,43 @@ header > .nav-primary > a:nth-child(n+4):hover {
      .section-hero {
           width: 50%;
      }
+     .section-about {
+          width: 100%;
+     }
 }
 
-@media screen and (max-width: 944px) {
+@media screen and (max-width: 1012px) {
      main::before {
           background-image:
                   linear-gradient(to right, rgba(255, 255, 255, 1), rgba(222,81,85,0.1)),
                   url('../images/fruit-background.jpg');
           background-size: cover;
      }
+     main {
+          right: -13%;
+          top: -10%;
+          width: 100%
+     }
      header > .nav-primary > a:nth-child(n+5) {
           display: none;
+     }
+     header > .nav-primary > a:nth-child(-1n+4) {
+          color: #2c2c2c;
+          text-shadow: none;
      }
      header > .nav-primary > img {
           height: 1.5rem;
           filter: contrast(0) brightness(0.7);
           margin: 0 1.4rem;
      }
+     header > .nav-primary {
+          margin: 0;
+     }
      .section-hero {
           width: 70%;
+     }
+     main > header {
+          transform: rotate(-10deg) scale(0.8333) translate(-4rem, 7rem);
      }
 }
 
@@ -302,6 +330,9 @@ header > .nav-primary > a:nth-child(n+4):hover {
      }
      main {
           align-items: center;
+     }
+     .section-hero {
+          margin-left: 0;
      }
      .section-hero > label {
           width: 100%;
@@ -315,9 +346,12 @@ header > .nav-primary > a:nth-child(n+4):hover {
      header > .nav-primary > a:nth-child(-1n+3) {
           display: none;
      }
+     header > .nav-primary {
+          transform: translate(3rem, 0);
+     }
      .section-hero {
-          width: 100%;
-          margin: 3rem 0 0 0;
+          width: 95%;
+          margin: 3rem 0;
      }
      h1 {
           font-size: 3.2rem;
@@ -330,5 +364,8 @@ header > .nav-primary > a:nth-child(n+4):hover {
      }
      .section-hero > .nav-socials > a > span {
           font-size: 1.2rem;
+     }
+     .section-hero > label {
+          width: 80%;
      }
 }
