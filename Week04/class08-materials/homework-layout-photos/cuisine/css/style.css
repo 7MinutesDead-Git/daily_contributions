@@ -165,7 +165,7 @@ header > .nav-primary > a:nth-child(n+5):hover {
 }
 .section-hero > label {
      display: flex;
-     box-shadow: #2c2c2c 0 2rem 10rem 0.03rem;
+     box-shadow: rgba(220,222,222,1) 0 0 1rem 0.03rem;
      border: rgba(220,222,222,1) 0.1rem solid;
      border-radius: 0.3rem;
      overflow: hidden;
