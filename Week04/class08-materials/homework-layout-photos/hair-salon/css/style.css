@@ -25,18 +25,34 @@ body {
 
 }
 
-
-/******************************************
-/* LAYOUT
-/*******************************************/
-header {
-
+/* This is the main block that is tilted. */
+.section-hero {
+     position: relative;
+     width: 100%;
+     height: 100vh;
+     overflow: hidden;
+     margin: 2rem 0 0 0;
+     box-shadow: rgba(23, 23, 23, 0.4) 0 0 5rem;
+     padding: 0 2rem;
+     border: 4px solid rgba(253,88,96,0.62);
+     border-radius: 0 0 5rem 30%;
+     right: -5%;
+     transform: rotate(10deg) scale(1.2) translate(-5rem, -4rem);
 }
-
-footer {
-
+/* Since the child elements were also tilted, we must rotate them back to 0 and scale
+returned back to "1" (as close as possible anyway). */
+.section-hero > section {
+     transform: rotate(-10deg) scale(.8333) translate(5rem, 4rem);
 }
-
-/******************************************
-/* ADDITIONAL STYLES
-/*******************************************/
+/* Necessary pseudo element to allow for greater manipulation of the background image. */
+.section-hero::before {
+     content: "";
+     position: absolute;
+     width: 200%;
+     height: 200%;
+     top: -2%;
+     left: -68%;
+     z-index: -1;
+     background: url(../images/model-purple.jpg) 0 0 no-repeat;
+     background-size: cover;
+}
