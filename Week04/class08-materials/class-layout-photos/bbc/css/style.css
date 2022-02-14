@@ -18,8 +18,62 @@
 }
 
 /******************************************
+/* Transitions
+/*******************************************/
+.btn-nav,
+.nav-dropdown-menu,
+.logo > .logo-letter {
+    transition: all 0.25s ease-in-out;
+}
+.btn-nav:hover {
+     background: #f5f5f5;
+     color: #000;
+}
+.logo > .logo-letter:hover {
+     background: #000;
+     color: #f5f5f5;
+}
+
+/******************************************
 /* BASE STYLES
 /*******************************************/
+main {
+     margin: 2rem 1rem 0 1rem;
+}
+h1,
+h2,
+.tag-news-pipe {
+     font-weight: bolder;
+}
+h1 {
+     color: #4a4a4a;
+     font-size: 1.2rem;
+}
+time {
+     color: #8c8c8c
+}
+p {
+     color: #605d55
+}
+.section-welcome {
+     display: flex;
+     justify-content: space-between;
+     margin-bottom: 0.7rem;
+}
+.section-hero,
+.section-newsbites,
+.section-news {
+     display: flex;
+}
+.section-newsbites {
+     flex-wrap: wrap;
+}
+.tag-news-pipe,
+.tag-news-text {
+     font-size: 0.8rem;
+     text-transform: uppercase;
+     color: #d1d1d1;
+}
 .nav-primary {
      display: flex;
      justify-content: space-between;
@@ -53,7 +107,6 @@
      font-size: 0.6rem;
      color: #fff;
      background: #000;
-     transition: all 0.2s ease-in-out;
      border-left: #7b8796 0.05rem solid;
      height: 100%;
      width: 100%;
@@ -68,7 +121,6 @@
      flex-direction: column;
      width: 10%;
      background: #000;
-     transition: all 0.2s ease-in-out;
      padding: 0.2rem;
 }
 .nav-dropdown-menu > .btn-nav {
@@ -82,7 +134,47 @@
      padding: 0 0.5rem;
      font-weight: bold;
 }
-
-/******************************************
-/* LAYOUT
-/*******************************************/
+.section-card-large,
+.section-card-story-small,
+.card-story-image {
+     background:
+             linear-gradient(to top, rgba(0, 0, 0, 1), transparent),
+             url(https://i.imgur.com/KUzqBGw.jpg) no-repeat center center;
+     background-size: cover;
+     color: #ffffff;
+}
+.section-card-story-small,
+.section-card-large {
+     display: flex;
+     flex-direction: column;
+     justify-content: flex-end;
+     padding: 1rem;
+}
+.section-card-story-small {
+     width: 50%;
+}
+.section-card-large {
+     width: 100%;
+     height: 20rem;
+}
+.section-card-story {
+     height: 15rem;
+     padding: 0.5rem;
+}
+.card-story-image {
+     width: 100%;
+     height: 100%;
+}
+.section-bottom > div {
+     display: flex;
+     flex-direction: row;
+     margin: 2rem 0 1rem 0;
+}
+.section-bottom > div > * {
+     margin: 0 0.2rem;
+}
+.section-card-story-small > *,
+.section-card-large > *,
+.section-card-story > *{
+     margin-top: 0.5rem;
+}
