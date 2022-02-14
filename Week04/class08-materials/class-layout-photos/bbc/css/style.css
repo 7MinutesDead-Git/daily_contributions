@@ -20,23 +20,69 @@
 /******************************************
 /* BASE STYLES
 /*******************************************/
-
-body {
-
+.nav-primary {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     padding: 0.3rem;
+     background: #000;
+     user-select: none;
 }
-
+.logo {
+     display: flex;
+     justify-content: space-between;
+     padding: 0 0.2rem;
+}
+.logo > .logo-letter {
+     text-align: center;
+     font-size: 1.2rem;
+     line-height: 1.5rem;
+     font-weight: bold;
+     height: 1.5rem;
+     width: 1.5rem;
+     color: #000;
+     background: #fff;
+     margin: 0 0.1rem;
+}
+.btn-nav {
+     text-decoration: none;
+     text-transform: capitalize;
+     text-align: center;
+     font-weight: bold;
+     line-height: 1.5rem;
+     font-size: 0.6rem;
+     color: #fff;
+     background: #000;
+     transition: all 0.2s ease-in-out;
+     border-left: #7b8796 0.05rem solid;
+     height: 100%;
+     width: 100%;
+}
+.nav-primary > .btn-signin,
+.nav-primary > .btn-more {
+     width: 150%;
+}
+.nav-dropdown-menu {
+     position: absolute;
+     display: flex;
+     flex-direction: column;
+     width: 10%;
+     background: #000;
+     transition: all 0.2s ease-in-out;
+     padding: 0.2rem;
+}
+.nav-dropdown-menu > .btn-nav {
+     border-left: none;
+     border-bottom: #7b8796 0.05rem solid;
+}
+.nav-dropdown-menu > .btn-nav:last-child {
+     border-bottom: none;
+}
+.nav-search {
+     padding: 0 0.5rem;
+     font-weight: bold;
+}
 
 /******************************************
 /* LAYOUT
-/*******************************************/
-header {
-
-}
-
-footer {
-
-}
-
-/******************************************
-/* ADDITIONAL STYLES
 /*******************************************/
