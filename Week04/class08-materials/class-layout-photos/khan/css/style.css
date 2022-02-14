@@ -20,23 +20,79 @@
 /******************************************
 /* BASE STYLES
 /*******************************************/
-
-body {
-
+h1 {
+     font-size: 2.5rem;
+     font-weight: bold;
+     color: #21242d;
 }
-
-
-/******************************************
-/* LAYOUT
-/*******************************************/
-header {
-
+.nav-primary-btn,
+.input-search {
+     cursor: pointer;
 }
-
-footer {
-
+.nav-primary,
+.logo,
+.nav-hero {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     user-select: none;
 }
-
-/******************************************
-/* ADDITIONAL STYLES
-/*******************************************/
+.nav-primary {
+     border-bottom: 1px solid #ccc;
+     padding: 1rem;
+}
+.input-search {
+     border: none;
+}
+.input-search::placeholder,
+.nav-primary-btn {
+     color: #3169e9;
+     font-weight: bolder;
+     font-size: 1rem;
+     text-transform: capitalize;
+}
+.logo {
+     color: #0f2a66;
+     font-weight: bolder;
+     font-size: 1.4rem;
+     width: 20rem;
+     justify-content: center;
+}
+.logo > * {
+     margin: 0.2rem;
+}
+main {
+     display: flex;
+     justify-content: center;
+     padding: 0 4rem;
+}
+.section-students,
+.section-hero {
+     width: 50%;
+     height: 80vh;
+     background: url('../images/students.png') no-repeat center center;
+     background-size: contain;
+     padding: 2rem;
+}
+.section-hero {
+     background: none;
+     display: inherit;
+     flex-direction: column;
+     justify-content: center;
+     align-items: flex-start;
+}
+p {
+     margin: 1rem 0;
+     line-height: 1.5rem;
+}
+.nav-hero > a {
+     color: white;
+     background: #2f66f2;
+     font-size: 0.9rem;
+     width: 5rem;
+     height: 2rem;
+     line-height: 2rem;
+     text-align: center;
+     margin: 0 0.3rem;
+     border-radius: 0.2rem;
+}
