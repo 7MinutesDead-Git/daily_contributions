@@ -45,7 +45,7 @@
 .lookbook-photo-tall::before,
 .lookbook-photo-short::after,
 .lookbook-photo-tall::after {
-    transition: all 0.2s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 .section-hero > .section-hero-left > .section-info > span:hover {
      background: white;
@@ -177,6 +177,8 @@ h2 {
      background-size: cover;
      margin: 0 auto;
      z-index: -1;
+     /* This removes the aliasing (jagged edges) when viewed in Chrome. */
+     backface-visibility: hidden;
 }
 .section-hero {
      margin: 0 5rem;
@@ -309,7 +311,7 @@ h2 {
      content: '';
      width: 100%;
      height: 100%;
-     background: rgba(0,0,0,0.75);
+     background: rgba(0,0,0,0.85);
      opacity: 0;
 }
 /* Cross for lookbook photo hovers. */
