@@ -41,7 +41,10 @@
 .btn-carosel,
 .lookbook-photo-short,
 .lookbook-photo-tall,
-.photo-cross-overlay {
+.lookbook-photo-short::before,
+.lookbook-photo-tall::before,
+.lookbook-photo-short::after,
+.lookbook-photo-tall::after {
     transition: all 0.2s ease-in-out;
 }
 .section-hero > .section-hero-left > .section-info > span:hover {
@@ -66,12 +69,10 @@
      background: var(--color-hover);
      color: white;
 }
-.lookbook-photo-short:hover,
-.lookbook-photo-tall:hover {
-     filter: brightness(0.3);
-}
-.lookbook-photo-short:hover > .photo-cross-overlay,
-.lookbook-photo-tall:hover > .photo-cross-overlay {
+.lookbook-photo-short:hover::before,
+.lookbook-photo-tall:hover::before,
+.lookbook-photo-short:hover::after,
+.lookbook-photo-tall:hover::after {
      opacity: 1;
 }
 
@@ -304,6 +305,19 @@ h2 {
      height: 66.6666%;
      background: url(../images/model-red.jpg) no-repeat 70%;
 }
-.photo-cross-overlay {
+/* Dark overlay for lookbook photo hovers. */
+.lookbook-photo-short::before,
+.lookbook-photo-tall::before {
+     content: '';
+     width: 100%;
+     height: 100%;
+     background: rgba(0,0,0,0.75);
+     opacity: 0;
+}
+/* Cross for lookbook photo hovers. */
+.lookbook-photo-short::after,
+.lookbook-photo-tall::after {
+     position: absolute;
+     content: '+';
      opacity: 0;
 }
