@@ -38,7 +38,9 @@
 .section-hero > .section-hero-left > .section-info > span,
 .nav-primary > .nav-center-btns > a,
 .nav-primary > .link-book,
-.btn-carosel {
+.btn-carosel,
+.lookbook-photo-short,
+.lookbook-photo-tall {
     transition: all 0.2s ease-in-out;
 }
 .section-hero > .section-hero-left > .section-info > span:hover {
@@ -63,6 +65,10 @@
      background: var(--color-hover);
      color: white;
 }
+.lookbook-photo-short:hover,
+.lookbook-photo-tall:hover {
+     filter: brightness(0.3);
+}
 
 /******************************************
 /* Base styles.
@@ -84,6 +90,12 @@ h1 {
      font-size: 5rem;
      font-weight: 100;
      line-height: 3.4rem;
+}
+h2 {
+     font-size: 1.3rem;
+     font-weight: 700;
+     margin: 1rem;
+     color: #404040;
 }
 .logo {
      font-family: 'Great Vibes', cursive;
@@ -160,6 +172,9 @@ h1 {
      margin: 0 auto;
      z-index: -1;
 }
+.section-hero {
+     margin: 0 5rem;
+}
 .section-hero > section,
 .section-hero > .section-hero-left {
      position: absolute;
@@ -215,4 +230,67 @@ h1 {
      position: absolute;
      top: 95%;
      right: 5rem;
+}
+.section-services {
+     display: flex;
+     width: 70%;
+     margin: 1rem auto 5rem auto;
+}
+.section-services > .service-card {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+}
+.service-card > img {
+     width: 2rem;
+     height: 2rem;
+     margin: 1rem 0;
+}
+.service-card > p {
+     font-size: 0.9rem;
+     margin: 1rem 0;
+     text-align: center;
+     line-height: 1.7rem;
+     color: #909090;
+}
+
+.section-lookbook {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     margin: 5rem auto;
+}
+.section-lookbook > h1 {
+     color: var(--off-black);
+     font-size: 3rem;
+}
+.section-lookbook {
+     height: 60rem;
+     width: 50%;
+}
+.section-lookbook > .lookbook-grid,
+.section-lookbook > .lookbook-grid > .lookbook-column {
+     display: flex;
+     height: 100%;
+}
+.section-lookbook > .lookbook-grid {
+     width: 100%;
+}
+.section-lookbook > .lookbook-grid > .lookbook-column {
+     flex-direction: column;
+     align-items: center;
+     width: 50%;
+     margin: 0.5rem;
+}
+.lookbook-photo-short,
+.lookbook-photo-tall {
+     width: 100%;
+     height: 33.3333%;
+     background: url(../images/model-purple.png) no-repeat 80%;
+     background-size: cover;
+     margin: 0.5rem;
+}
+.lookbook-photo-short {
+     height: 66.6666%;
+     background: url(../images/model-red.jpg) no-repeat 70%;
 }
