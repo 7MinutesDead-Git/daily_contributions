@@ -1,3 +1,6 @@
+/******************************************
+/* Clearfix hack for.
+/*******************************************/
 /* Box Model Hack */
 * {
   box-sizing: border-box;
@@ -18,41 +21,180 @@
 }
 
 /******************************************
-/* BASE STYLES
+/* Root style variables.
 /*******************************************/
+:root {
+     --off-black: #151515;
+     --color-hover: #f9a825;
+     --gradient-primary: rgba(50,0,156,0.2);
+}
 
+/******************************************
+/* Transitions.
+/*******************************************/
+.logo,
+.btn,
+.btn-inverted,
+.section-hero > .section-hero-left > .section-info > span,
+.nav-primary > .nav-center-btns > a,
+.nav-primary > .link-book {
+    transition: all 0.2s ease-in-out;
+}
+.section-hero > .section-hero-left > .section-info > span:hover {
+     background: white;
+     color: var(--color-hover);
+     border-left: var(--color-hover) 0.2rem solid;
+}
+.nav-primary > .nav-center-btns > a:hover,
+.link-book:hover {
+     color: var(--color-hover);
+     border-bottom: var(--color-hover) 0.1rem solid;
+}
+.logo:hover {
+     color: var(--color-hover);
+}
+.btn:hover {
+     background: var(--color-hover);
+     color: white;
+}
+.btn-inverted:hover {
+     background: var(--color-hover);
+     color: white;
+}
+
+/******************************************
+/* Base styles.
+/*******************************************/
 body {
-
+     overflow-x: hidden;
+     font-family: 'Cinzel', serif;
+     user-select: none;
 }
-
-/* This is the main block that is tilted. */
-.section-hero {
-     position: relative;
+.nav-primary {
+     z-index: 100;
+}
+a {
+     text-decoration: none;
+     color: #101010;
+}
+h1 {
+     color: white;
+     font-size: 5rem;
+     font-weight: 100;
+     line-height: 3.4rem;
+}
+.logo {
+     font-family: 'Great Vibes', cursive;
+     font-size: 1.5rem;
+}
+.btn,
+.btn-inverted {
+     display: inline-block;
+     width: 10rem;
+     padding: 1rem 1.5rem;
+     background-color: var(--off-black);
+     color: white;
+     font-size: 0.75rem;
+     border: none;
+     cursor: pointer;
+}
+.btn-inverted {
+     background-color: white;
+     font-weight: 500;
+     color: var(--off-black);
+}
+.nav-primary,
+.nav-center-btns {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     font-weight: 500;
+}
+.nav-primary {
+     position: fixed;
+     top: 0;
      width: 100%;
-     height: 100vh;
+     padding: 1rem 5rem;
+     background: #ffffff;
+     border-bottom: 0.1rem solid #7b8796;
+}
+.link-book,
+.nav-primary > .nav-center-btns > a {
+     font-size: 0.9rem;
+     width: 8rem;
+     height: 2rem;
+     line-height: 2rem;
+     text-align: center;
+}
+.hero-bg {
+     position: relative;
+     width: min(110%, 1920px);
+     height: 120vh;
+     top: -3rem;
      overflow: hidden;
-     margin: 2rem 0 0 0;
-     box-shadow: rgba(23, 23, 23, 0.4) 0 0 5rem;
-     padding: 0 2rem;
-     border: 4px solid rgba(253,88,96,0.62);
-     border-radius: 0 0 5rem 30%;
-     right: -5%;
-     transform: rotate(10deg) scale(1.2) translate(-5rem, -4rem);
-}
-/* Since the child elements were also tilted, we must rotate them back to 0 and scale
-returned back to "1" (as close as possible anyway). */
-.section-hero > section {
-     transform: rotate(-10deg) scale(.8333) translate(5rem, 4rem);
-}
-/* Necessary pseudo element to allow for greater manipulation of the background image. */
-.section-hero::before {
-     content: "";
-     position: absolute;
-     width: 200%;
-     height: 200%;
-     top: -2%;
-     left: -68%;
-     z-index: -1;
-     background: url(../images/model-purple.jpg) 0 0 no-repeat;
+     box-shadow: rgba(23, 23, 23, 0.4) 0 0 3rem;
+     border: 0.25rem solid #7b8796;
+     border-radius: 0 0 5rem 0;
+     transform: rotate(10deg) translate(-5rem, -8rem);
+     background:
+             linear-gradient(
+                     to left,
+                     var(--gradient-primary) 10%,
+                     rgba(255,255,255,0.1) 30%,
+                     var(--gradient-primary) 90%),
+             url(../images/model-purple.png) no-repeat;
      background-size: cover;
+     margin: 0 auto;
+     z-index: -1;
+}
+.section-hero > section,
+.section-hero > .section-hero-left {
+     position: absolute;
+}
+.section-hero > .section-hero-left {
+     display: flex;
+     flex-direction: column;
+     top: 10rem;
+     margin: 0 5rem;
+     width: 40%;
+}
+.section-hero > .section-hero-left > span {
+     margin: 3rem 0;
+     color: #f5f5f5;
+     word-spacing: 0.3rem;
+     letter-spacing: 0.1rem;
+}
+.section-hero > .section-hero-left > .section-info {
+     display: flex;
+     flex-direction: column;
+     align-items: flex-start;
+     width: 50%;
+     background: var(--off-black);
+     margin: 5rem 0 0 0;
+     padding: 1rem;
+     color: white;
+}
+.section-hero > .section-hero-left > .section-info > span {
+     display: inline-block;
+     padding: 1rem;
+     width: 100%;
+     border-left: white 0.1rem solid;
+}
+.deal-info {
+     margin: 2rem 0;
+     line-height: 2rem;
+}
+.deal-info > .deal-span {
+     font-size: 2rem;
+     font-weight: 900;
+}
+
+.section-hero > .schedule {
+     position: absolute;
+     color: white;
+     right: -4rem;
+     top: 50%;
+     transform: rotate(90deg);
+     letter-spacing: 0.1rem;
+     word-spacing: 0.2rem;
 }
