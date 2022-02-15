@@ -37,7 +37,8 @@
 .btn-inverted,
 .section-hero > .section-hero-left > .section-info > span,
 .nav-primary > .nav-center-btns > a,
-.nav-primary > .link-book {
+.nav-primary > .link-book,
+.btn-carosel {
     transition: all 0.2s ease-in-out;
 }
 .section-hero > .section-hero-left > .section-info > span:hover {
@@ -53,7 +54,8 @@
 .logo:hover {
      color: var(--color-hover);
 }
-.btn:hover {
+.btn:hover,
+.btn-carosel:hover {
      background: var(--color-hover);
      color: white;
 }
@@ -102,6 +104,17 @@ h1 {
      background-color: white;
      font-weight: 500;
      color: var(--off-black);
+}
+.btn-carosel {
+     display: inline-block;
+     background-color: rgba(255,255,255,0.58);
+     font-weight: 900;
+     color: var(--off-black);
+     width: 2rem;
+     height: 2rem;
+     line-height: 2rem;
+     text-align: center;
+     border-radius: 50%;
 }
 .nav-primary,
 .nav-center-btns {
@@ -197,4 +210,9 @@ h1 {
      transform: rotate(90deg);
      letter-spacing: 0.1rem;
      word-spacing: 0.2rem;
+}
+.section-hero > .carosel {
+     position: absolute;
+     top: 95%;
+     right: 5rem;
 }
