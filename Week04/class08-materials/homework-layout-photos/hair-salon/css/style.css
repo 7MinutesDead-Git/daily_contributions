@@ -265,14 +265,12 @@ h2 {
      flex-direction: column;
      align-items: center;
      margin: 5rem auto;
+     height: 60rem;
+     width: 50%;
 }
 .section-lookbook > h1 {
      color: var(--off-black);
      font-size: 3rem;
-}
-.section-lookbook {
-     height: 60rem;
-     width: 50%;
 }
 .section-lookbook > .lookbook-grid,
 .section-lookbook > .lookbook-grid > .lookbook-column {
