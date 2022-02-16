@@ -47,7 +47,8 @@
 .lookbook-photo-tall::before,
 .lookbook-photo-short::after,
 .lookbook-photo-tall::after,
-.nav-center-menu {
+.nav-center-menu,
+.section-services > .service-card {
     transition: all 0.3s ease-in-out;
 }
 .section-hero > .section-hero-left > .section-info > span:hover {
