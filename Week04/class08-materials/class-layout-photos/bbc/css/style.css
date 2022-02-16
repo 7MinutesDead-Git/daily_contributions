@@ -152,6 +152,8 @@ p {
 }
 .section-card-story-small {
      width: 50%;
+     height: 50%;
+     border-left: 1rem solid white;
 }
 .section-card-large {
      width: 100%;
