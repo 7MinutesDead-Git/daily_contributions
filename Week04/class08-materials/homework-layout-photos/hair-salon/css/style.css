@@ -213,10 +213,13 @@ h2 {
      width: 40%;
 }
 .section-hero > .section-hero-left > span {
+     display: inline-block;
+     width: 100%;
      margin: 3rem 0;
      color: #f5f5f5;
      word-spacing: 0.3rem;
      letter-spacing: 0.1rem;
+     line-height: 1.6rem;
 }
 .section-hero > .section-hero-left > .section-info {
      display: flex;
@@ -464,6 +467,9 @@ h2 {
                   url(../images/model-purple.png) no-repeat -25rem 2rem;
           background-size: cover;
      }
+     .section-hero > .section-hero-left > span {
+          width: 150%;
+     }
 }
 @media screen and (max-width: 700px) {
      .hero-bg {
@@ -513,5 +519,8 @@ h2 {
      }
      .section-lookbook {
           width: 100%;
+     }
+     .section-hero > .section-hero-left > span {
+          width: 80%
      }
 }
