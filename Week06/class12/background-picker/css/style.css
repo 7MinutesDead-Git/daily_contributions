@@ -1,0 +1,82 @@
+/******************************************
+/* HOT GARBAGE - PLEASE DON'T MIMIC THIS CSS
+/*******************************************/
+
+/* Box Model Hack */
+*{
+  box-sizing: border-box;
+}
+
+/******************************************
+/* Transitions
+/*******************************************/
+body,
+img {
+  transition: all 1s ease;
+}
+li {
+  transition: all 0.2s ease-in-out;
+  user-select: none;
+}
+li:hover {
+  border: gold solid 5px;
+  color: gold;
+  height: 8rem;
+}
+li:hover > ul {
+  background: gold;
+}
+
+/******************************************
+/* LAYOUT
+/*******************************************/
+h1, h2{
+  text-align: center;
+}
+img {
+  display: block;
+  height: 300px;
+  margin: 0 auto;
+  filter: none;
+}
+ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 90%;
+  margin: 0 auto;
+  list-style: none;
+  height: 10rem;
+}
+li{
+  height: 5rem;
+  width: 5rem;
+  line-height: 5rem;
+  border: transparent solid 3px;
+  text-align: center;
+  font-size: 1rem;
+}
+
+/******************************************
+/* Define theme colors here.
+/*******************************************/
+.green {
+  background: #4acd98
+}
+.blue {
+  background: #5b8ce9
+}
+.orange {
+  background: #e98235
+}
+.red {
+  background: #e92e35
+}
+.midnight {
+  background: #632de9
+}
+.dark {
+  background: #2c2c2c
+}
