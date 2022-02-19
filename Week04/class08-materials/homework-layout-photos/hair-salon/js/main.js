@@ -11,8 +11,8 @@ function toggleOpacity(element) {
 }
 
 // Allows background cycle on timer to reset each time the user manually clicks the
-// carosel button. This way if the user wants to see a specific background, the
-// background won't suddenly cycle right after.
+// carosel button. This way if the user wants to see a specific background, they can
+// do so without the background suddenly cycling away.
 function resetInterval(heroBackground) {
     clearInterval(opacityToggleInterval)
     opacityToggleInterval = setInterval(toggleOpacity, 7000, heroBackground)
