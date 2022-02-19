@@ -2,19 +2,19 @@ caroselButtons = document.querySelectorAll('.btn-carosel')
 heroBackground = document.querySelector('.hero-bg-toggle')
 
 
-function cycleBackground(heroBG) {
-    if (heroBackground.style.opacity === '1'){
-        heroBackground.style.opacity = '0'
+function toggleOpacity(heroBG) {
+    if (heroBG.style.opacity === '1'){
+        heroBG.style.opacity = '0'
         return
     }
-    heroBackground.style.opacity = '1'
+    heroBG.style.opacity = '1'
     console.log('boop')
 }
 
 // Set cycle functionality for carosel buttons.
 caroselButtons.forEach(btn => btn.addEventListener('click', e => {
-    cycleBackground(heroBackground)
+    toggleOpacity(heroBackground)
 }))
 
 // Set background cycle on timer.
-setInterval(cycleBackground, 5000, heroBackground)
+setInterval(toggleOpacity, 5000, heroBackground)
