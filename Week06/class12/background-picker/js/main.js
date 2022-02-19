@@ -1,4 +1,4 @@
-// Functions. --------------------------------------------------------------------------------
+// Functions. ----------------------------------------
 // Retrieve a random value from an array.
 function getRandomItem(array) {
     return array[array.length * Math.random() << 0]
@@ -22,8 +22,8 @@ function updateColors(bgColor, textColor) {
 }
 
 // Add click event listeners to background change buttons.
-function makeItemsClickable(items){
-    items.forEach(li => li.addEventListener('click', e => {
+function makeItemsClickable(listItems){
+    listItems.forEach(li => li.addEventListener('click', e => {
         const bg_color = getComputedStyle(e.target).backgroundColor
         const text_color = getComputedStyle(getRandomItem(unorderedListItems)).backgroundColor
         updateColors(bg_color, text_color)
@@ -31,7 +31,7 @@ function makeItemsClickable(items){
 }
 
 
-// Start here. --------------------------------------------------------------------------------
+// Start here. ------------------------------------------
 const unorderedListItems = document.querySelectorAll('li')
 const gamerChair = document.querySelector('img')
 makeItemsClickable(unorderedListItems)
