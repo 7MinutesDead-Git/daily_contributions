@@ -53,7 +53,7 @@
 }
 .hero-bg,
 .hero-bg-toggle {
-    transition: opacity 0.3s ease-in-out;
+    transition: opacity 2s ease-in-out;
 }
 .section-hero > .section-hero-left > .section-info > span:hover {
      background: white;
