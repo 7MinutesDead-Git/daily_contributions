@@ -1,5 +1,5 @@
-caroselButtons = document.querySelectorAll('.btn-carosel')
-heroBackground = document.querySelector('.hero-bg-toggle')
+const caroselButtons = document.querySelectorAll('.btn-carosel')
+const heroBackground = document.querySelector('.hero-bg-toggle')
 
 
 function toggleOpacity(heroBG) {
