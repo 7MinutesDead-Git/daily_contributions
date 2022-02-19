@@ -19,7 +19,6 @@ li {
   user-select: none;
 }
 li:hover {
-  border: gold solid 5px;
   color: gold;
   height: 8rem;
 }
