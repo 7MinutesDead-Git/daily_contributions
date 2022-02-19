@@ -1,20 +1,28 @@
 const caroselButtons = document.querySelectorAll('.btn-carosel')
 const heroBackground = document.querySelector('.hero-bg-toggle')
 
-
-function toggleOpacity(heroBG) {
-    if (heroBG.style.opacity === '1'){
-        heroBG.style.opacity = '0'
+// Toggle the opacity of the given element.
+function toggleOpacity(element) {
+    if (element.style.opacity === '1'){
+        element.style.opacity = '0'
         return
     }
-    heroBG.style.opacity = '1'
-    console.log('boop')
+    element.style.opacity = '1'
+}
+
+// Allows background cycle on timer to reset each time the user manually clicks the
+// carosel button. This way if the user wants to see a specific background, the
+// background won't suddenly cycle right after.
+function resetInterval(heroBackground) {
+    clearInterval(opacityToggleInterval)
+    opacityToggleInterval = setInterval(toggleOpacity, 7000, heroBackground)
 }
 
 // Set cycle functionality for carosel buttons.
 caroselButtons.forEach(btn => btn.addEventListener('click', e => {
     toggleOpacity(heroBackground)
+    resetInterval(heroBackground)
 }))
 
 // Set background cycle on timer.
-setInterval(toggleOpacity, 5000, heroBackground)
+let opacityToggleInterval = setInterval(toggleOpacity, 7000, heroBackground)
