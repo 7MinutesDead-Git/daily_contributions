@@ -119,11 +119,14 @@ header > nav {
 .btn-nav {
      text-decoration: none;
      text-transform: uppercase;
+     text-align: center;
      font-weight: bold;
      font-size: 0.6rem;
      color: #797e87;
-     margin: 0 1.5rem;
      transition: color 0.2s ease-in-out;
+     width: 6rem;
+     height: 2.5rem;
+     line-height: 2.5rem;
 }
 .btn-nav:hover {
      color: #f6f7f9;
@@ -159,16 +162,17 @@ header > nav {
      color: #141927;
 }
 .section-hero {
-     height: 600px;
      display: flex;
      justify-content: space-around;
      align-items: center;
+     margin-top: 5rem;
 }
-.section-hero-right, .section-hero-left {
+.section-hero-left,
+.section-hero-right {
      background-color: #f6f7f9;
      color: #f6f7f9;
-     width: 40%;
-     height: 70%;
+     width: 30rem;
+     height: 20rem;
 }
 .section-hero-left {
      background: none;
@@ -176,8 +180,9 @@ header > nav {
      line-height: 1.5rem;
 }
 .section-hero-left > p {
-     padding-top: 1rem;
+     padding-top: 1.5rem;
      color: #6b6f78;
+     line-height: 1.6rem;
 }
 .section-hero-left > nav {
      display: flex;
@@ -229,7 +234,7 @@ header > nav {
 
 /* --------------------------------------------------- */
 .section-clients {
-     margin: 2rem 0 5rem 0;
+     margin: 10rem 0 5rem 0;
 }
 .section-clients > ul {
      display: flex;
@@ -264,13 +269,14 @@ header > nav {
 .section-offers > .section-offers-pitch > h4,
 .section-offers > .section-offers-pitch > h2,
 .section-offers > .section-offers-pitch > p {
-     margin-top: 1rem;
+     margin-top: 2rem;
 }
 .section-offers > .section-offers-pitch > h4 {
      color: #7b8796
 }
 .section-offers > .section-offers-pitch > p {
-     color: #b5bbc4
+     color: #b5bbc4;
+     margin-bottom: 2rem;
 }
 .section-offers > .section-offer-figures {
      display: flex;
@@ -309,4 +315,52 @@ header > nav {
 /* --------------------------------------------------- */
 .section-solutions {
      height: 20rem;
+}
+
+@media screen and (max-width: 1300px) {
+     h1 {
+          font-size: 2.5rem;
+          line-height: 2.2rem;
+          margin: 2rem 0;
+     }
+     .section-hero {
+          flex-direction: column;
+          text-align: center;
+     }
+     .section-hero > .section-hero-left {
+          order: 2;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+     }
+     .section-hero > .section-hero-left,
+     .section-hero > .section-hero-right {
+          width: 60%;
+     }
+     .section-hero p {
+          width: 80%;
+     }
+     .section-hero nav {
+          justify-content: center;
+     }
+     .div-background-split-top,
+     .div-background-split-highlight{
+          height: 65rem;
+     }
+     .section-clients {
+          margin: -2rem 0 7rem 0;
+     }
+     .section-clients > ul {
+          justify-content: center;
+     }
+}
+
+@media screen and (max-width: 1071px) {
+     header > nav > .btn-nav:nth-child(n+4) {
+          display: none;
+     }
+     header > nav > .btn-nav:last-child {
+          display: inherit;
+     }
 }
