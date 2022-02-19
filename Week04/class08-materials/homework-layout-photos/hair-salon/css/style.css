@@ -51,6 +51,10 @@
 .section-services > .service-card {
     transition: all 0.3s ease-in-out;
 }
+.hero-bg,
+.hero-bg-toggle {
+    transition: opacity 0.3s ease-in-out;
+}
 .section-hero > .section-hero-left > .section-info > span:hover {
      background: white;
      color: var(--color-hover);
@@ -176,7 +180,8 @@ h2 {
      line-height: 2rem;
      text-align: center;
 }
-.hero-bg {
+.hero-bg,
+.hero-bg-toggle {
      position: relative;
      width: min(110%, 1920px);
      height: max(120vh, 1080px);
@@ -198,6 +203,18 @@ h2 {
      z-index: -1;
      /* This removes the aliasing (jagged edges) when viewed in Chrome. */
      backface-visibility: hidden;
+}
+.hero-bg-toggle {
+     position: absolute;
+     background:
+             linear-gradient(
+                     to left,
+                     rgba(187,57,85,0.47) 10%,
+                     rgba(255,255,255,0.1) 30%,
+                     rgba(187,57,85,0.47) 90%),
+             url(../images/model-red.jpg) no-repeat top right;
+     background-size: cover;
+     opacity: 0;
 }
 .section-hero {
      margin: 0 5rem;
@@ -405,7 +422,8 @@ h2 {
           top: 35rem;
      }
      .section-hero > .carosel {
-          display: none;
+          top: 5rem;
+          right: 1rem;
      }
      .section-lookbook {
           width: 80%;
