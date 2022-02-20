@@ -1,26 +1,73 @@
-let total = 0
+// Variables -----------------------------------------------------------------
+const listItems = document.querySelectorAll('li')
+let runningTotal = 0
+// Get the initial styles of the list items so we can easily reset after modification.
+const baseStyle = getComputedStyle(listItems[0])
 
-document.querySelector('#pumpkin').addEventListener('click', makeZero)
-document.querySelector('#dominosPizza').addEventListener('click', jumanji)
-document.querySelector('#zebra').addEventListener('click', add9)
-document.querySelector('#cantThinkOfAnything').addEventListener('click', sub2)
 
-function makeZero() {
-  total = 0
-  document.querySelector('#placeToPutResult').innerText = total
+// Functions -----------------------------------------------------------------
+
+// Apply flash-like animation to elements passed in when called.
+// Reset styles to baseStyle after animation is complete.
+function flashOnPress(elementsToFlash) {
+  for (const element of elementsToFlash){
+    element.style.transitionDuration = '0.1s'
+    element.style.transform = 'scale(1.1)'
+    element.style.backgroundColor = 'gold'
+    setTimeout(styleReset.bind(null, element), 100)
+  }
 }
 
-function jumanji() {
-  total = total + 3
-  document.querySelector('#placeToPutResult').innerText = total
+// Resets any altered styles back to baseStyle for a given element.
+function styleReset(element) {
+  for (const style in element.style) {
+    if (element.style !== baseStyle) {
+      element.style[style] = baseStyle[style]
+    }
+  }
 }
 
-function add9() {
-  total = total + 9
-  document.querySelector('#placeToPutResult').innerHTML = total
+// Get a random number between min and max.
+function getRandomNumber(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
-function sub2() {
-  total = total - 2
-  document.querySelector('#placeToPutResult').innerHTML = total
+// Apply a random translation offset.
+// Call on short interval for vibration effect.
+function vibrate(element) {
+  element.style.transform = `translate(${getRandomNumber(-2, 2)}px, ${getRandomNumber(-3, 3)}px)`
 }
+
+// Setup all event listeners for each button.
+function setupEventListeners(listItems) {
+  for (const li of listItems) {
+    const value = parseFloat(li.innerText)
+
+    li.addEventListener('click', e => {
+      if (value === 0) {
+        runningTotal = value
+      } else {
+        runningTotal += value
+      }
+      document.querySelector('#result').innerText = runningTotal
+      const elementsToFlash = [li, document.body]
+      flashOnPress(elementsToFlash)
+    })
+
+    li.addEventListener('mouseenter', e => {
+      const vibrationTimer = setInterval(vibrate.bind(null, li), 30)
+
+      // Nesting this allows us to clear the interval when the mouse leaves the element.
+      // Surely there's a better way to do this.
+      li.addEventListener('mouseleave', e => {
+        clearInterval(vibrationTimer)
+        styleReset(li)
+      })
+    })
+  }
+
+}
+
+
+// Start here. ---------------------------------------------------------------
+setupEventListeners(listItems)
