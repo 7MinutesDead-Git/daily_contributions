@@ -1,8 +1,11 @@
 // Functions -----------------------------------------------------------------
 
+// ----------------------------------------------
 // Apply flash-like animation to array of elements passed in when called.
 // Reset styles to baseStyle after animation is complete.
-function flashOnPress(elementsToFlash) {
+function flashOnPress(li) {
+  const elementsToFlash = [li, document.body]
+
   for (const element of elementsToFlash){
     element.style.transitionDuration = '0.1s'
     element.style.transform = 'scale(1.1)'
@@ -11,6 +14,7 @@ function flashOnPress(elementsToFlash) {
   }
 }
 
+// ----------------------------------------------
 // Resets any altered styles back to baseStyle for a given element.
 function styleReset(element) {
   for (const style in element.style) {
@@ -20,42 +24,48 @@ function styleReset(element) {
   }
 }
 
+// ----------------------------------------------
+// Sets or updates the calculator total result based on button pressed.
+function updateTotal(li) {
+  // This is so we can create "calculator" functionality based on
+  // the numbers in the buttons themselves. No need for button IDs.
+  const value = parseFloat(li.innerText)
+  if (value === 0) {
+    runningTotal = value
+  } else {
+    runningTotal += value
+  }
+  document.querySelector('#result').innerText = runningTotal
+}
+
+// ----------------------------------------------
 // Get a random number between min and max.
 function getRandomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
+// ----------------------------------------------
 // Apply a random translation offset.
 // Call on short interval for vibration effect.
 function vibrate(element) {
   element.style.transform = `translate(${getRandomNumber(-2, 2)}px, ${getRandomNumber(-3, 3)}px)`
 }
 
+// ----------------------------------------------
 // Setup all event listeners for each button.
 function setupEventListeners(listItems) {
   for (const li of listItems) {
-    // This is so we can create "calculator" functionality based on
-    // the numbers in the buttons themselves. No need for button IDs.
-    const value = parseFloat(li.innerText)
-
     // --------------------------------
     li.addEventListener('click', e => {
-      if (value === 0) {
-        runningTotal = value
-      } else {
-        runningTotal += value
-      }
-      document.querySelector('#result').innerText = runningTotal
-      const elementsToFlash = [li, document.body]
-      flashOnPress(elementsToFlash)
+      updateTotal(li)
+      flashOnPress(li)
     })
-
     // --------------------------------
     li.addEventListener('mouseenter', e => {
       const vibrationTimer = setInterval(vibrate.bind(null, li), 30)
       // ------------------------------
-      // Nesting this allows us to clear the interval when the mouse leaves the element.
-      // Surely there's a better way to do this.
+      // Nesting this allows us to clear the interval when the mouse leaves the element,
+      // otherwise we can't access vibrationTimer. Surely there's a better way to do this.
       li.addEventListener('mouseleave', e => {
         clearInterval(vibrationTimer)
         styleReset(li)
