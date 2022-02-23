@@ -1,14 +1,18 @@
 // Functions. ----------------------------------------
+
+// ----------------------------------------------
 // Retrieve a random value from an array.
 function getRandomItem(array) {
     return array[array.length * Math.random() << 0]
 }
 
+// ----------------------------------------------
 // Get random angle between 90 and 360.
 function getRandomAngle() {
     return (Math.random() * 360) + 90
 }
 
+// ----------------------------------------------
 // Update the body background and text colors.
 function updateColors(bgColor, textColor) {
     gamerChair.style.filter = `hue-rotate(${getRandomAngle()}deg)`
@@ -21,6 +25,7 @@ function updateColors(bgColor, textColor) {
     })
 }
 
+// ----------------------------------------------
 // Add event listener to update body background and text colors on click.
 function styleOnClick(btn, listItems) {
     btn.addEventListener('click', e => {
@@ -30,6 +35,7 @@ function styleOnClick(btn, listItems) {
     })
 }
 
+// ----------------------------------------------
 // Add event listener to buttons for fast gold border on hover.
 function styleOnMouseEnter(btn) {
     btn.addEventListener('mouseenter', mouseEvent => {
@@ -51,6 +57,7 @@ function styleOnMouseEnter(btn) {
     })
 }
 
+// ----------------------------------------------
 // Add event listener to buttons for slow border fade when mouse leaves.
 function styleOnMouseOut(btn) {
     activeElement = null
@@ -60,6 +67,7 @@ function styleOnMouseOut(btn) {
     })
 }
 
+// ----------------------------------------------
 // Add all event listeners for each background change button.
 function createEventListeners(listOfButtons) {
     listOfButtons.forEach(btn => {
@@ -69,6 +77,7 @@ function createEventListeners(listOfButtons) {
     })
 }
 
+// ----------------------------------------------
 // Add clicked button's background color to the mix.
 function updateColorMix(newColor) {
     colorsToMix.push(newColor)
@@ -78,12 +87,14 @@ function updateColorMix(newColor) {
     }
 }
 
+// ----------------------------------------------
 // Mix the colors present in colorsToMix array, then apply to mix button background.
 function mixNewColors() {
     const reds = []
     const blues = []
     const greens = []
 
+    // This is assuming rgb(r, g, b) format.
     for (const color of colorsToMix) {
         const values = color.split(',')
         // There has to be a better way to do this with filter.
@@ -101,14 +112,15 @@ function mixNewColors() {
     const greenMix = getAverage(greens)
 
     mixButton.style.backgroundColor = `rgb(${redMix}, ${blueMix}, ${greenMix})`
-
 }
 
+// ----------------------------------------------
 // Get the average value of an array of numbers.
 function getAverage(array) {
     return array.reduce((a, b) => a + b) / array.length
 }
 
+// ----------------------------------------------
 // Apply flash-like animation to array of elements passed in when called.
 // Reset styles to baseStyle after animation is complete.
 function flashOnPress(li) {
@@ -129,6 +141,7 @@ function styleReset(element) {
 }
 
 
+// ----------------------------------------------
 // Start here. ------------------------------------------
 let activeElement = null
 let baseStyle = null
