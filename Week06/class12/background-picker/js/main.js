@@ -44,7 +44,6 @@ function styleOnMouseEnter(btn) {
         btn.style.transitionDuration = '0.1s'
 
         document.addEventListener('keydown', keyEvent => {
-
             if (keyEvent.code === 'KeyA' && mouseEvent.target === activeElement) {
                 activeElement = null
                 const bg_color = getComputedStyle(mouseEvent.target).backgroundColor
@@ -79,6 +78,7 @@ function createEventListeners(listOfButtons) {
 
 // ----------------------------------------------
 // Add clicked button's background color to the mix.
+// Limit the number of colors in the mix to 3.
 function updateColorMix(newColor) {
     colorsToMix.push(newColor)
 
@@ -91,27 +91,23 @@ function updateColorMix(newColor) {
 // Mix the colors present in colorsToMix array, then apply to mix button background.
 function mixNewColors() {
     const reds = []
-    const blues = []
     const greens = []
+    const blues = []
 
-    // This is assuming rgb(r, g, b) format.
     for (const color of colorsToMix) {
+        // This is assuming rgb(r, g, b) format.
         const values = color.split(',')
-        // There has to be a better way to do this with filter.
+        // There has to be a better way to do this with .filter().
         reds.push(parseFloat(values[0].match(/\d+/g)[0]))
-        blues.push(parseFloat(values[1].match(/\d+/g)[0]))
-        greens.push(parseFloat(values[2].match(/\d+/g)[0]))
+        greens.push(parseFloat(values[1].match(/\d+/g)[0]))
+        blues.push(parseFloat(values[2].match(/\d+/g)[0]))
     }
 
-    console.log(`reds: ${reds}`)
-    console.log(`blues: ${blues}`)
-    console.log(`greens: ${greens}`)
-
     const redMix = getAverage(reds)
-    const blueMix = getAverage(blues)
     const greenMix = getAverage(greens)
+    const blueMix = getAverage(blues)
 
-    mixButton.style.backgroundColor = `rgb(${redMix}, ${blueMix}, ${greenMix})`
+    mixButton.style.backgroundColor = `rgb(${redMix}, ${greenMix}, ${blueMix})`
 }
 
 // ----------------------------------------------
@@ -123,11 +119,11 @@ function getAverage(array) {
 // ----------------------------------------------
 // Apply flash-like animation to array of elements passed in when called.
 // Reset styles to baseStyle after animation is complete.
-function flashOnPress(li) {
-    li.style.transitionDuration = '0.1s'
-    li.style.transform = 'scale(1.1)'
-    li.style.border = '0.5rem solid gold'
-    setTimeout(styleReset.bind(null, li), 100)
+function flashOnPress(element) {
+    element.style.transitionDuration = '0.1s'
+    element.style.transform = 'scale(1.1)'
+    element.style.border = '0.5rem solid gold'
+    setTimeout(styleReset.bind(null, element), 100)
 }
 
 // ----------------------------------------------
