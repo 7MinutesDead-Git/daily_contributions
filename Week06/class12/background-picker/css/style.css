@@ -29,6 +29,12 @@ li:hover > ul {
 /******************************************
 /* LAYOUT
 /*******************************************/
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 h1, h2{
   text-align: center;
 }
@@ -78,4 +84,8 @@ li{
 }
 .dark {
   background: #2c2c2c
+}
+.mix {
+  background: #000000;
+  color: gold;
 }
