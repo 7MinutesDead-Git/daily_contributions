@@ -93,14 +93,16 @@ function mixNewColors() {
     const reds = []
     const greens = []
     const blues = []
+    const allColors = [reds, greens, blues]
 
+    // This is assuming rgb(r, g, b) format.
     for (const color of colorsToMix) {
-        // This is assuming rgb(r, g, b) format.
-        const values = color.split(',')
-        // There has to be a better way to do this with .filter().
-        reds.push(parseFloat(values[0].match(/\d+/g)[0]))
-        greens.push(parseFloat(values[1].match(/\d+/g)[0]))
-        blues.push(parseFloat(values[2].match(/\d+/g)[0]))
+        const colorValues = color.split(',')
+        let i = 0
+        for (const colorGroup of allColors) {
+            colorGroup.push(getIntFromString(colorValues[i]))
+            i++
+        }
     }
 
     const redMix = getAverage(reds)
@@ -114,6 +116,11 @@ function mixNewColors() {
 // Get the average value of an array of numbers.
 function getAverage(array) {
     return array.reduce((a, b) => a + b) / array.length
+}
+
+// ----------------------------------------------
+function getIntFromString(string) {
+    return parseInt(string.match(/\d+/g)[0])
 }
 
 // ----------------------------------------------
