@@ -27,11 +27,22 @@ function updateColors(bgColor, textColor) {
 
 // ----------------------------------------------
 // Add event listener to update body background and text colors on click.
+// If shift key is held during click, then the color will be added to the mix.
 function styleOnClick(btn, listItems) {
-    btn.addEventListener('click', e => {
-        const bg_color = getComputedStyle(e.target).backgroundColor
-        const text_color = getComputedStyle(getRandomItem(listItems)).backgroundColor
-        updateColors(bg_color, text_color)
+    btn.addEventListener('click', event => {
+        if (event.shiftKey) {
+            activeElement = null
+            const bg_color = getComputedStyle(event.target).backgroundColor
+            baseStyle = bg_color
+            updateColorMix(bg_color)
+            mixNewColors()
+            flashOnPress(event.target)
+        }
+        else {
+            const bg_color = getComputedStyle(event.target).backgroundColor
+            const text_color = getComputedStyle(getRandomItem(listItems)).backgroundColor
+            updateColors(bg_color, text_color)
+        }
     })
 }
 
@@ -42,17 +53,6 @@ function styleOnMouseEnter(btn) {
         activeElement = mouseEvent.target
         btn.style.color = 'gold'
         btn.style.transitionDuration = '0.1s'
-
-        document.addEventListener('keydown', keyEvent => {
-            if (keyEvent.code === 'KeyA' && mouseEvent.target === activeElement) {
-                activeElement = null
-                const bg_color = getComputedStyle(mouseEvent.target).backgroundColor
-                baseStyle = bg_color
-                updateColorMix(bg_color)
-                mixNewColors()
-                flashOnPress(mouseEvent.target)
-            }
-        })
     })
 }
 
