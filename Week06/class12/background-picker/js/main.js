@@ -82,7 +82,7 @@ function createEventListeners(listOfButtons) {
 function updateColorMix(newColor) {
     colorsToMix.push(newColor)
 
-    if (colorsToMix.length > 3) {
+    if (colorsToMix.length > colorMixMaxAmount) {
         colorsToMix.shift()
     }
 }
@@ -149,6 +149,7 @@ function styleReset(element) {
 let activeElement = null
 let baseStyle = null
 const colorsToMix = []
+const colorMixMaxAmount = 5
 const unorderedListItems = document.querySelectorAll('li')
 const mixButton = document.querySelector('.mix')
 const gamerChair = document.querySelector('img')
