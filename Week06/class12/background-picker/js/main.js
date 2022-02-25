@@ -7,7 +7,8 @@ function getRandomItem(array) {
 }
 
 // ----------------------------------------------
-// Get random angle between 90 and 360.
+// Get random angle between 90 and 360. 90 as the min so there is some
+// noticeable variation in each call.
 function getRandomAngle() {
     return (Math.random() * 360) + 90
 }
@@ -35,7 +36,7 @@ function styleOnClick(btn, listItems) {
             const bg_color = getComputedStyle(event.target).backgroundColor
             baseStyle = bg_color
             updateColorMix(bg_color)
-            mixNewColors()
+            mixNewColors(colorsToMix)
             flashOnPress(event.target)
         }
         else {
@@ -89,26 +90,23 @@ function updateColorMix(newColor) {
 
 // ----------------------------------------------
 // Mix the colors present in colorsToMix array, then apply to mix button background.
-function mixNewColors() {
+function mixNewColors(rgbArray) {
     const reds = []
     const greens = []
     const blues = []
     const allColors = [reds, greens, blues]
 
     // This is assuming rgb(r, g, b) format.
-    for (const color of colorsToMix) {
+    for (const color of rgbArray) {
         const colorValues = color.split(',')
-        let i = 0
-        for (const colorGroup of allColors) {
+        for (const [i, colorGroup] of allColors.entries()) {
             colorGroup.push(getIntFromString(colorValues[i]))
-            i++
         }
     }
 
     const redMix = getAverage(reds)
     const greenMix = getAverage(greens)
     const blueMix = getAverage(blues)
-
     mixButton.style.backgroundColor = `rgb(${redMix}, ${greenMix}, ${blueMix})`
 }
 
@@ -144,12 +142,11 @@ function styleReset(element) {
 }
 
 
-// ----------------------------------------------
 // Start here. ------------------------------------------
 let activeElement = null
 let baseStyle = null
 const colorsToMix = []
-const colorMixMaxAmount = 5
+const colorMixMaxAmount = 3
 const unorderedListItems = document.querySelectorAll('li')
 const mixButton = document.querySelector('.mix')
 const gamerChair = document.querySelector('img')
