@@ -19,7 +19,7 @@ function resetInterval(heroBackground) {
 }
 
 // Set cycle functionality for carosel buttons.
-caroselButtons.forEach(btn => btn.addEventListener('click', e => {
+caroselButtons.forEach(btn => btn.addEventListener('click', () => {
     toggleOpacity(heroBackground)
     resetInterval(heroBackground)
 }))
