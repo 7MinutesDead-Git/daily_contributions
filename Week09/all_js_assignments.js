@@ -147,6 +147,7 @@ console.log(oneSecondLater(10, 400, 350))
 function generateMultiplicationTable(xLimit, yLimit) {
     // We can keep the table output aligned by tracking the character lengths and comparing
     // with each multiplication result length.
+    // We know that the largest possible cell size will be our given x and y limits.
     const cellWidth = (xLimit * yLimit).toString().length
     let grid = []
     let space = ' '
