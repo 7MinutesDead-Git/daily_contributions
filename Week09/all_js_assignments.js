@@ -147,10 +147,10 @@ console.log(oneSecondLater(10, 400, 350))
 function generateMultiplicationTable(xLimit, yLimit) {
     // We can keep the table output aligned by tracking the character lengths and comparing
     // with each multiplication result length.
-    // We know that the largest possible cell size will be our given x and y limits.
+    // We know that the largest possible cell size will be our given x and y upper limits.
     const cellWidth = (xLimit * yLimit).toString().length
-    let grid = []
-    let space = ' '
+    const grid = []
+    const space = ' '
 
     for (let y = 1; y <= yLimit; y++) {
         // Reset x value and line for each new y line.
@@ -158,8 +158,8 @@ function generateMultiplicationTable(xLimit, yLimit) {
         let line = ''
         // Generate the full line/row.
         for (x; x <= xLimit; x++) {
-            let result = x * y
-            let spaceFiller = cellWidth - result.toString().length
+            const result = x * y
+            const spaceFiller = cellWidth - result.toString().length
             line += `${space.repeat(spaceFiller)}${result} `
         }
         // Push that row to the grid.
