@@ -116,7 +116,7 @@ alert(nextDay())
 function oneSecondLater(hour, minute, second) {
     second += 1
 
-    // This will manage *any* overflow regardless of input.
+    // This will also manage *any* overflow regardless of input.
     const minutesOverflow = second / 60
     if (minutesOverflow >= 1) {
         minute += minutesOverflow
@@ -136,6 +136,7 @@ function oneSecondLater(hour, minute, second) {
     return `${hour}h${minute}m${second}s`
 }
 console.log(oneSecondLater(26, 59, 59))
+console.log(oneSecondLater(10, 400, 350))
 
 // ------------------------------------------------------------------
 // https://github.com/thejsway/thejsway/blob/master/manuscript/chapter04.md#coding-time
@@ -164,4 +165,4 @@ function generateMultiplicationTable(xLimit, yLimit) {
         console.log(row)
 }
 generateMultiplicationTable(30, 15)
-
+generateMultiplicationTable(10, 12)
