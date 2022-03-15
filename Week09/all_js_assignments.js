@@ -145,6 +145,8 @@ console.log(oneSecondLater(10, 400, 350))
 //Multiplication table.
 // Prints an aligned multiplication table given an x and y limit.
 function generateMultiplicationTable(xLimit, yLimit) {
+    // We can keep the table output aligned by tracking the character lengths and comparing
+    // with each multiplication result length.
     const cellWidth = (xLimit * yLimit).toString().length
     let grid = []
     let space = ' '
@@ -153,11 +155,13 @@ function generateMultiplicationTable(xLimit, yLimit) {
         // Reset x value and line for each new y line.
         let x = 1
         let line = ''
+        // Generate the full line/row.
         for (x; x <= xLimit; x++) {
             let result = x * y
             let spaceFiller = cellWidth - result.toString().length
             line += `${space.repeat(spaceFiller)}${result} `
         }
+        // Push that row to the grid.
         grid.push(line)
     }
 
