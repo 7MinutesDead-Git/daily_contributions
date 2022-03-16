@@ -3,7 +3,7 @@ const heroBackground = document.querySelector('.hero-bg-toggle')
 
 // Toggle the opacity of the given element.
 function toggleOpacity(element) {
-    if (element.style.opacity === '1'){
+    if (element.style.opacity === '1') {
         element.style.opacity = '0'
         return
     }
