@@ -1,3 +1,5 @@
+// I did skip some problems I thought might be too simple for me, but still there was
+// a lot of interesting ones especially at the end.
 // ------------------------------------------------------------------
 // https://eloquentjavascript.net/03_functions.html
 
