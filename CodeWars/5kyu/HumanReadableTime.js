@@ -1,3 +1,4 @@
+// https://www.codewars.com/kata/52685f7382004e774f0001f7
 function humanReadable (seconds) {
     let minutes = 0
     let hours = 0
