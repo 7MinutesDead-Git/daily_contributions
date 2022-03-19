@@ -75,7 +75,8 @@ function bAwesomePhrase(number, phrases) {
 }
 
 // ------------------------------------------------------------------
-// Returns
+// Returns 2 if the number is directly interesting, 1 if the number will be interesting soon, or
+// 0 if the number is not interesting.
 function isInteresting(number, awesomePhrases) {
     let intNumber = parseInt(number)
     const tests = [
