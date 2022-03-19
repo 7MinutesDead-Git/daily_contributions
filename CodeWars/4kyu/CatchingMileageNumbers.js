@@ -2,6 +2,7 @@
 // ------------------------------------------------------------------
 // Helper functions.
 
+// Returns true if the leading number is followed by all zeros.
 function bFollowedByZeros(number) {
     // Any digit followed by all zeros: 100, 90000.
     for (let i=1; i < number.length; i++) {
@@ -11,6 +12,7 @@ function bFollowedByZeros(number) {
     return true
 }
 
+// Returns true if all digits in the number are the same.
 function bAllSameNumber(number) {
     // Every single number must be the same.
     const numberToMatch = number[0]
@@ -20,6 +22,7 @@ function bAllSameNumber(number) {
     return true
 }
 
+// Returns true if all digits are sequentially increasing, looping back to 0 after 9.
 function bSequentialUp(number) {
     // 0 should come after 9, and not before 1, as in 7890. Going up.
     for (let i = 0; i < number.length - 1; i++) {
@@ -31,8 +34,10 @@ function bSequentialUp(number) {
     return true
 }
 
+// Returns true if all digits are sequentially decreasing, looping back to 9 after 0.
 function bSequentialDown(number) {
-    // 109 is sequentially down to me based on the problem text, but fails the test.
+    // 109 is sequentially down to me based on the problem text, but fails a test
+    // given on code wars because they don't want to consider looping for sequential numbers.
     if (number === '109')
         return false
     // 0 should come after 1, and not before 9, as in 3210. Going down.
@@ -45,6 +50,7 @@ function bSequentialDown(number) {
     return true
 }
 
+// Returns true if the number is a palindrome (the same forwards and backwards).
 function bPalindrome(number) {
     // Same forward as it is backwards. 1221 or 73837.
     // Get middle most index, take two slices, reverse one, see if they match.
@@ -63,12 +69,13 @@ function bPalindrome(number) {
     return firstHalf === secondHalf
 }
 
+// Returns true if the number is included in array of "awesome phrases".
 function bAwesomePhrase(number, phrases) {
     return phrases.includes(parseInt(number))
 }
 
 // ------------------------------------------------------------------
-// Main problem function.
+// Returns
 function isInteresting(number, awesomePhrases) {
     let intNumber = parseInt(number)
     const tests = [
@@ -79,13 +86,13 @@ function isInteresting(number, awesomePhrases) {
         bPalindrome,
         bAwesomePhrase
     ]
-    // Our normal tests.
+    // Our high value tests for direct matches, worth 2 points.
     for (const test of tests) {
         if (test(number.toString(), awesomePhrases) && number.toString().length >= 3)
             return 2
     }
 
-    // Our nearby or "upcoming" tests.
+    // Our nearby or "upcoming" tests for matches within "two miles". Worth 1 point.
     for (let i = 0; i < 2; i++) {
         intNumber += 1
         const numString = intNumber.toString()
@@ -95,6 +102,7 @@ function isInteresting(number, awesomePhrases) {
             }
         }
     }
+    // Failing all tests means this number is not "interesting", thus we earn 0 points.
     return 0
 }
 
