@@ -72,10 +72,23 @@
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
+    const sortedNames = inventors.sort((a, b) => a.last.localeCompare(b.last))
+    console.table(sortedNames)
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
-    const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+    const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ]
+    // Note to self: dataSumCounts becomes an object/hashmap from the start that is passed through each iteration,
+    // because dataSumCounts is set as the previousValue, and the "initialValue" is set as an object {}, so on the
+    // first iteration, dataSumCounts becomes {} from that point on.
+    const dataCounts = data.reduce((dataSumCounts, item) => {
+        if (!dataSumCounts[item])
+            dataSumCounts[item] = 0
+
+        dataSumCounts[item] += 1
+        return dataSumCounts
+    }, {})
+    console.table(dataCounts)
 
 </script>
 </body>
