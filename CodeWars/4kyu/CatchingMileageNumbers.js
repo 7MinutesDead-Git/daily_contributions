@@ -4,7 +4,6 @@
 
 // Returns true if the leading number is followed by all zeros.
 function bFollowedByZeros(number) {
-    // Any digit followed by all zeros: 100, 90000.
     for (let i=1; i < number.length; i++) {
         if (number[i] !== "0")
             return false
@@ -14,7 +13,6 @@ function bFollowedByZeros(number) {
 
 // Returns true if all digits in the number are the same.
 function bAllSameNumber(number) {
-    // Every single number must be the same.
     const numberToMatch = number[0]
     for (const num of number)
         if (num !== numberToMatch)
@@ -24,7 +22,6 @@ function bAllSameNumber(number) {
 
 // Returns true if all digits are sequentially increasing, looping back to 0 after 9.
 function bSequentialUp(number) {
-    // 0 should come after 9, and not before 1, as in 7890. Going up.
     for (let i = 0; i < number.length - 1; i++) {
         if (number[i] === '9' && number[i+1] === '0')
             continue
@@ -40,7 +37,7 @@ function bSequentialDown(number) {
     // given on code wars because they don't want to consider looping for sequential numbers.
     if (number === '109')
         return false
-    // 0 should come after 1, and not before 9, as in 3210. Going down.
+
     for (let i = 0; i < number.length - 1; i++) {
         if (number[i] === '0' && number[i+1] === '9')
             continue
@@ -52,7 +49,6 @@ function bSequentialDown(number) {
 
 // Returns true if the number is a palindrome (the same forwards and backwards).
 function bPalindrome(number) {
-    // Same forward as it is backwards. 1221 or 73837.
     // Get middle most index, take two slices, reverse one, see if they match.
     let middleIndex
     let firstHalf
