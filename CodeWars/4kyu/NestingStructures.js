@@ -17,8 +17,7 @@ function arrayCrawler(array, depth = 1, score = 1) {
         score += depth
         if (isArray(array[i])) {
             // Before diving into a nested array, increase depth so this array's score
-            // is worth more than the parent array, but worth less than any deeper child arrays,
-            // for each item passed over.
+            // is worth more than the parent array for each item passed over.
             depth++
             return arrayCrawler(array[i], depth, score)
         }
