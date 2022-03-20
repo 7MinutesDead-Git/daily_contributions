@@ -64,3 +64,27 @@ function mapToObjects() {
     console.log(usersMapped[0].fullName) // John Smith
 }
 mapToObjects()
+
+// Sort users by age.
+function sortByAge() {
+    let john = { name: "John", age: 25 }
+    let pete = { name: "Pete", age: 30 }
+    let mary = { name: "Mary", age: 28 }
+    let arr = [ pete, john, mary ]
+    arr.sort((a, b) => b.age - a.age)
+    console.log(arr)
+}
+sortByAge()
+
+// Randomize/Shuffle an array.
+function numShuffle(spins) {
+    let arr = [1, 2, 3, 4]
+    for (let spin = 0; spin < spins; spin++) {
+        for (let i = 0; i < arr.length; i++) {
+            const randomIndex = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[randomIndex]] = [arr[randomIndex], arr[i]]
+        }
+        console.log(arr)
+    }
+}
+numShuffle(10)
