@@ -4,20 +4,16 @@
 
 /*
     Recursively crawl through each array. Returns final iteration score.
-    Adds a point to score for each item encountered.
-    If item is another array, recursively call this function into that array with depth value increased.
-    This means for each level of array depth, the iterative score value will increase by 1.
+    Adds points to score for each item encountered.
+    If item is another array, recursively call this function for that array with the depth value increased.
     Examples:
         Two arrays deep [[1]] means each iteration inside the deepest array is worth 2 points.
         Four arrays deep [[[[1]]]] means each iteration inside the deepest array is worth 4 points.
  */
-function arrayCrawler(array, depth = 1, score = 1) {
+function arrayCrawler(array, depth = 1, score = 0) {
     for (let i = 0; i < array.length; i++) {
-        // At a base depth of one, this adds 1 point for each item passed over.
         score += depth
         if (isArray(array[i])) {
-            // Before diving into a nested array, increase depth so this array's score
-            // is worth more than the parent array for each item passed over.
             depth++
             return arrayCrawler(array[i], depth, score)
         }
