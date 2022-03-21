@@ -88,3 +88,17 @@ function numShuffle(spins) {
     }
 }
 numShuffle(10)
+
+// Get average age.
+function getAverageAge() {
+    let john = { name: "John", age: 25 }
+    let pete = { name: "Pete", age: 30 }
+    let mary = { name: "Mary", age: 29 }
+    let arr = [ john, pete, mary ]
+
+    const sum = arr.reduce((sum, item) => {
+        return sum + item.age
+    }, 0)
+    console.log(sum / arr.length)
+}
+getAverageAge()
