@@ -97,5 +97,61 @@ console.log(isArrayValid(numArray, backToArray))
 
 // -------------------------------------------------------------
 // https://eloquentjavascript.net/04_data.html#i_IJBU+aXOIC
-// Deep comparison.
+// Deep comparison of two objects with further nested objects.
+// Returns
+// Order of properties does not matter.
+function objectUnpack(object, runningArray=[]) {
+    for (const property in object) {
+        if (typeof object[property] === 'object')
+            return objectUnpack(object[property], runningArray)
+        else
+            runningArray.push([property, object[property]])
+    }
+    return runningArray
+}
+function deeplyEquivalent(itemOne, itemTwo) {
+    const queueOne = objectUnpack(itemOne).sort()
+    const queueTwo = objectUnpack(itemTwo).sort()
 
+    for (let i = 0; i < queueOne.length; i++) {
+        if (queueOne[i][0] !== queueTwo[i][0] || queueOne[i][1] !== queueTwo[i][1])
+            return false
+    }
+    return true
+}
+
+const testObjBase = {
+    a: 1,
+    b: 2,
+    c: {
+        d: 3,
+        e: 4
+    }
+}
+const testObjMatch = {
+    a: 1,
+    b: 2,
+    c: {
+        d: 3,
+        e: 4
+    }
+}
+const testObjDifferent = {
+    a: 1,
+    b: 2,
+    c: {
+        d: 3,
+        e: 5
+    }
+}
+const testObjUnordered = {
+    a: 1,
+    e: 4,
+    c: {
+        d: 3,
+        b: 2
+    }
+}
+console.log(deeplyEquivalent(testObjBase, testObjMatch))
+console.log(deeplyEquivalent(testObjBase, testObjDifferent))
+console.log(deeplyEquivalent(testObjBase, testObjUnordered))
