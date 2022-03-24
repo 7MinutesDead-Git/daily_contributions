@@ -97,21 +97,31 @@ console.log(isArrayValid(numArray, backToArray))
 
 // -------------------------------------------------------------
 // https://eloquentjavascript.net/04_data.html#i_IJBU+aXOIC
-// Deep comparison of two objects with further nested objects.
-// Returns
-// Order of properties does not matter.
-function objectUnpack(object, runningArray=[]) {
+
+// Unpack objects into [key, value] pairs.
+function unpackObject(object, runningArray=[]) {
     for (const property in object) {
         if (typeof object[property] === 'object')
-            return objectUnpack(object[property], runningArray)
+            return unpackObject(object[property], runningArray)
         else
             runningArray.push([property, object[property]])
     }
     return runningArray
 }
+
+// Deep comparison of two objects with further nested objects.
+// Returns true if all key/value pairs are present.
 function deeplyEquivalent(itemOne, itemTwo) {
-    const queueOne = objectUnpack(itemOne).sort()
-    const queueTwo = objectUnpack(itemTwo).sort()
+    // Unpack objects into [key, value] pairs.
+    const queueOne = unpackObject(itemOne)
+    const queueTwo = unpackObject(itemTwo)
+
+    if (queueOne.length !== queueTwo.length)
+        return false
+
+    // Don't sort until after checking length first, to save some computational time.
+    queueOne.sort()
+    queueTwo.sort()
 
     for (let i = 0; i < queueOne.length; i++) {
         if (queueOne[i][0] !== queueTwo[i][0] || queueOne[i][1] !== queueTwo[i][1])
@@ -152,6 +162,16 @@ const testObjUnordered = {
         b: 2
     }
 }
+const testObjectLonger = {
+    a: 1,
+    b: 2,
+    c: {
+        d: 3,
+        e: 4,
+        f: 1
+    }
+}
 console.log(deeplyEquivalent(testObjBase, testObjMatch))
 console.log(deeplyEquivalent(testObjBase, testObjDifferent))
 console.log(deeplyEquivalent(testObjBase, testObjUnordered))
+console.log(deeplyEquivalent(testObjBase, testObjectLonger))
