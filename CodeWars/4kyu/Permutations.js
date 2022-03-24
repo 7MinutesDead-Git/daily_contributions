@@ -20,11 +20,11 @@ function permuteMe(string) {
     }(0);
 }
 
-function unpackPermutations(generator, result = []) {
+function unpackPermutations(generator, result = new Set()) {
     let item = generator.next()
 
     if (item['done'] === false) {
-        result.push(item['value'])
+        result.add(item['value'])
         unpackPermutations(generator, result)
     }
     return result
@@ -36,7 +36,7 @@ function permutations(string) {
     // since some test cases are resolved by removing duplicates, but I can't say for sure if I'm
     // accidentally generating excess duplicates because I'm really stumbling my way through this problem.
     // Oh well, this works!
-    return [...new Set(unpackPermutations(generator))]
+    return [...unpackPermutations(generator)]
 }
 
 console.log(permutations('aabb'))
