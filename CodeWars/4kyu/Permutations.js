@@ -20,6 +20,10 @@ function permuteMe(string) {
     }(0);
 }
 
+// To be honest I'm not sure if the problem is calling for permutations or combinations,
+// since some test cases are resolved by removing duplicates, but I can't say for sure if I'm
+// accidentally generating excess duplicates because I'm really stumbling my way through this problem.
+// Either way, using a set rather than an array works to remove duplicates!
 function unpackPermutations(generator, result = new Set()) {
     let item = generator.next()
 
@@ -32,10 +36,6 @@ function unpackPermutations(generator, result = new Set()) {
 
 function permutations(string) {
     const generator = permuteMe(string)
-    // To be honest I'm not sure if the problem is calling for permutations or combinations,
-    // since some test cases are resolved by removing duplicates, but I can't say for sure if I'm
-    // accidentally generating excess duplicates because I'm really stumbling my way through this problem.
-    // Oh well, this works!
     return [...unpackPermutations(generator)]
 }
 
