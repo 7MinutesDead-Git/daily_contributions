@@ -33,18 +33,18 @@ console.log(`Look, a cat! ${dog.name} barks: ${dog.bark()}.`)
 
 // -------------------------------------------
 // // Modeling a circle.
-// const r = Number(prompt("Enter the circle radius:"))
-//
-// const circle = {
-//     circumference() {
-//         return 2 * Math.PI * r
-//     },
-//     area() {
-//         return Math.PI * r ** 2
-//     }
-// }
-// console.log(`Its circumference is ${circle.circumference()}`)
-// console.log(`Its area is ${circle.area()}`)
+const r = Number(prompt("Enter the circle radius:"))
+
+const circle = {
+    circumference() {
+        return 2 * Math.PI * r
+    },
+    area() {
+        return Math.PI * r ** 2
+    }
+}
+console.log(`Its circumference is ${circle.circumference()}`)
+console.log(`Its area is ${circle.area()}`)
 
 // -------------------------------------------
 // Modeling a bank account.
