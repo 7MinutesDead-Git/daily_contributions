@@ -171,7 +171,7 @@ const testObjectLonger = {
         f: 1
     }
 }
-console.log(deeplyEquivalent(testObjBase, testObjMatch))
-console.log(deeplyEquivalent(testObjBase, testObjDifferent))
-console.log(deeplyEquivalent(testObjBase, testObjUnordered))
-console.log(deeplyEquivalent(testObjBase, testObjectLonger))
+const tests = [testObjMatch, testObjDifferent, testObjUnordered, testObjectLonger]
+for (const test of tests) {
+    console.log(deeplyEquivalent(testObjBase, test))
+}
