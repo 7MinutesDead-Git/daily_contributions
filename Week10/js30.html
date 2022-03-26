@@ -76,6 +76,13 @@
     // Sort the people alphabetically by last name
     const sortedNames = inventors.sort((a, b) => a.last.localeCompare(b.last))
     console.table(sortedNames)
+    const sortedPeopleSimple = people.sort()
+    const sortedPeopleComplex = people.sort((a, b) => a.localeCompare(b))
+
+    for (let i = 0; i < people.length; i++) {
+        const result = sortedPeopleSimple === sortedPeopleComplex ? 'match' : 'FALSE'
+        console.log(`${result} // Raw sort: ${sortedPeopleSimple}, localeCompare: ${sortedPeopleComplex}`)
+    }
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
