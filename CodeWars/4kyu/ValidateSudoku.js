@@ -1,5 +1,5 @@
 // https://www.codewars.com/kata/540afbe2dc9f615d5e000425/train/javascript
-var Sudoku = function(data)
+const Sudoku = function(data)
 {
     // Build the sum based on the size of the sudoku board.
     // We'll use validSum to verify if all numbers are present later by comparing sums.
