@@ -5,9 +5,11 @@ function triangle(row) {
 
     while (row.length > 1) {
         row = row.map((x, i) => {
+            // If both match, we pass the same color.
             if (row[i] === row[i + 1]) {
                 return row[i]
             } else {
+                // Otherwise we'll pass in whatever color is missing of the RGB trio.
                 const currentColors = [row[i], row[i + 1]]
                 for (const color of colors) {
                     if (currentColors.indexOf(color) === -1)
