@@ -197,7 +197,7 @@ h2 {
                      var(--gradient-primary) 10%,
                      rgba(255,255,255,0.1) 30%,
                      var(--gradient-primary) 90%),
-             url(https://cdn.glitch.global/78ec54ac-269d-40ba-874a-7b1ed69b3388/model-purple.png?v=1644939306744) no-repeat top right;
+             url(../images/model-purple.png) no-repeat top right;
      background-size: cover;
      margin: 0 auto;
      z-index: -1;
@@ -336,7 +336,7 @@ h2 {
      align-items: center;
      width: 100%;
      height: 33.3333%;
-     background: url(https://cdn.glitch.global/78ec54ac-269d-40ba-874a-7b1ed69b3388/model-purple.png?v=1644939306744) no-repeat 80%;
+     background: url(../images/model-purple.png) no-repeat 80%;
      background-size: cover;
      margin: 0.5rem;
      font-size: 10rem;
@@ -344,7 +344,7 @@ h2 {
 }
 .lookbook-photo-short {
      height: 66.6666%;
-     background: url(https://cdn.glitch.global/78ec54ac-269d-40ba-874a-7b1ed69b3388/model-red.jpg?v=1644939305647) no-repeat 70%;
+     background: url(../images/model-red.jpg) no-repeat 70%;
 }
 /* Dark overlay for lookbook photo hovers. */
 .lookbook-photo-short::before,
@@ -380,7 +380,7 @@ h2 {
                           var(--gradient-primary) 10%,
                           rgba(255,255,255,0.1) 30%,
                           var(--gradient-primary) 90%),
-                  url(https://cdn.glitch.global/78ec54ac-269d-40ba-874a-7b1ed69b3388/model-purple.png?v=1644939306744) no-repeat top right 30%;
+                  url(../images/model-purple.png) no-repeat top right 30%;
           background-size: cover;
      }
 }
@@ -395,7 +395,7 @@ h2 {
                           var(--off-black-transparent) 10%,
                           rgba(255,255,255,0.1) 30%,
                           var(--gradient-primary-strong) 90%),
-                  url(https://cdn.glitch.global/78ec54ac-269d-40ba-874a-7b1ed69b3388/model-purple.png?v=1644939306744) no-repeat top right 20%;
+                  url(../images/model-purple.png) no-repeat top right 20%;
           background-size: cover;
      }
      .section-services {
@@ -481,7 +481,7 @@ h2 {
                           var(--off-black-transparent) 5%,
                           rgba(255,255,255,0.1) 30%,
                           var(--gradient-primary-strong) 60%),
-                  url(https://cdn.glitch.global/78ec54ac-269d-40ba-874a-7b1ed69b3388/model-purple.png?v=1644939306744) no-repeat top right 30%;
+                  url(../images/model-purple.png) no-repeat top right 30%;
           background-size: cover;
      }
      .section-hero > .section-hero-left > span {
@@ -496,7 +496,7 @@ h2 {
                           var(--gradient-primary-strong) 0%,
                           rgba(255,255,255,0.1) 30%,
                           var(--gradient-primary-strong) 60%),
-                  url(https://cdn.glitch.global/78ec54ac-269d-40ba-874a-7b1ed69b3388/model-purple.png?v=1644939306744) no-repeat top right 30%;
+                  url(../images/model-purple.png) no-repeat top right 30%;
           background-size: cover;
      }
      .section-hero > .section-hero-left {
@@ -531,7 +531,7 @@ h2 {
                           var(--gradient-primary-strong) 0%,
                           rgba(255,255,255,0.1) 30%,
                           var(--gradient-primary-strong) 80%),
-                  url(https://cdn.glitch.global/78ec54ac-269d-40ba-874a-7b1ed69b3388/model-purple.png?v=1644939306744) no-repeat top right 30%;
+                  url(../images/model-purple.png) no-repeat top right 30%;
           background-size: cover;
      }
      .section-lookbook {
