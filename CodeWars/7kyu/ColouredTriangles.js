@@ -17,6 +17,7 @@ function triangle(row) {
                 }
             }
         })
+        // Remove the last element since it's the result of comparing RGB vs undefined (index out of range).
         row = row.slice(0, row.length - 1)
     }
     return row[0]
