@@ -33,11 +33,12 @@ snail = function(array) {
                 this.horizontal = 1
                 this.vertical = 0
             }
-            // Every time we need to turn, we need to roll back the current position.
+            // Every time we need to turn due to a wall, we need to roll back the current position.
             x = this.previousPosition[1]
             y = this.previousPosition[0]
         },
         move: function() {
+            this.previousPosition = [y, x]
             x += this.horizontal
             y += this.vertical
         },
@@ -59,7 +60,7 @@ snail = function(array) {
             const alreadyBeenHere = crawler.previouslyVisited([y, x])
             return alreadyBeenHere || deadEnd
         }
-        // This would mean y is undefined, as in hitting the upper and lower walls.
+            // This would mean y is undefined, as in hitting the upper and lower walls.
         catch (TypeError) {
             return true
         }
@@ -70,6 +71,7 @@ snail = function(array) {
         if (wallCheck()) {
             crawler.turn()
             crawler.move()
+            // If we run into a wall immediately after turning, we're at the end.
             if (wallCheck())
                 break
             else
@@ -77,7 +79,6 @@ snail = function(array) {
         }
         result.push(array[y][x])
         crawler.visited.push([y, x])
-        crawler.previousPosition = [y, x]
         crawler.move()
     }
     return result
