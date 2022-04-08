@@ -9,31 +9,21 @@ snail = function(array) {
     const crawler = {
         horizontal: 1,
         vertical: 0,
+        turns: 0,
         previousPosition: [0, 0],
         visited: [],
-        // There has to be a better way to do this one.
+        directions: [
+            [1, 0],
+            [0, -1],
+            [-1, 0],
+            [0, 1]
+        ],
         turn: function() {
-            // If moving right, turn down.
-            if (this.horizontal === 1) {
-                this.horizontal = 0
-                this.vertical = 1
-            }
-            // If moving down, turn left.
-            else if (this.vertical === 1) {
-                this.horizontal = -1
-                this.vertical = 0
-            }
-            // If moving left, turn up.
-            else if (this.horizontal === -1) {
-                this.horizontal = 0
-                this.vertical = -1
-            }
-            // If moving up, turn right.
-            else if (this.vertical === -1) {
-                this.horizontal = 1
-                this.vertical = 0
-            }
-            // Every time we need to turn due to a wall, we need to roll back the current position.
+            const newDirection = this.directions[this.turns % this.directions.length]
+            this.horizontal = newDirection[1]
+            this.vertical = newDirection[0]
+            this.turns++
+            // Whenever we need to turn due to running into a wall, we need to also reset our position.
             x = this.previousPosition[1]
             y = this.previousPosition[0]
         },
@@ -52,7 +42,6 @@ snail = function(array) {
             return false
         }
     }
-
     // -------------------
     function hitWall() {
         try {
@@ -65,7 +54,6 @@ snail = function(array) {
             return true
         }
     }
-
     // -------------------
     while (true) {
         if (hitWall()) {
