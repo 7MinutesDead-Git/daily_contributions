@@ -54,7 +54,7 @@ snail = function(array) {
     }
 
     // -------------------
-    function wallCheck() {
+    function hitWall() {
         try {
             const deadEnd = array[y][x] === undefined
             const alreadyBeenHere = crawler.previouslyVisited([y, x])
@@ -68,11 +68,11 @@ snail = function(array) {
 
     // -------------------
     while (true) {
-        if (wallCheck()) {
+        if (hitWall()) {
             crawler.turn()
             crawler.move()
             // If we run into a wall immediately after turning, we're at the end.
-            if (wallCheck())
+            if (hitWall())
                 break
             else
                 continue
