@@ -60,7 +60,7 @@ snail = function(array) {
             const alreadyBeenHere = crawler.previouslyVisited([y, x])
             return alreadyBeenHere || deadEnd
         }
-            // This would mean y is undefined, as in hitting the upper and lower walls.
+        // This would mean y is undefined, as in hitting the upper and lower walls.
         catch (TypeError) {
             return true
         }
