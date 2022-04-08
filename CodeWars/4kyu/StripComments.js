@@ -13,12 +13,10 @@ function solution(input, markers) {
             if (result[result.length-1] === ' ')
                 result.pop()
         }
-
         if (!commenting)
             result.push(input[i])
     }
     return result.join("").trim()
 }
-
 
 console.log(solution("apples, plums % and bananas\npears\noranges !applesauce", ["%", "!"]))
