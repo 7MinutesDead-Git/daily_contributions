@@ -120,6 +120,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  z-index: 1;
 }
 input {
   transition: all 0.3s ease-in-out;
