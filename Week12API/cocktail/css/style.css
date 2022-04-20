@@ -78,6 +78,7 @@ body {
   display:flex;
   justify-content: flex-start;
   flex-direction: column;
+  opacity: 0;
 }
 
 .drink > img {
@@ -192,6 +193,7 @@ button:hover {
   z-index: -1;
 }
 .drink.viewing {
+  animation: show 0.5s ease-in-out;
   z-index: 99;
   position: absolute;
   top: -1rem;
@@ -202,20 +204,38 @@ button:hover {
   margin-top: 4rem;
   transition: all 1s ease-in-out;
 }
-.drink.viewing p,
-.drink.viewing ul {
+.drink.viewing p {
   display: block;
-  opacity: 1;
   width: 200%;
+  transition: all 1s ease-in-out;
+  animation: show 2s ease-in-out 1s forwards;
+  font-style: italic;
 }
 .drink.viewing ul {
+  transition: all 1s ease-in-out;
+  display: block;
+  width: 200%;
   margin: 0 0 1rem 0;
+  animation: show 1s ease-in-out 0.5s forwards;
 }
 
   .drink.viewing > img:hover {
     transform: scale(1.15);
     filter: grayscale(1) brightness(0.4);
   }
+
+/******************************************
+/* Keyframes.
+/*******************************************/
+@keyframes show {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+
+}
 
 /******************************************
 /* Queries.

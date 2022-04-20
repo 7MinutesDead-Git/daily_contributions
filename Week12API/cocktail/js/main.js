@@ -5,6 +5,11 @@ const cocktailList = document.querySelector('.cocktails')
 
 
 // -------------------------------------------------------------
+function wait(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms))
+}
+
+// -------------------------------------------------------------
 function setupListeners() {
     button.addEventListener('click', getFetch)
     input.addEventListener('keypress', e => {
@@ -27,12 +32,13 @@ function setupDrinkListeners() {
 }
 
 // -------------------------------------------------------------
-function toggleFocus(drink) {
+async function toggleFocus(drink) {
     drink.classList.toggle('viewing')
     drink.scrollIntoView({
         behavior: 'smooth',
         block: 'center'
     })
+
     console.log(drink)
 }
 
@@ -71,10 +77,20 @@ function renderError(code) {
 function renderDrinks(data) {
     if (data['drinks']) {
         for (const drink of data['drinks']) {
+            console.log(drink)
             cocktailList.appendChild(createDrinkBlock(drink))
         }
     } else {
         renderError(404)
+    }
+    revealDrinks()
+}
+
+// -------------------------------------------------------------
+async function revealDrinks() {
+    for (const drink of document.querySelectorAll('.drink')) {
+        await wait(200)
+        drink.style.opacity = '1'
     }
 }
 
