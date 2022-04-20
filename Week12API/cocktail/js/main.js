@@ -25,10 +25,6 @@ function setupDrinkListeners() {
 
 // -------------------------------------------------------------
 function focusDrink(drink) {
-    // TODO:
-    //  Hide / fade other drinks that aren't chosen.
-    //  Bring drink to front and center.
-    //  Show drink instructions.
     drink.classList.toggle('viewing')
     console.log(drink)
 }
