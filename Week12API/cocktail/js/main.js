@@ -96,21 +96,23 @@ function createDrinkBlock(data) {
 // -------------------------------------------------------------
 function getIngredients(drink) {
     const ingredients = document.createElement('ul')
+    ingredients.classList.add('ingredients')
     const measurementPairs = {}
-
+    // To match the ingredients with their measurements, we can check the last character of the key name
+    // since each measurement and ingredient name have a matching number suffix.
+    // This works so long as there isn't more than 10 ingredients.
+    // TODO: If the API stops returning ingredients before measurements, we'll need to refactor this.
     for (const key in drink) {
+        const suffix = key.charAt(key.length - 1)
         if (key.includes('Ingredient') && drink[key] !== null) {
-            measurementPairs[drink[key]] = key.charAt(key.length - 1)
+            measurementPairs[suffix] = drink[key]
         }
-        if (key.includes('Measure')) {
-            for (const ingredient in measurementPairs) {
-                const matchingPair = key.charAt(key.length - 1) === measurementPairs[ingredient]
-                if (matchingPair && drink[key] !== null) {
-                    const li = document.createElement('li')
-                    li.textContent = `${ingredient}: ${drink[key]}`
-                    ingredients.appendChild(li)
-                }
-            }
+        if (key.includes('Measure') && drink[key] !== null && measurementPairs[suffix] !== null) {
+            const measurement = drink[key]
+            const ingredient = document.createElement('li')
+            ingredient.textContent = `${measurementPairs[suffix]}: ${measurement}`
+            ingredient.classList.add('ingredient')
+            ingredients.appendChild(ingredient)
         }
     }
     return ingredients

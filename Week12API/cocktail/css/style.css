@@ -88,12 +88,18 @@ body {
   color: white;
   text-shadow: 0 0 0.5rem #000;
 }
-.drink > .instructions > p {
+.drink p{
   display: none;
   opacity: 0;
   color: #6b6f78;
   line-height: 1.5;
   margin: 0 0 1rem 0;
+}
+.drink ul {
+  display: none;
+  opacity: 0;
+  color: #7b8796;
+  line-height: 1.3;
 }
 
 /* Transitions. */
@@ -124,18 +130,19 @@ body {
   z-index: 99;
   position: fixed;
   top: 2rem;
-  width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
+  margin-top: 4rem;
   transition: all 1s ease-in-out;
 }
-.drink.viewing > .instructions {
-  width: 50%;
-}
-.drink.viewing > .instructions > p {
+.drink.viewing p,
+.drink.viewing ul {
   display: block;
   opacity: 1;
+  width: 200%;
+}
+.drink.viewing ul {
+  margin: 0 0 1rem 0;
 }
