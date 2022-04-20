@@ -67,7 +67,7 @@ body {
   align-items: center;
   align-content: center;
   flex-wrap: wrap;
-  margin: 8rem 5rem 0 2rem;
+  margin: 8rem 12rem 0 2rem;
 }
 
 .drink {
@@ -81,8 +81,8 @@ body {
 }
 
 .drink > img {
-  width: 20vw;
-  height: 20vw;
+  width: 20rem;
+  height: 20rem;
   border-radius: 50%;
   box-shadow: 0 0 5rem 0.5rem rgba(0,0,0,0.7);
 }
@@ -216,3 +216,36 @@ button:hover {
     transform: scale(1.15);
     filter: grayscale(1) brightness(0.4);
   }
+
+/******************************************
+/* Queries.
+/*******************************************/
+@media screen and (max-width: 1600px) {
+  .drink {
+    width: 20%;
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .drink {
+    width: 25%;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .drink {
+    width: 33%;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .drink {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .drink {
+    width: 100%;
+  }
+}
