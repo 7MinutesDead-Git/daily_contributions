@@ -71,22 +71,49 @@ function renderDrinks(data) {
 // -------------------------------------------------------------
 function createDrinkBlock(data) {
     const drink = document.createElement('li')
-    const drinkName = document.createElement('h3')
-    const drinkInstructions = document.createElement('div')
-    const drinkImg = document.createElement('img')
+    const name = document.createElement('h3')
+    const instructions = document.createElement('div')
+    const image = document.createElement('img')
+    const ingredients = getIngredients(data)
 
     drink.classList.add('drink')
-    drinkName.textContent = data['strDrink']
-    drinkImg.src = data['strDrinkThumb']
-    drinkInstructions.classList.add('instructions')
-    drinkInstructions.innerHTML = formatInstructions(data['strInstructions'])
+    instructions.classList.add('instructions')
 
-    const drinkInfo = [drinkImg, drinkName, drinkInstructions]
+    name.textContent = data['strDrink']
+    image.src = data['strDrinkThumb']
+
+    instructions.innerHTML = formatInstructions(data['strInstructions'])
+
+
+    const drinkInfo = [image, name, ingredients, instructions]
 
     for (const info of drinkInfo) {
         drink.appendChild(info)
     }
     return drink
+}
+
+// -------------------------------------------------------------
+function getIngredients(drink) {
+    const ingredients = document.createElement('ul')
+    const measurementPairs = {}
+
+    for (const key in drink) {
+        if (key.includes('Ingredient') && drink[key] !== null) {
+            measurementPairs[drink[key]] = key.charAt(key.length - 1)
+        }
+        if (key.includes('Measure')) {
+            for (const ingredient in measurementPairs) {
+                const matchingPair = key.charAt(key.length - 1) === measurementPairs[ingredient]
+                if (matchingPair && drink[key] !== null) {
+                    const li = document.createElement('li')
+                    li.textContent = `${ingredient}: ${drink[key]}`
+                    ingredients.appendChild(li)
+                }
+            }
+        }
+    }
+    return ingredients
 }
 
 // -------------------------------------------------------------
