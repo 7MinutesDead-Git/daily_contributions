@@ -60,6 +60,7 @@ body {
   align-items: center;
   align-content: center;
   flex-wrap: wrap;
+  overflow: hidden;
 }
 
 .drink {
@@ -73,8 +74,8 @@ body {
 }
 
 .drink > img {
-  width: 15rem;
-  height: 15rem;
+  width: 20vw;
+  height: 20vw;
   border-radius: 50%;
   box-shadow: 0 0 5rem 0.5rem rgba(0,0,0,0.7);
 }
