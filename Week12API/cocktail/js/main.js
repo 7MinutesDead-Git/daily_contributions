@@ -53,7 +53,10 @@ function getFetch() {
 // -------------------------------------------------------------
 function renderError(code) {
     if (code === 404){
-        errorSpan.innerHTML = `Can't find ${input.value}. Check the spelling perhaps.`
+        errorSpan.innerHTML = `Couldn't find a drink named ${input.value}.`
+    }
+    else {
+        errorSpan.innerHTML = ''
     }
 }
 
