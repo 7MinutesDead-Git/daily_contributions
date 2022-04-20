@@ -18,14 +18,21 @@ function setupDrinkListeners() {
     const drinkButtons = document.querySelectorAll('.drink')
     drinkButtons.forEach(button => {
         button.addEventListener('click', (e) => {
-            focusDrink(button)
+            // This way clicking on instructions doesn't hide/toggle the drink selection.
+            if (e.target.parentElement.classList.contains('drink')) {
+                toggleFocus(button)
+            }
         })
     })
 }
 
 // -------------------------------------------------------------
-function focusDrink(drink) {
+function toggleFocus(drink) {
     drink.classList.toggle('viewing')
+    drink.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+    })
     console.log(drink)
 }
 
