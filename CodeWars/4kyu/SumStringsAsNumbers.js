@@ -1,4 +1,5 @@
 // https://www.codewars.com/kata/5324945e2ece5e1f32000370/train/javascript
+// https://www.codewars.com/kata/55911ef14065454c75000062/train/javascript
 // Below is a whole bunch of mess, when you could just use javascript's built in BigInt() method.
 function waySimpler(a,b) {
     return (BigInt(a) + BigInt(b)).toString()
