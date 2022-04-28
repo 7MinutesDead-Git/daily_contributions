@@ -1,6 +1,6 @@
 // https://www.codewars.com/kata/530e15517bc88ac656000716/train/javascript
 // I'm kinda proud of this one!
-function rot13(message){
+function rot13(message) {
     const alphabet = [...'aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ']
     const input = [...message]
     const result = []
