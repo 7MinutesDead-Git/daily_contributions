@@ -66,3 +66,25 @@ console.log(group.has(10))
 // ----------------------------------------------------------
 // https://eloquentjavascript.net/06_object.html#i_djD3XDJ27V
 // Iterable groups.
+class GroupIterator {
+    constructor(group) {
+        this.keys = Object.keys(group)
+    }
+    next() {
+        // As long as there is more of the array to iterate over, we'll shift off the first item and return it.
+        if (this.keys.length > 0)
+            return { value: this.keys.shift(), done: false }
+        return { done: true }
+    }
+}
+Group.prototype[Symbol.iterator] = function() {
+    return new GroupIterator(this.group)
+}
+
+for (let value of Group.from(["a", "b", "c"])) {
+    console.log(value)
+}
+
+// ----------------------------------------------------------
+// https://eloquentjavascript.net/06_object.html#i_wcWSnr9zHV
+// Borrowing a method.
