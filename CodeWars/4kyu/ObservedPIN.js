@@ -1,4 +1,7 @@
 // https://www.codewars.com/kata/5263c6999e0f40dee200059d/train/javascript
+// Check out:
+//  - Cartesian product
+
 // ------------------------------------------------
 function getPINs(observed) {
     const neighbors = getNeighbors(observed)
