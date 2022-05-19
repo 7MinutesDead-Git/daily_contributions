@@ -32,8 +32,6 @@ function sumIntervals(intervals) {
     let start = intervals[0][0]
     let end = intervals[0][1]
 
-
-
     for (let i = 1; i < intervals.length; i++) {
         let intervalStart = intervals[i][0]
         let intervalEnd = intervals[i][1]
