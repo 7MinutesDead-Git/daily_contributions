@@ -1,0 +1,11 @@
+const os = require('os')
+
+console.log("OS Platform", os.platform())
+console.log("CPU Architecture", os.arch())
+console.log("CPU Core Info", os.cpus())
+console.log("Free memory", os.freemem())
+console.log("Total memory", os.totalmem())
+console.log("Home directory", os.homedir())
+console.log("Hostname", os.hostname())
+console.log("Network interfaces", os.networkInterfaces())
+console.log("Uptime", os.uptime())
