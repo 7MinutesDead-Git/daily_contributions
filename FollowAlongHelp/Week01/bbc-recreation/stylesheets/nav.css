@@ -1,0 +1,46 @@
+#main-navbar {
+    position: relative;
+    max-width: 100%;
+    top: 0;
+}
+/* Logo. -----------------------------*/
+#bbc-logo-wrapper {
+    max-height: 1rem;
+    float: left;
+    background-color: black;
+    padding: 0.5rem 1.2rem;
+}
+#bbc-logo-img {
+    max-height: inherit;
+}
+/* Buttons. -----------------------------*/
+#navbar-btns {
+    align-items: center;
+    height: 2rem;
+    background-color: black;
+    float: left;
+}
+.btn-nav {
+    float: left;
+    padding: 0.5rem 0.5rem;
+    border-right: 1px solid grey;
+    font-size: small;
+}
+.a-nav {
+    text-decoration: none;
+    color: whitesmoke;
+    font-weight: bold;
+}
+#btn-nav-signin {
+    border-left: 1px solid grey;
+    padding-right: 5rem;
+}
+/* Search. -----------------------------*/
+.search-nav {
+    height: 2rem;
+    max-width: 100%;
+    background-color: black;
+}
+#search-bar {
+    padding-left: 0.5rem;
+}

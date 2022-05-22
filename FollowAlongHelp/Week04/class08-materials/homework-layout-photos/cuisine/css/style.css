@@ -1,0 +1,394 @@
+/* Box Model Hack */
+* {
+  box-sizing: border-box;
+}
+/* Clear fix hack */
+.clearfix:after {
+     content: ".";
+     display: block;
+     clear: both;
+     visibility: hidden;
+     line-height: 0;
+     height: 0;
+}
+.clear {
+	clear: both;
+}
+
+/******************************************
+/* Base Transitions
+/*******************************************/
+header > .nav-primary > a,
+.section-hero > .nav-socials > a > img,
+.section-hero > .nav-socials > a > span {
+     transition: color 0.2s ease-in-out, background-color 0.3s ease-in-out;
+}
+.section-hero > label > .input-search {
+     transition: border 0.3s ease-in-out;
+}
+.section-hero > label > .input-search:focus {
+     border: #ff8800 solid 0.1rem;
+}
+.section-hero > .nav-socials > a:hover > span {
+     color: #ff8800;
+}
+.section-hero > .nav-socials > a:hover > img {
+     filter: brightness(1);
+}
+
+     /******************************************
+     /* BASE STYLES
+     /*******************************************/
+body {
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     user-select: none;
+     align-items: center;
+     background: url(../images/fruit-background.jpg) no-repeat center center fixed;
+     background-size: cover;
+     font-family: 'Roboto', sans-serif;
+     overflow-x: hidden;
+}
+/* This is the main block that is tilted. */
+main {
+     position: relative;
+     overflow: hidden;
+     margin: 2rem 0 0 0;
+     box-shadow: rgba(23, 23, 23, 0.4) 0 0 5rem;
+     padding: 0 2rem;
+     border: 4px solid rgba(253,88,96,0.62);
+     border-radius: 0 0 5rem 30%;
+     right: -5%;
+     transform: rotate(10deg) scale(1.2) translate(-5rem, -4rem);
+}
+/* Since the child elements were also tilted, we must rotate them back to 0 and scale
+returned back to "1" (as close as possible anyway). */
+main > section {
+     transform: rotate(-10deg) scale(.8333) translate(5rem, 4rem);
+}
+main > header {
+     transform: rotate(-10deg) scale(.8333) translate(7rem, 7rem);
+}
+/* Necessary pseudo element to allow for greater manipulation of the background image. */
+main::before {
+     content: "";
+     position: absolute;
+     width: 200%;
+     height: 200%;
+     top: -2%;
+     left: -68%;
+     z-index: -1;
+     background: url(../images/fruit-background.jpg) 0 0 repeat;
+     background-size: cover;
+     transform: rotate(180deg);
+}
+a {
+     display: inline-block;
+     cursor: pointer;
+}
+h1, h2 {
+     font-family: 'Adobe Garamond Pro', sans-serif;
+     text-transform: capitalize;
+     font-size: 4rem;
+     font-weight: 900;
+     line-height: 3rem;
+     margin-bottom: 1rem;
+     color: rgba(64,64,64,1);
+}
+h2 {
+     font-size: 2.7rem;
+}
+span {
+     font-size: 0.8rem;
+     font-weight: 900;
+     color: #ff8800
+}
+p {
+     font-size: 0.8rem;
+     line-height: 1.7rem;
+     width: 30rem;
+     color: #7b8796;
+}
+
+/* --------------------------------------------- */
+main,
+.section-about,
+.section-menu,
+.section-contact,
+.section-testimony {
+     width: min(90%, 1200px);
+}
+
+
+/******************************************
+/* LAYOUT
+/*******************************************/
+header {
+     display: flex;
+     justify-content: flex-end;
+}
+header > .nav-primary {
+     display: flex;
+     justify-content: space-evenly;
+     width: 70%;
+     padding: 1rem 2rem 0 0;
+}
+header > .nav-primary > img {
+     height: 1.5rem;
+     filter: contrast(0) brightness(2);
+     margin: 0 1rem;
+     text-shadow: #2c2c2c 0 0 0.5rem;
+}
+
+header > .nav-primary > a {
+     font-size: 0.8rem;
+     line-height: 1.5rem;
+     font-weight: 300;
+     width: 100%;
+     text-align: center;
+     color: #7b8796;
+}
+header > .nav-primary > a:hover {
+     color: #f95c61;
+     background: rgba(75, 75, 75, 0.1);
+}
+header > .nav-primary > a:nth-child(n+4) {
+     color: #fff;
+     text-shadow: #2c2c2c 0 0 0.5rem;
+}
+header > .nav-primary > a:nth-child(n+4):hover {
+     background: rgba(255, 255, 255, 0.8);
+     color: #f95c61;
+     text-shadow: none;
+}
+
+/* --------------------------------------------- */
+.section-hero {
+     margin: 4rem 0 3rem 4rem;
+     width: 40%;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: flex-start;
+}
+.section-hero > h1 {
+     margin-bottom: 3rem;
+}
+.section-hero > label {
+     display: flex;
+     box-shadow: rgba(220,222,222,1) 0 0 1rem 0.03rem;
+     border: rgba(220,222,222,1) 0.1rem solid;
+     border-radius: 0.3rem;
+     overflow: hidden;
+     margin-bottom: 1rem;
+}
+.section-hero .input-search,
+.section-hero .btn-search,
+.btn-menu {
+     border: none;
+     font-size: 0.7rem;
+     padding-left: 0.5rem;
+     margin: 0;
+     height: 2rem;
+     line-height: 2rem;
+}
+.section-hero .input-search {
+     width: 18rem;
+     outline: none;
+     border: transparent 0.1rem solid;
+     caret-color: #ff8800;
+     color: #aaa;
+}
+.section-hero .input-search::placeholder {
+     color: #bbb;
+}
+.section-hero .btn-search,
+.btn-menu {
+     width: 5rem;
+     background: rgba(255,136,0,1);
+     color: #fff;
+}
+.section-hero > .nav-socials {
+     display: flex;
+     justify-content: space-between;
+     align-items: flex-start;
+     margin: 1rem 0 3rem 0;
+     width: 50%;
+}
+.section-hero > .nav-socials > a > img {
+     height: 1rem;
+     filter: grayscale(1) sepia(1) contrast(1) saturate(3) hue-rotate(-40deg) brightness(1.2);
+     margin: 0 0.1rem 0 0;
+}
+.section-hero > .nav-socials > a > span {
+     color: rgb(77,77,77);
+}
+
+/* --------------------------------------------- */
+.section-about {
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: flex-end;
+     padding: 4rem;
+     width: min(90%, 1300px);
+     background-image:
+             linear-gradient(to left, rgba(255, 255, 255, 1), rgba(225, 225, 225, 0.5)),
+             url('../images/breakfast-bg.jpg');
+     background-size: cover;
+     border-radius: 0.5rem;
+     transform: translateY(-15rem);
+     z-index: -1;
+     box-shadow: rgba(87,87,87,0.15) 0 0 5rem 1rem;
+}
+.section-about > .about-block {
+     width: 50%;
+     margin: 13rem 5rem 0 0;
+}
+.section-about > .about-block > span {
+     display: inline-block;
+     margin: 0 0 1rem 0;
+     text-shadow: white 0 0 0.5rem;
+}
+.section-about p {
+     margin: 1rem 0;
+     color: rgba(56,56,56,0.73);
+     text-shadow: white 0 0 0.5rem;
+}
+.section-about .btn-menu {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     width: 10rem;
+     margin: 2rem 0;
+     border-radius: 0.3rem;
+}
+.section-about .btn-menu-left,
+.section-about .btn-menu-right {
+     padding: 0 0.5rem;
+}
+.section-about .btn-menu-right {
+     background: #ffaa4d;
+}
+
+
+/******************************************
+/* Media queries
+/*******************************************/
+
+@media screen and (max-width: 1236px) {
+     main {
+          right: -10%;
+     }
+     header {
+          justify-content: center;
+     }
+     header > .nav-primary {
+          width: 100%;
+          margin: 0 5rem 0 0;
+     }
+     header > .nav-primary > a {
+          font-size: 1rem;
+          line-height: 1.5rem;
+     }
+     header > .nav-primary > a:nth-child(-1n+3) {
+          color: #2c2c2c;
+          text-shadow: none;
+     }
+     header > .nav-primary > a:nth-child(-1n+3):hover {
+          color: #f95c61;
+          background: rgba(75, 75, 75, 0.1);
+          text-shadow: none;
+     }
+     header > .nav-primary > a:nth-child(5) {
+          display: none;
+     }
+     .section-hero {
+          width: 50%;
+     }
+     .section-about {
+          width: 100%;
+     }
+}
+
+@media screen and (max-width: 1012px) {
+     main::before {
+          background-image:
+                  linear-gradient(to right, rgba(255, 255, 255, 1), rgba(222,81,85,0.1)),
+                  url('../images/fruit-background.jpg');
+          background-size: cover;
+     }
+     main {
+          right: -13%;
+          top: -10%;
+          width: 100%
+     }
+     header > .nav-primary > a:nth-child(n+5) {
+          display: none;
+     }
+     header > .nav-primary > a:nth-child(-1n+4) {
+          color: #2c2c2c;
+          text-shadow: none;
+     }
+     header > .nav-primary > img {
+          height: 1.5rem;
+          filter: contrast(0) brightness(0.7);
+          margin: 0 1.4rem;
+     }
+     header > .nav-primary {
+          margin: 0;
+     }
+     .section-hero {
+          width: 70%;
+     }
+     main > header {
+          transform: rotate(-10deg) scale(0.8333) translate(-4rem, 7rem);
+     }
+}
+
+@media screen and (max-width: 805px) {
+     header > .nav-primary > a:nth-child(-1n+2) {
+          display: none;
+     }
+     main {
+          align-items: center;
+     }
+     .section-hero {
+          margin-left: 0;
+     }
+     .section-hero > label {
+          width: 100%;
+     }
+     .section-hero > .nav-socials {
+          width: 80%;
+     }
+}
+
+@media screen and (max-width: 593px) {
+     header > .nav-primary > a:nth-child(-1n+3) {
+          display: none;
+     }
+     header > .nav-primary {
+          transform: translate(3rem, 0);
+     }
+     .section-hero {
+          width: 95%;
+          margin: 3rem 0;
+     }
+     h1 {
+          font-size: 3.2rem;
+     }
+     .section-hero > .nav-socials {
+          width: 80%;
+     }
+     .section-hero > .nav-socials > a > img {
+          height: 1.5rem;
+     }
+     .section-hero > .nav-socials > a > span {
+          font-size: 1.2rem;
+     }
+     .section-hero > label {
+          width: 80%;
+     }
+}
