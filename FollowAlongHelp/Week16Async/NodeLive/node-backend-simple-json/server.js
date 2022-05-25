@@ -1,78 +1,121 @@
-const http = require('http');
+const http = require('http')
 const fs = require('fs')
-const url = require('url');
-const querystring = require('querystring');
+const path = require('path')
+const url = require('url')
 const figlet = require('figlet')
 
-const server = http.createServer((req, res) => {
-  const page = url.parse(req.url).pathname;
-  const params = querystring.parse(url.parse(req.url).query);
-  console.log(page);
-  if (page == '/') {
-    fs.readFile('index.html', function(err, data) {
-      res.writeHead(200, {'Content-Type': 'text/html'});
-      res.write(data);
-      res.end();
-    });
+// --------------------------------------------------
+const PORT = process.env.PORT || 8000
+// A tiny test database object.
+const tinyDB = {
+  "leon": {
+    name: "leon",
+    status: "Boss Man",
+    currentOccupation: "Baller"
+  },
+  "me": {
+    name: "you",
+    status: "Way past cool",
+    currentOccupation: "Software Engineer"
+  },
+  "unknown": {
+    name: "unknown",
+    status: "unknown",
+    currentOccupation: "unknown"
   }
-  else if (page == '/otherpage') {
-    fs.readFile('otherpage.html', function(err, data) {
-      res.writeHead(200, {'Content-Type': 'text/html'});
-      res.write(data);
-      res.end();
-    });
-  }
-  else if (page == '/otherotherpage') {
-    fs.readFile('otherotherpage.html', function(err, data) {
-      res.writeHead(200, {'Content-Type': 'text/html'});
-      res.write(data);
-      res.end();
-    });
-  }
-  else if (page == '/api') {
-    if('student' in params){
-      if(params['student']== 'leon'){
-        res.writeHead(200, {'Content-Type': 'application/json'});
-        const objToJson = {
-          name: "leon",
-          status: "Boss Man",
-          currentOccupation: "Baller"
-        }
-        res.end(JSON.stringify(objToJson));
-      }//student = leon
-      else if(params['student'] != 'leon'){
-        res.writeHead(200, {'Content-Type': 'application/json'});
-        const objToJson = {
-          name: "unknown",
-          status: "unknown",
-          currentOccupation: "unknown"
-        }
-        res.end(JSON.stringify(objToJson));
-      }//student != leon
-    }//student if
-  }//else if
-  else if (page == '/css/style.css'){
-    fs.readFile('css/style.css', function(err, data) {
-      res.write(data);
-      res.end();
-    });
-  }else if (page == '/js/main.js'){
-    fs.readFile('js/main.js', function(err, data) {
-      res.writeHead(200, {'Content-Type': 'text/javascript'});
-      res.write(data);
-      res.end();
-    });
-  }else{
-    figlet('404!!', function(err, data) {
-      if (err) {
-          console.log('Something went wrong...');
-          console.dir(err);
-          return;
-      }
-      res.write(data);
-      res.end();
-    });
-  }
-});
+}
 
-server.listen(8000);
+// --------------------------------------------------
+// Returns the matching content type for a given file extension, or text/html by default.
+function getContentType(fileType) {
+  const defaultHTMLType = 'text/html'
+  const contentTypes = {
+    '.css': 'text/css',
+    '.js': 'text/javascript',
+    '.json': 'application/json',
+    '.png': 'image/png',
+    '.jpg': 'image/jpeg',
+    '.gif': 'image/gif',
+  }
+  return contentTypes[fileType] || defaultHTMLType
+}
+
+// --------------------------------------------------
+const server = http.createServer((req, res) => {
+  const requestPageName = req.url === "/" ? "index.html" : req.url
+  const isApiRequest = requestPageName.startsWith('/api')
+
+  let filePath = path.join(__dirname, requestPageName)
+  let fileType = path.extname(filePath)
+
+  if (fileType.length === 0 && !isApiRequest) {
+    filePath = path.join(__dirname, requestPageName + '.html')
+    fileType = path.extname(filePath)
+  }
+  let contentType = getContentType(fileType)
+  let params = url.parse(req.url, true).query
+
+  // --------------------------------------------------
+  // Helper methods:
+  // --------------------------------------------------
+  function servePageResponse() {
+    fs.readFile(filePath, (err, data) => {
+      res.writeHead(200, contentType)
+      try {
+        res.write(data)
+      } catch (err) {
+        console.log(`Error when trying to load ${requestPageName}`)
+        console.log(err)
+      }
+      res.end()
+    })
+  }
+  // --------------------------------------------------
+  function getAPIContent() {
+    if (params['student'] in tinyDB) {
+      return tinyDB[params['student']]
+    }
+    return tinyDB['unknown']
+  }
+  // --------------------------------------------------
+  function serveAPIResponse() {
+    if ('student' in params) {
+      res.writeHead(200, contentType)
+      const objToJson = getAPIContent()
+      res.end(JSON.stringify(objToJson))
+    }
+  }
+  // --------------------------------------------------
+  function serveErrorResponse() {
+    figlet('404 Page Not Found', function(err, data) {
+      if (err) {
+        console.log('Something went wrong...')
+        console.dir(err)
+        return
+      }
+      res.write(data)
+      res.end()
+    })
+  }
+
+  // --------------------------------------------------
+  // Response served here!
+  try {
+    if (isApiRequest) {
+      serveAPIResponse()
+    } else {
+      servePageResponse()
+    }
+  }
+  catch (err) {
+    serveErrorResponse()
+  }
+})
+
+server.listen(PORT)
+console.log(figlet.textSync('Server Up', {
+  font: 'Ghost',
+  horizontalLayout: 'default',
+  verticalLayout: 'default'
+}))
+console.log(`Head over to http://localhost:${PORT}/`)
