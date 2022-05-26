@@ -1,0 +1,18 @@
+{
+  "name": "cemdb",
+  "version": "1.0.0",
+  "description": "CRUD example app for Express/Node and MongoDB interaction.",
+  "main": "index.js",
+  "scripts": {
+    "test": "Test good.",
+    "dev": "nodemon server.js"
+  },
+  "author": "Alex Gulikers",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
