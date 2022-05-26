@@ -97,11 +97,7 @@ const server = http.createServer((req, res) => {
   // --------------------------------------------------
   // Response served here!
   try {
-    if (isApiRequest) {
-      serveAPIResponse()
-    } else {
-      servePageResponse()
-    }
+    isApiRequest ? serveAPIResponse() : servePageResponse()
   }
   catch (err) {
     serveErrorResponse()
