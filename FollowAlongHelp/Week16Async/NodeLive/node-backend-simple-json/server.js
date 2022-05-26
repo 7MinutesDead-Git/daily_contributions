@@ -72,18 +72,14 @@ const server = http.createServer((req, res) => {
   }
   // --------------------------------------------------
   function getAPIContent() {
-    if (params['student'] in tinyDB) {
-      return tinyDB[params['student']]
-    }
-    return tinyDB['unknown']
+    // Note: If student doesn't exist, unknown student is returned instead.
+    return tinyDB[params['student']] || tinyDB['unknown']
   }
   // --------------------------------------------------
   function serveAPIResponse() {
-    if ('student' in params) {
-      res.writeHead(200, contentType)
-      const objToJson = getAPIContent()
-      res.end(JSON.stringify(objToJson))
-    }
+    res.writeHead(200, contentType)
+    const objToJson = getAPIContent()
+    res.end(JSON.stringify(objToJson))
   }
   // --------------------------------------------------
   function serveErrorResponse() {
