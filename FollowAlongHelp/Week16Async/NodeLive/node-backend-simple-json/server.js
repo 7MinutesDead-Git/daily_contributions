@@ -82,11 +82,12 @@ const server = http.createServer((req, res) => {
     res.end(JSON.stringify(objToJson))
   }
   // --------------------------------------------------
-  function serveErrorResponse() {
-    figlet('404 Page Not Found', function(err, data) {
-      if (err) {
+  function serveErrorResponse(err) {
+    console.log(err)
+    figlet('404 Page Not Found', function(figError, data) {
+      if (figError) {
         console.log('Something went wrong...')
-        console.dir(err)
+        console.dir(figError)
         return
       }
       res.write(data)
@@ -100,7 +101,7 @@ const server = http.createServer((req, res) => {
     isApiRequest ? serveAPIResponse() : servePageResponse()
   }
   catch (err) {
-    serveErrorResponse()
+    serveErrorResponse(err)
   }
 })
 
