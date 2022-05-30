@@ -52,8 +52,8 @@ const server = http.createServer((req, res) => {
     filePath = path.join(__dirname, requestPageName + '.html')
     fileType = path.extname(filePath)
   }
-  let contentType = getContentType(fileType)
-  let params = url.parse(req.url, true).query
+  const contentType = getContentType(fileType)
+  const params = url.parse(req.url, true).query
 
   // --------------------------------------------------
   // Helper methods:
