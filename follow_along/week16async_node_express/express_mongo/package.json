@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "CRUD example app for Express/Node and MongoDB interaction.",
   "main": "index.js",
+  "engines": {
+    "node": "18.2.0"
+  },
   "scripts": {
     "test": "Test good.",
     "dev": "nodemon server.js"
