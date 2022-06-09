@@ -29,12 +29,18 @@ function setupMiddleware(app) {
   app.use(express.json())
   // Used to parse URL-encoded bodies using qs (query string) library.
   app.use(express.urlencoded({ extended: true }))
+  // Since we can't send multiple files with sendFile, and we want to serve
+  // things like index.html and its stylesheet, we can use static instead.
+  // This will serve everything placed in the "public" directory.
+  app.use(express.static('public'))
 }
 
 function setupGetRoutes(app) {
-  app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html')
-  })
+  // // Keeping for future reference, but this is now handled by the
+  // // static middleware above.
+  // app.get('/', (req, res) => {
+  //   res.sendFile(__dirname + '/index.html')
+  // })
 }
 function setupPostRoutes(app) {
   app.post('/add', (req, res) => {
@@ -45,14 +51,14 @@ function setupPostRoutes(app) {
 
 function setupBadRoute(app) {
   app.all('*', (req, res) => {
-    console.log(`Bad request from ${req.ip} ==> ${req.url}`)
-    res.send('404')
+    console.log(`🐡 Bad request from ${req.ip} ==> ${req.url} 🐡`)
+    res.send('🐡 404 🐡')
   })
 }
 
 // ------------------------------------------------------------
 async function setupMongoDBConnection() {
-  const credentialsURI = await process.env.mongo_db_hw_uri
+  const credentialsURI = process.env.mongo_db_hw_uri
   const mongoClientSetup = {
     useNewUrlParser: true,
     useUnifiedTopology: true,
