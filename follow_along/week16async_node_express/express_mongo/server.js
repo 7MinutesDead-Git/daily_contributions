@@ -8,61 +8,61 @@ const { MongoClient, ServerApiVersion } = require('mongodb')
 
 // ------------------------------------------------------------
 // Global Variables
-const secureFolder= 'secure'
 const PORT = process.env.PORT || 3000
-// https://www.twilio.com/blog/working-with-environment-variables-in-node-js-html
-const mongoDBCloudURL = process.env.MONGODB_CLOUD_URL
 
 // ------------------------------------------------------------
-// Return Promise of path to mongodb cloud credentials file.
-async function getCredentialsPath() {
-  return new Promise((resolve, reject) => {
-    fs.readdir(secureFolder, (err, files) => {
-        for (const file of files) {
-          if (file.endsWith('.pem')) {
-            resolve(`${secureFolder}/${file}`)
-          }
-        }
-      })
+function startServer() {
+  const app = express()
+  setupMiddleware(app)
+  // -------------------------------
+  app.listen(PORT, () => {
+    console.log(`🐡 Node up on port ${PORT} 🐡`)
   })
+  setupGetRoutes(app)
+  setupPostRoutes(app)
+  setupBadRoute(app)
 }
 
-// ------------------------------------------------------------
-function startExpressServer() {
-  const app = express()
+function setupMiddleware(app) {
   // We don't need to use body-parser anymore as of Express 4.16.0+
   // Used to parse JSON bodies.
   app.use(express.json())
   // Used to parse URL-encoded bodies using qs (query string) library.
   app.use(express.urlencoded({ extended: true }))
+}
 
-  app.listen(PORT, () => {
-    console.log(`🐡 Node up on port ${PORT} 🐡`)
-  })
+function setupGetRoutes(app) {
   app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html')
   })
+}
+function setupPostRoutes(app) {
   app.post('/add', (req, res) => {
     console.log(`Submitted new drink: ${req.body.name}: "${req.body.instructions}"`)
     res.send('Drink submitted! Please wait a bit for the submission to be reviewed.')
   })
 }
 
+function setupBadRoute(app) {
+  app.all('*', (req, res) => {
+    console.log(`Bad request from ${req.ip} ==> ${req.url}`)
+    res.send('404')
+  })
+}
+
 // ------------------------------------------------------------
 async function setupMongoDBConnection() {
-  const credentials = await getCredentialsPath()
-  console.log(`🦆 Credentials path: ${credentials}`)
-
-  const mongoVerification = {
-    sslKey: credentials,
-    sslCert: credentials,
+  const credentialsURI = await process.env.mongo_db_hw_uri
+  const mongoClientSetup = {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
     serverApi: ServerApiVersion.v1
   }
 
   return new Promise((resolve, reject) => {
     let client
     try {
-      client = new MongoClient(mongoDBCloudURL, mongoVerification)
+      client = new MongoClient(credentialsURI, mongoClientSetup)
     }
     catch (err) {
       console.log(`🙈🔥 Problem creating mongoDB client. Check URL, or credentials: ${err}`)
@@ -94,7 +94,7 @@ async function connectToMongo() {
 // ------------------------------------------------------------
 async function main() {
   await connectToMongo()
-  await startExpressServer()
+  await startServer()
 }
 
 
