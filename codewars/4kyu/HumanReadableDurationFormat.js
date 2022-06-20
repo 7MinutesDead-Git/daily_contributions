@@ -1,81 +1,45 @@
-class TimeUnit {
-    constructor(timeValue, parentUnit, unitType) {
-        this.timeValue = timeValue
-        this.unitType = unitType
-        this.parentUnit = parentUnit
-        this.text = ``
+// https://www.codewars.com/kata/52742f58faf5485cae000b9a/train/javascript
+function formatDuration(secInput) {
+    if (secInput === 0) {
+        return 'now'
     }
-    formatText() {
-        this.timeValue = Math.floor(this.timeValue)
-        if (this.timeValue > 1)
-            this.text = `${this.timeValue} ${this.unitType}s`
-        else if (this.timeValue === 0)
-            this.text = ''
-        else
-            this.text = `${this.timeValue} ${this.unitType}`
+
+    const secondsInYear = 31536000
+    const secondsInDay = 86400
+    const secondsInHour = 3600
+    const secondsInMinute = 60
+    const daysInYear = 365
+    const hoursInDay = 24
+    const minutesInHour = 60
+
+    const years = Math.floor(secInput / secondsInYear)
+    const days = Math.floor(secInput / secondsInDay) % daysInYear
+    const hours = Math.floor(secInput / secondsInHour) % hoursInDay
+    const minutes = Math.floor(secInput / secondsInMinute) % minutesInHour
+    const seconds = secInput % secondsInMinute
+
+    const duration = [years, days, hours, minutes, seconds]
+    const units = ['year', 'day', 'hour', 'minute', 'second']
+
+    const durationString = duration.map((unitAmount, i) => {
+        if (unitAmount === 0)
+            return ""
+
+        let itemString = `${unitAmount} ${units[i]}`
+        if (unitAmount > 1)
+            itemString += "s"
+        return itemString
+
+    }).filter(element => {
+        // Remove the empty entries.
+        return element
+    })
+
+    if (durationString.length > 1) {
+        const last = durationString.pop()
+        return `${durationString.join(", ")} and ${last}`
     }
-    overflowAdjustments() {
-        if (!this.parentUnit)
-            return
-
-        let baseUnit = 0
-        const type = this.unitType
-
-        if (type === 'second' || type === 'minute')
-            baseUnit = 60
-        else if (type === 'hour')
-            baseUnit = 24
-        else if (type === 'day')
-            baseUnit = 365
-
-        const overflow = this.timeValue / baseUnit
-        if (overflow >= 1) {
-            this.parentUnit.timeValue += overflow
-            this.timeValue = this.timeValue % baseUnit
-        }
+    else {
+        return durationString[0]
     }
 }
-
-function formatDuration(sec) {
-    if (sec === 0) {
-        return "now"
-    }
-
-    const years = new TimeUnit(0, null, 'year')
-    const days = new TimeUnit(0, years, 'day')
-    const hours = new TimeUnit(0, days, 'hour')
-    const minutes = new TimeUnit(0, hours, 'minute')
-    const seconds = new TimeUnit(sec, minutes, 'second')
-    const timeSlots = [seconds, minutes, hours, days, years]
-
-    for (const time of timeSlots) {
-        time.overflowAdjustments()
-    }
-    for (const time of timeSlots) {
-        time.formatText()
-        console.log(time.text)
-    }
-
-    let result = ''
-    let index = 0
-    let units = 1
-
-    for (const time of timeSlots.reverse()) {
-        if (time.unitType === 'second' && units > 0 && time.text !== '' && time.parentUnit.text !== '') {
-            result += ` and ${time.text}`
-            break
-        }
-
-        if (time.text.length > 0) {
-            if (result.length > 0) {
-                result += ', '
-                units++
-            }
-            result += time.text
-        }
-        index++
-    }
-    return result
-}
-
-console.log(formatDuration(3600))
