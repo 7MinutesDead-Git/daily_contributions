@@ -5,22 +5,21 @@ const express = require('express')
 const fs = require('fs')
 const { MongoClient, ServerApiVersion } = require('mongodb')
 
-
 // ------------------------------------------------------------
 // Global Variables
 const PORT = process.env.PORT || 3000
 
 // ------------------------------------------------------------
+function delay(ms) {
+  return new Promise((resolve, reject) => {
+    setTimeout(resolve, ms)
+  })
+}
+
+// ------------------------------------------------------------
 function startServer() {
   const app = express()
-  setupMiddleware(app)
-  // -------------------------------
-  app.listen(PORT, () => {
-    console.log(`🐡 Node up on port ${PORT} 🐡`)
-  })
-  setupGetRoutes(app)
-  setupPostRoutes(app)
-  setupBadRoute(app)
+  connectToMongo(app)
 }
 
 function setupMiddleware(app) {
@@ -44,7 +43,9 @@ function setupGetRoutes(app) {
 }
 function setupPostRoutes(app) {
   app.post('/add', (req, res) => {
-    console.log(`Submitted new drink: ${req.body.name}: "${req.body.instructions}"`)
+    const record = req.body
+    console.log(`Submitted new drink: ${record.name}: "${record.instructions}"`)
+    console.log(record)
     res.send('Drink submitted! Please wait a bit for the submission to be reviewed.')
   })
 }
@@ -79,7 +80,7 @@ async function setupMongoDBConnection() {
 }
 
 // ------------------------------------------------------------
-async function connectToMongo() {
+async function connectToMongo(app) {
   const client = await setupMongoDBConnection()
 
   try {
@@ -91,6 +92,15 @@ async function connectToMongo() {
     const docCount = await collection.countDocuments({})
     console.log(`🦆 Document count: ${docCount}`)
 
+    setupMiddleware(app)
+    // -------------------------------
+    app.listen(PORT, () => {
+      console.log(`🐡 Node up on port ${PORT} 🐡`)
+    })
+    setupGetRoutes(app)
+    setupPostRoutes(app)
+    setupBadRoute(app)
+
   } finally {
     console.log('🦍 Closing connection to MongoDB Cloud')
     await client.close()
@@ -98,11 +108,4 @@ async function connectToMongo() {
 }
 
 // ------------------------------------------------------------
-async function main() {
-  await connectToMongo()
-  await startServer()
-}
-
-
-// ------------------------------------------------------------
-main()
+startServer()
