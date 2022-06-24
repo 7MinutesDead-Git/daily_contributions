@@ -11,10 +11,8 @@ const PORT = process.env.PORT || 3000
 
 // --------------------------------------------------------------------
 // Static functions
-function delay(ms) {
-  return new Promise((resolve, reject) => {
-    setTimeout(resolve, ms)
-  })
+function wait(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms))
 }
 
 // --------------------------------------------------------------------
@@ -35,9 +33,12 @@ class ExpressServer {
       useUnifiedTopology: true,
       serverApi: ServerApiVersion.v1
     }
+
+    this.MongoClient = null
     this.db = null
-    this.collection = null
+    this.recipeCollection = null
     this.docCount = null
+    this.recipeDB = 'recipe-db'
   }
 
   // ------------------------------------------------------------
@@ -53,6 +54,19 @@ class ExpressServer {
     })
   }
 
+  // TODO: Crashes here, with "app" and "recipeCollection" undefined.
+  async getRecipes() {
+    try {
+      console.log(this.recipeCollection)
+      const cursor = await this.recipeCollection.find()
+      console.log(cursor)
+    }
+    catch (err) {
+      console.log('🙈🔥 No recipe collection established yet?')
+      this.app.redirect('/')
+    }
+  }
+
   // ------------------------------------------------------------
   // Setup helper methods
   #setupMiddleware() {
@@ -65,22 +79,32 @@ class ExpressServer {
     // things like index.html and its stylesheet, we can use static instead.
     // This will serve everything placed in the "public" directory.
     this.app.use(express.static('public'))
+
+    // Custom middleware:
+    this.app.use(this.requestLogger)
+    // this.app.use(this.dbCursorTest)
   }
   #setupGetRoutes() {
-    // // Keeping for future reference, but this is now handled by the
-    // // static middleware above.
-    // app.get('/', (req, res) => {
-    //   res.sendFile(__dirname + '/index.html')
-    // })
+    this.app.get('/recipes', this.getRecipes)
   }
+
   #setupPostRoutes() {
-    this.app.post('/add', (req, res) => {
+    // Route for submitting a new recipe.
+    this.app.post('/add', async (req, res) => {
       const record = req.body
-      console.log(`Submitted new drink: ${record.name}: "${record.instructions}"`)
-      console.log(record)
-      res.send('Drink submitted! Please wait a bit for the submission to be reviewed.')
+      try {
+        const result = await this.recipeCollection.insertOne(record)
+        console.log(`🦆 Inserted 1 document into collection: ${result.insertedId}`)
+        console.log(record)
+        res.redirect('/')
+      }
+      catch (err) {
+        console.error(`🐡 Error adding recipe: ${err}`)
+        res.send('🐡 Error adding recipe! 🐡')
+      }
     })
   }
+
   #setupBadRoute() {
     this.app.all('*', (req, res) => {
       console.log(`🐡 Bad request from ${req.ip} ==> ${req.url} 🐡`)
@@ -107,14 +131,15 @@ class ExpressServer {
   // Establish connection to mongoDB and get our database, collections and
   // document count.
   async createMongoConnection() {
-    const client = await this.#setupMongoDBConnection()
+    this.MongoClient = await this.#setupMongoDBConnection()
 
     try {
-      await client.connect()
+      await this.MongoClient.connect()
       console.log('🦆 Connected to MongoDB Cloud!')
-      this.db = client.db("recipe-db")
-      this.collection = this.db.collection("recipe-collection")
-      this.docCount = await this.collection.countDocuments({})
+      this.db = this.MongoClient.db(this.recipeDB)
+      this.recipeCollection = this.db.collection(this.recipeDB)
+
+      this.docCount = await this.recipeCollection.countDocuments({})
       console.log(`🦆 Document count: ${this.docCount}`)
     }
     catch (err) {
@@ -124,6 +149,13 @@ class ExpressServer {
       // console.log('🦍 Closing connection to MongoDB Cloud')
       // client.close()
     }
+  }
+
+  // Function to use as middleware to log request sources.
+  requestLogger(req, res, next) {
+    console.log(`🐡 Request from ${req.ip} ==> ${req.url} 🐡`)
+    // Moves onto the next middleware function.
+    next()
   }
 }
 
