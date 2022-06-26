@@ -1,6 +1,5 @@
-// npm run dev
-// ------------------------------------------------------------
-// Imports
+// https://zellwk.com/blog/crud-express-mongodb/
+
 const express = require('express')
 const fs = require('fs')
 const { MongoClient, ServerApiVersion } = require('mongodb')
@@ -47,6 +46,7 @@ class ExpressServer {
     this.#setupMiddleware()
     this.#setupPostRoutes()
     this.#setupGetRoutes()
+    this.#setupPutRoutes()
     this.#setupBadRoute()
 
     this.app.listen(PORT, () => {
@@ -54,38 +54,32 @@ class ExpressServer {
     })
   }
 
-  // TODO: Crashes here, with "app" and "recipeCollection" undefined.
-  async getRecipes() {
-    try {
-      console.log(this.recipeCollection)
-      const cursor = await this.recipeCollection.find()
-      console.log(cursor)
-    }
-    catch (err) {
-      console.log('🙈🔥 No recipe collection established yet?')
-      this.app.redirect('/')
-    }
-  }
-
   // ------------------------------------------------------------
   // Setup helper methods
   #setupMiddleware() {
+    // Since we can't send multiple files with sendFile, and we want to serve
+    // things like index.html and its stylesheet, we can use static instead.
+    // This will serve everything placed in the "public" directory.
+    this.app.use(express.static('public'))
     // We don't need to use body-parser anymore as of Express 4.16.0+
     // Used to parse JSON bodies.
     this.app.use(express.json())
     // Used to parse URL-encoded bodies using qs (query string) library.
     this.app.use(express.urlencoded({ extended: true }))
-    // Since we can't send multiple files with sendFile, and we want to serve
-    // things like index.html and its stylesheet, we can use static instead.
-    // This will serve everything placed in the "public" directory.
-    this.app.use(express.static('public'))
+
+    // Set embedded javascript as the template engine.
+    this.app.set('view engine', 'ejs')
 
     // Custom middleware:
-    this.app.use(this.requestLogger)
-    // this.app.use(this.dbCursorTest)
+    // this.app.use(this.requestLogger)
   }
+
   #setupGetRoutes() {
-    this.app.get('/recipes', this.getRecipes)
+    this.app.get('/', async (req, res) => {
+      const recipes = await this.recipeCollection.find().toArray()
+      res.render('index', { recipes })
+
+    })
   }
 
   #setupPostRoutes() {
@@ -105,9 +99,15 @@ class ExpressServer {
     })
   }
 
+  #setupPutRoutes() {
+    this.app.put('/recipes', async (req, res) => {
+      console.log(req.body)
+    })
+  }
+
   #setupBadRoute() {
     this.app.all('*', (req, res) => {
-      console.log(`🐡 Bad request from ${req.ip} ==> ${req.url} 🐡`)
+      console.log(`🙈🔥 Bad request from ${req.ip} ==> ${req.url}`)
       res.send('🐡 404 🐡')
     })
   }
