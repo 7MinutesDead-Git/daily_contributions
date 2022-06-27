@@ -44,10 +44,7 @@ class ExpressServer {
   // Startup the Express server on the designated port.
   startServer() {
     this.#setupMiddleware()
-    this.#setupPostRoutes()
-    this.#setupGetRoutes()
-    this.#setupPutRoutes()
-    this.#setupBadRoute()
+    this.#setupRoutes()
 
     this.app.listen(PORT, () => {
       console.log(`🐡 Node up on port ${PORT} 🐡`)
@@ -74,22 +71,25 @@ class ExpressServer {
     // this.app.use(this.requestLogger)
   }
 
-  #setupGetRoutes() {
+  #setupRoutes() {
+    // --------------------------------------------------------------------
+    // GET Index page serving EJS template, and including all recipes as an array.
     this.app.get('/', async (req, res) => {
       const recipes = await this.recipeCollection.find().toArray()
       res.render('index', { recipes })
-
     })
-  }
 
-  #setupPostRoutes() {
-    // Route for submitting a new recipe.
+    // --------------------------------------------------------------------
+    // POST Route for submitting a new recipe.
     this.app.post('/add', async (req, res) => {
-      const record = req.body
+      req = this.sanitizeRequestQueryBody(req)
+
       try {
-        const result = await this.recipeCollection.insertOne(record)
-        console.log(`🦆 Inserted 1 document into collection: ${result.insertedId}`)
-        console.log(record)
+        // TODO: Needs to be unique keys, rather than by name only. Otherwise queries by name get confused
+        //  for multiple entries.
+        const result = await this.recipeCollection.insertOne(req.body)
+        console.log(`🦆 Inserted 1 document into collection, insertion ID: ${result.insertedId}`)
+        console.log(req.body)
         res.redirect('/')
       }
       catch (err) {
@@ -97,17 +97,63 @@ class ExpressServer {
         res.send('🐡 Error adding recipe! 🐡')
       }
     })
-  }
 
-  #setupPutRoutes() {
+    // --------------------------------------------------------------------
+    // PUT Route for updating an existing recipe.
     this.app.put('/recipes', async (req, res) => {
-      console.log(req.body)
-    })
-  }
+      // Sanitize input.
+      req = this.sanitizeRequestQueryBody(req)
 
-  #setupBadRoute() {
+      const updatedRecord = {
+        name: req.body.name,
+        ingredients: req.body.ingredients,
+        instructions: req.body.instructions
+      }
+      const filter = { name: req.body.name }
+
+
+      try {
+        const updateResult = await this.recipeCollection.findOneAndUpdate(
+            // Search by the name, and $set matching record to the updatedRecord.
+            filter,
+            { $set: updatedRecord },
+            { upsert: false }
+        )
+        console.log(`🦆 Updated 1 document in collection: ${req.body.name} 🦆`)
+        console.log(`MongoDB Acknowledgement: ${updateResult.acknowledged}`)
+        // Send the request body back as a response to a successful update.
+        res.send(req.body)
+      }
+      catch (err) {
+        console.log(`🙈🔥 Unable to update ${req.body.name} 🔥🙈`)
+        console.error(`🙈🔥 ${err} 🔥🙈`)
+      }
+    })
+
+    // --------------------------------------------------------------------
+    // DELETE Route for deleting a recipe.
+    this.app.delete('/recipes', async (req, res) => {
+        try {
+          const deleteResult = await this.recipeCollection.deleteOne({ name: req.body.name })
+          if (deleteResult.acknowledged) {
+            console.log(`Deleted recipe: ${req.body.name}`)
+            res.send(req.body)
+          }
+          else {
+            console.error(`🙈🔥 Unable to delete ${req.body.name}. Deletion was not acknowledged by MongoDB.`)
+            res.send('🙈🔥 Unable to delete! 🙈🔥')
+          }
+        }
+        catch (err) {
+          console.error(`🙈🔥 Unable to delete ${req.body.name}`)
+          console.error(`🙈🔥 ${err}`)
+        }
+    })
+
+    // Route for bad requests.
     this.app.all('*', (req, res) => {
-      console.log(`🙈🔥 Bad request from ${req.ip} ==> ${req.url}`)
+      console.error(`🙈🔥 Bad ${req.method} request from ${req.ip} ==> ${req.url}`)
+      console.log(req.body)
       res.send('🐡 404 🐡')
     })
   }
@@ -156,6 +202,14 @@ class ExpressServer {
     console.log(`🐡 Request from ${req.ip} ==> ${req.url} 🐡`)
     // Moves onto the next middleware function.
     next()
+  }
+
+  // Sanitize an input json query body by trimming all values and converting to lowercase.
+  sanitizeRequestQueryBody(query) {
+    for (const key in query.body) {
+        query.body[key] = query.body[key].trim().toLowerCase()
+    }
+    return query
   }
 }
 
