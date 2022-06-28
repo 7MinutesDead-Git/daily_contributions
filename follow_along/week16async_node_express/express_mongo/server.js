@@ -58,9 +58,11 @@ class ExpressServer {
     // things like index.html and its stylesheet, we can use static instead.
     // This will serve everything placed in the "public" directory.
     this.app.use(express.static('public'))
-    // We don't need to use body-parser anymore as of Express 4.16.0+
+
     // Used to parse JSON bodies.
+    // We don't need to use body-parser anymore as of Express 4.16.0+
     this.app.use(express.json())
+
     // Used to parse URL-encoded bodies using qs (query string) library.
     this.app.use(express.urlencoded({ extended: true }))
 
@@ -86,7 +88,7 @@ class ExpressServer {
 
       try {
         // TODO: Needs to be unique keys, rather than by name only. Otherwise queries by name get confused
-        //  for multiple entries.
+        //  for multiple identical entries.
         const result = await this.recipeCollection.insertOne(req.body)
         console.log(`🦆 Inserted 1 document into collection, insertion ID: ${result.insertedId}`)
         console.log(req.body)
@@ -141,18 +143,18 @@ class ExpressServer {
           }
           else {
             console.error(`🙈🔥 Unable to delete ${req.body.name}. Deletion was not acknowledged by MongoDB.`)
-            res.send('🙈🔥 Unable to delete! 🙈🔥')
+            res.send('🙈🔥 Unable to delete! 🔥🙈')
           }
         }
         catch (err) {
-          console.error(`🙈🔥 Unable to delete ${req.body.name}`)
-          console.error(`🙈🔥 ${err}`)
+          console.error(`🙈🔥 Unable to delete ${req.body.name} 🔥🙈`)
+          console.error(`🙈🔥 ${err} 🔥🙈`)
         }
     })
 
     // Route for bad requests.
     this.app.all('*', (req, res) => {
-      console.error(`🙈🔥 Bad ${req.method} request from ${req.ip} ==> ${req.url}`)
+      console.error(`🙈🔥 Bad ${req.method} request from ${req.ip} ==> ${req.url} 🔥🙈`)
       console.log(req.body)
       res.send('🐡 404 🐡')
     })
@@ -167,7 +169,7 @@ class ExpressServer {
         client = new MongoClient(this.#credentialsURI, this.#mongoClientSetup)
       }
       catch (err) {
-        console.log(`🙈🔥 Problem creating mongoDB client. Check URL, or credentials: ${err}`)
+        console.log(`🙈🔥 Problem creating mongoDB client. Check URL, or credentials: ${err} 🔥🙈`)
         reject(err)
       }
       resolve(client)
@@ -181,15 +183,15 @@ class ExpressServer {
 
     try {
       await this.MongoClient.connect()
-      console.log('🦆 Connected to MongoDB Cloud!')
+      console.log('🦆 Connected to MongoDB Cloud! 🦆')
       this.db = this.MongoClient.db(this.recipeDB)
       this.recipeCollection = this.db.collection(this.recipeDB)
 
       this.docCount = await this.recipeCollection.countDocuments({})
-      console.log(`🦆 Document count: ${this.docCount}`)
+      console.log(`🦆 Document count: ${this.docCount} 🦆`)
     }
     catch (err) {
-      console.log(`🙈🔥 Problem connecting to mongoDB: ${err}`)
+      console.log(`🙈🔥 Problem connecting to mongoDB: ${err} 🔥🙈`)
     }
     finally {
       // console.log('🦍 Closing connection to MongoDB Cloud')
