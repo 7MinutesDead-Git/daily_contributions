@@ -73,29 +73,16 @@ class ExpressServer {
     this.app.set('view engine', 'ejs')
 
     // Custom middleware:
-    // this.app.use(this.requestLogger)
+    this.app.use(this.requestLogger)
   }
 
   #setupRoutes() {
     // --------------------------------------------------------------------
     // GET Index page serving EJS template, and including all recipes as an array.
     this.app.get('/', async (req, res) => {
-      // We can run the situation of no collection being ready if client is
-      // making a request while the server and database connection are still initializing.
-      while (this.recipeCollection === null && this.retryCount < this.retryLimit) {
-        this.retryCount++
-        console.log(`🙈 Waiting for MongoDB connection to be ready. Retry attempt ${this.retryCount} 🙈`)
-        await wait(this.retryDelayMs)
-      }
-
-      if (this.retryCount >= this.retryLimit) {
-        this.retryCount = 0
-        console.log(`🙈🔥 Problem connecting to mongoDB. Retry limit reached. 🔥🙈`)
-        res.status(500).send('🙈🔥 The server timed out when trying to connect to the database. Please try again! 🔥🙈')
-        return
-      }
-
+      await this.waitForCollection(res)
       this.retryCount = 0
+
       const recipes = await this.recipeCollection.find({}).toArray()
       console.log(`🦆 Recipes found: ${recipes.length} 🦆`)
       res.render('index', { recipes })
@@ -232,6 +219,26 @@ class ExpressServer {
         query.body[key] = query.body[key].trim().toLowerCase()
     }
     return query
+  }
+
+  // Wait for the recipeCollection object to be ready before continuing.
+  async waitForCollection(response) {
+    // We can run the situation of no collection being ready if client is
+    // making a request while the server and database connection are still initializing.
+    while (this.recipeCollection === null && this.retryCount < this.retryLimit) {
+      this.retryCount++
+      console.log(`🙈 Waiting for MongoDB connection to be ready. Retry attempt ${this.retryCount} 🙈`)
+      await wait(this.retryDelayMs)
+    }
+
+    if (this.retryCount >= this.retryLimit) {
+      this.retryCount = 0
+      console.log(`🙈🔥 Problem connecting to mongoDB. Retry limit reached. 🔥🙈`)
+      response.status(500).send('🙈🔥 The server timed out when trying to connect to the database. Please try again! 🔥🙈')
+    }
+    else {
+      this.retryCount = 0
+    }
   }
 }
 
