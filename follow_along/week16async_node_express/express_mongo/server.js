@@ -38,6 +38,9 @@ class ExpressServer {
     this.recipeCollection = null
     this.docCount = null
     this.recipeDB = 'recipe-db'
+    this.retryCount = 0
+    this.retryLimit = 10
+    this.retryDelayMs = 1000
   }
 
   // ------------------------------------------------------------
@@ -77,7 +80,24 @@ class ExpressServer {
     // --------------------------------------------------------------------
     // GET Index page serving EJS template, and including all recipes as an array.
     this.app.get('/', async (req, res) => {
-      const recipes = await this.recipeCollection.find().toArray()
+      // We can run the situation of no collection being ready if client is
+      // making a request while the server and database connection are still initializing.
+      while (this.recipeCollection === null && this.retryCount < this.retryLimit) {
+        this.retryCount++
+        console.log(`🙈 Waiting for MongoDB connection to be ready. Retry attempt ${this.retryCount} 🙈`)
+        await wait(this.retryDelayMs)
+      }
+
+      if (this.retryCount >= this.retryLimit) {
+        this.retryCount = 0
+        console.log(`🙈🔥 Problem connecting to mongoDB. Retry limit reached. 🔥🙈`)
+        res.status(500).send('🙈🔥 The server timed out when trying to connect to the database. Please try again! 🔥🙈')
+        return
+      }
+
+      this.retryCount = 0
+      const recipes = await this.recipeCollection.find({}).toArray()
+      console.log(`🦆 Recipes found: ${recipes.length} 🦆`)
       res.render('index', { recipes })
     })
 
