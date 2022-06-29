@@ -1,28 +1,26 @@
-// https://zellwk.com/blog/crud-express-mongodb/
-
 const express = require('express')
 const fs = require('fs')
 const { MongoClient, ServerApiVersion } = require('mongodb')
 
-// --------------------------------------------------------------------
+// ----------------------------------------------------------------------------
 // Global Variables
 const PORT = process.env.PORT || 3000
 
-// --------------------------------------------------------------------
+// ----------------------------------------------------------------------------
 // Static functions
 function wait(ms) {
   return new Promise(resolve => setTimeout(resolve, ms))
 }
 
-// --------------------------------------------------------------------
-// A class to run and manage an Express server and its MongoDB connection.
+// ----------------------------------------------------------------------------
+// A class to run and manage a Node Express server and its MongoDB connection.
 class ExpressServer {
-  // ------------------------------------------------------------
+  // ----------------------------------------------------------------------------
   // Private properties
   #credentialsURI
   #mongoClientSetup
 
-  // ------------------------------------------------------------
+  // ----------------------------------------------------------------------------
   // Initial setup
   constructor() {
     this.app = express()
@@ -43,7 +41,7 @@ class ExpressServer {
     this.retryDelayMs = 1000
   }
 
-  // ------------------------------------------------------------
+  // ----------------------------------------------------------------------------
   // Startup the Express server on the designated port.
   startServer() {
     this.#setupMiddleware()
@@ -54,7 +52,7 @@ class ExpressServer {
     })
   }
 
-  // ------------------------------------------------------------
+  // ----------------------------------------------------------------------------
   // Setup helper methods
   #setupMiddleware() {
     // Since we can't send multiple files with sendFile, and we want to serve
@@ -76,8 +74,9 @@ class ExpressServer {
     this.app.use(this.requestLogger)
   }
 
+  // ----------------------------------------------------------------------------
   #setupRoutes() {
-    // --------------------------------------------------------------------
+    // -----------------------
     // GET Index page serving EJS template, and including all recipes as an array.
     this.app.get('/', async (req, res) => {
       await this.waitForCollection(res)
@@ -88,7 +87,7 @@ class ExpressServer {
       res.render('index', { recipes })
     })
 
-    // --------------------------------------------------------------------
+    // -----------------------
     // POST Route for submitting a new recipe.
     this.app.post('/add', async (req, res) => {
       req = this.sanitizeRequestQueryBody(req)
@@ -107,7 +106,7 @@ class ExpressServer {
       }
     })
 
-    // --------------------------------------------------------------------
+    // -----------------------
     // PUT Route for updating an existing recipe.
     this.app.put('/recipes', async (req, res) => {
       // Sanitize input.
@@ -139,7 +138,7 @@ class ExpressServer {
       }
     })
 
-    // --------------------------------------------------------------------
+    // -----------------------
     // DELETE Route for deleting a recipe.
     this.app.delete('/recipes', async (req, res) => {
         try {
@@ -159,6 +158,7 @@ class ExpressServer {
         }
     })
 
+    // -----------------------
     // Route for bad requests.
     this.app.all('*', (req, res) => {
       console.error(`🙈🔥 Bad ${req.method} request from ${req.ip} ==> ${req.url} 🔥🙈`)
@@ -167,7 +167,7 @@ class ExpressServer {
     })
   }
 
-  // ------------------------------------------------------------
+  // ----------------------------------------------------------------------------
   // Returns a promise that resolves to a MongoDB client.
   async #setupMongoDBConnection() {
     return new Promise((resolve, reject) => {
@@ -182,7 +182,8 @@ class ExpressServer {
       resolve(client)
     })
   }
-  // ------------------------------------------------------------
+
+  // ----------------------------------------------------------------------------
   // Establish connection to mongoDB and get our database, collections and
   // document count.
   async createMongoConnection() {
@@ -206,6 +207,7 @@ class ExpressServer {
     }
   }
 
+  // ----------------------------------------------------------------------------
   // Function to use as middleware to log request sources.
   requestLogger(req, res, next) {
     console.log(`🐡 Request from ${req.ip} ==> ${req.url} 🐡`)
@@ -213,6 +215,7 @@ class ExpressServer {
     next()
   }
 
+  // ----------------------------------------------------------------------------
   // Sanitize an input json query body by trimming all values and converting to lowercase.
   sanitizeRequestQueryBody(query) {
     for (const key in query.body) {
@@ -221,6 +224,7 @@ class ExpressServer {
     return query
   }
 
+  // ----------------------------------------------------------------------------
   // Wait for the recipeCollection object to be ready before continuing.
   async waitForCollection(response) {
     // We can run the situation of no collection being ready if client is
@@ -244,7 +248,7 @@ class ExpressServer {
 
 
 // --------------------------------------------------------------------
-// Start the server.
+// Start the server
 const server = new ExpressServer()
 server.startServer()
 server.createMongoConnection()
