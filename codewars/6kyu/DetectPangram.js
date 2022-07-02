@@ -1,5 +1,6 @@
 // https://www.codewars.com/kata/545cedaa9943f7fe7b000048/train/javascript
 
+// ---------------------------------------------------------------
 function createLetterCounterMap() {
     const alphabet = "abcdefghijklmnopqrstuvwxyz"
     const counts = new Map()
@@ -22,4 +23,12 @@ function isPangram(string) {
             return false
     }
     return true
+}
+
+// ---------------------------------------------------------------
+// Much more succinctly:
+function isPangram(string) {
+    const alphabet = "abcdefghijklmnopqrstuvwxyz".split("")
+    string = string.toLowerCase()
+    return alphabet.every((x) => string.includes(x))
 }
