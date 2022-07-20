@@ -11,12 +11,18 @@ function removeDuplicatesFromLinkedList(linkedList) {
     let current = linkedList
     let scout = linkedList.next
 
+    // While next node exists:
     while (scout) {
+        // If these values match:
         if (current.value === scout.value) {
+            // Remove scouted node by pointing current node to next-next node,
+            // essentially skipping over the scouted node.
             current.next = scout.next
+            // And move scout pointer up too.
             scout = scout.next
         }
         else {
+            // Otherwise, move current pointer up.
             current = current.next
             scout = current.next
         }
