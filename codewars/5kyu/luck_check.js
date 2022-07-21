@@ -2,7 +2,7 @@
 function getSums(array) {
     return array.reduce((sum, num) => {
         if (isNaN(num) || num === " ")
-            throw new Error(`${num} in ${array} is not a nubmer.`)
+            throw new Error(`${num} in ${array} is not a number.`)
         return sum += Number(num)
     }, 0)
 }
