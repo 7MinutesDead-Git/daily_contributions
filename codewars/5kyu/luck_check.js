@@ -21,7 +21,8 @@ function luckCheck(ticket) {
     // we would know null was intentional.
     // Otherwise it would return undefined if we simply declare it as "let right"
     let right = null
-
+    // Splicing is O(1) here since we already know the midpoint based
+    // on the length attribute, no?
     lengthIsEven ?
         right = ticket.slice(mid) :
         right = ticket.slice(mid+1)
