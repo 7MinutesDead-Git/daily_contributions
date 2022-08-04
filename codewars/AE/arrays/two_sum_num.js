@@ -13,8 +13,8 @@ function twoNumberSum(array, targetSum) {
     // This whole loop is all O(1) operations, but with a worst case of O(n) iterations if the pair
     // is the last found.
     for (let num in pairs) {
-        num = Number(num)
-        const target = pairs[num]
+        num = Number(num)  // <-- Since the keys are technically strings now
+            const target = pairs[num]
 
         if (target in pairs && num !== target)
             return [num, target]
