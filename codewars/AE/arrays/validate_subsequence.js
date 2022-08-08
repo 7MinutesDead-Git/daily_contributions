@@ -18,3 +18,14 @@ function isValidSubsequence(array, sequence) {
     }
     return found === sequence.length
 }
+
+// Even simpler:
+function getSubsequence(array, subarray) {
+    let target = 0
+
+    for (const num of array) {
+        if (num === subarray[target])
+            target++
+    }
+    return target === subarray.length
+}
