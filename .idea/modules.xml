@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/LeonBootCamp.iml" filepath="$PROJECT_DIR$/.idea/LeonBootCamp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/daily_contributions.iml" filepath="$PROJECT_DIR$/.idea/daily_contributions.iml" />
     </modules>
   </component>
 </project>
