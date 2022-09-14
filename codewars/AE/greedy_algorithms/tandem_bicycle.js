@@ -10,8 +10,8 @@ function tandemBicycle(redShirtSpeeds, blueShirtSpeeds, fastest) {
         blueShirtSpeeds.sort((a, b) => b - a) :
         blueShirtSpeeds.sort((a, b) => a - b)
 
-    return redShirtSpeeds.reduce((total, speed, i) => {
-        total += Math.max(speed, blueShirtSpeeds[i])
+    return redShirtSpeeds.reduce((total, redSpeed, i) => {
+        total += Math.max(redSpeed, blueShirtSpeeds[i])
         return total
     }, 0);
 }
