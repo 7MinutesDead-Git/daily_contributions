@@ -8,15 +8,12 @@ function tandemBicycle(redShirtSpeeds, blueShirtSpeeds, fastest) {
     if (fastest)
         blueShirtSpeeds = blueShirtSpeeds.reverse()
 
-    console.log(redShirtSpeeds)
-    console.log(blueShirtSpeeds)
-
-    const result = redShirtSpeeds.reduce((total, speed, i) => {
-        total += Math.max(speed, blueShirtSpeeds[i])
+    const result = redShirtSpeeds.reduce((total, redSpeed, i) => {
+        // For each speed pair, we must always choose the fastest.
+        total += Math.max(redSpeed, blueShirtSpeeds[i])
         return total
     }, 0);
 
-    console.log(result)
     return result
 }
 
