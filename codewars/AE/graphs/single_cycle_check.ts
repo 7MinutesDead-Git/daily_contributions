@@ -44,6 +44,6 @@ export function hasSingleCycle(array: number[]) {
         visited++
         movedOnFromStart = true
     }
-    // So, we've visited everything once Have we made it back to the starting point?
+    // So, we've made it back to the starting point, and we've visited everything once.
     return index === 0 && visited === array.length
 }
