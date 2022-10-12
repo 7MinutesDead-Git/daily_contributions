@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "module": "es2022",
-    "target": "es2022",
-    "lib": ["es7"],
+    "module": "ES2022",
+    "target": "ES2022",
+    "lib": ["ES2021"],
     "sourceMap": true
   },
   "exclude": [

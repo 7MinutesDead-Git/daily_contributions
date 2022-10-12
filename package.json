@@ -1,0 +1,22 @@
+{
+  "name": "daily_contributions",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/7MinutesDead-Git/daily_contributions.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/7MinutesDead-Git/daily_contributions/issues"
+  },
+  "homepage": "https://github.com/7MinutesDead-Git/daily_contributions#readme",
+  "devDependencies": {
+    "@types/node": "^18.8.4"
+  }
+}
