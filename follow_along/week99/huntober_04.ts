@@ -33,4 +33,4 @@ function solve(matrix: number[][]): number {
 //   1 ->   4 ->   6  [1, 4, 6]
 //     2 -> 4 -> 5    [2, 4, 5]
 //     2 -> 4 ->   6  [2, 4, 6]
-// We have to go through each number once, so really we're just multiplying the lengths.
+// We have to go through each number once to form a new combo, so really we're just multiplying the lengths.
