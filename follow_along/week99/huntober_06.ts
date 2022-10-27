@@ -4,6 +4,7 @@
 // "Success"  =>  ")())())"
 // "(( @"     =>  "))(("
 
+// Cheap o(n)
 function withCounts(str: string): string {
     let result = ''
     const counts = [...str.toLowerCase()].reduce((count, char) => {
@@ -23,6 +24,7 @@ function withCounts(str: string): string {
 }
 
 
+// Pretty but expensive o(n^2)
 function withMapAndIndex(str: string): string {
     const parenthesis = [...str.toLowerCase()].map((char, index, array) => {
         if (array.indexOf(char) !== array.lastIndexOf(char)) {
