@@ -55,3 +55,29 @@ function findDeletedNumberHashMap(numArray: number[], mixedArray: number[]): num
     }
     return 0
 }
+
+const inputA = [1, 2, 3, 4, 5]
+const inputB = [3, 4, 1, 5] // 2
+
+const inputC = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+const inputD = [1, 9, 7, 4, 6, 2, 3, 8] // 5
+
+const inputE = [1, 2, 3, 4]
+const inputF = [2, 3, 4] // 1
+
+const inputG = [1, 2, 3]
+const inputH = [1, 2, 3] // 0
+
+const inputI = []
+const inputJ = [] // 0
+
+const funcs = [findDeletedNumber, findDeletedNumberSumTrick, findDeletedNumberHashMap]
+
+for (const func of funcs) {
+    console.log(func(inputA, inputB))
+    console.log(func(inputC, inputD))
+    console.log(func(inputE, inputF))
+    console.log(func(inputG, inputH))
+    console.log(func(inputI, inputJ))
+    console.log("------")
+}
