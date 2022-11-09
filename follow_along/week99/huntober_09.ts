@@ -2,8 +2,7 @@
 // One number might have deleted from it, then the remaining numbers were mixed.
 // Find the number that was deleted.
 
-// This would be necessary of input arrays could be of any type.
-
+// O(n log n) from sorting.
 function findDeletedNumber(numArray: number[], mixedArray: number[]): number {
     if (numArray.length === mixedArray.length) {
         return 0
@@ -19,6 +18,7 @@ function findDeletedNumber(numArray: number[], mixedArray: number[]): number {
 
 // Since the array is only ever made of numbers, and we only need to find one missing number,
 // really that's just the difference in sums between the two arrays. No sorting needed.
+// O(n)
 function findDeletedNumberSumTrick(numArray: number[], mixedArray: number[]): number {
     if (numArray.length === mixedArray.length) {
         return 0
