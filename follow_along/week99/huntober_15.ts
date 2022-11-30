@@ -21,13 +21,13 @@ const vowelIndices = {
 }
 
 function missingVowelIndex(sentence: string): number {
-    const counts = sentence.split("").reduce((count, char) => {
-        count[char] ? count[char]++ : count[char] = 1
-        return count
+    const presentCharacters = sentence.split("").reduce((present, char) => {
+        present[char] = true
+        return present
     }, {})
 
     for (const letter in vowelIndices) {
-        if (!counts[letter])
+        if (!presentCharacters[letter])
             return vowelIndices[letter]
     }
     return 0
