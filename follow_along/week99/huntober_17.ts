@@ -20,6 +20,14 @@ function reverseStringWhile(input: string): string {
     return result.join("")
 }
 
+function reverseStringES6(input: string): string {
+    let result = ""
+    for (const char of input) {
+        result = char + result
+    }
+    return result
+}
+
 console.log(reverseString("abcdefg"))
 console.log(reverseStringWhile("abcdefg"))
 console.log(reverseString("a"))
