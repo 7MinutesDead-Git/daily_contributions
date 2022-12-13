@@ -31,7 +31,26 @@ function getMajority(nums: number[]): number {
     return result
 }
 
+// Single loop solution that can return early as soon as we encounter a majority,
+// since for this problem, there being one majority is a guarantee.
+function getMajorityClever(nums: number[]): number {
+    const counts = new Map()
+    const majorityThreshold = nums.length / 2
+
+    for (const num of nums) {
+        counts.set(num, counts.get(num) + 1 || 1)
+        if (counts.get(num) > majorityThreshold) {
+            return num
+        }
+    }
+    return 0
+}
+
 console.log(getMajority([3, 2, 3]))
 console.log(getMajority([]))
 console.log(getMajority([2, 2, 1, 1, 1, 2, 2]))
 console.log(getMajority([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]))
+console.log(getMajorityClever([3, 2, 3]))
+console.log(getMajorityClever([]))
+console.log(getMajorityClever([2, 2, 1, 1, 1, 2, 2]))
+console.log(getMajorityClever([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]))
