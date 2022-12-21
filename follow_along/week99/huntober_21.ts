@@ -1,48 +1,42 @@
-// The Fibonacci numbers, commonly denoted F(n) form a sequence, called the Fibonacci sequence,
-// such that each number is the sum of the two preceding ones, starting from 0 and 1. That is,
+// Given a magazine of words and a ransom note, determine if it’s possible to “cut out”
+// and create the ransom note from the magazine words.
 //
-// F(0) = 0, F(1) = 1
-// F(n) = F(n - 1) + F(n - 2), for n > 1.
-// Given n, calculate F(n).
+const magazine =
+ `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+ incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+ quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum`;
 
-// Example 1:
-// Input: n = 2
-// Output: 1
-// Explanation: F(2) = F(1) + F(0) = 1 + 0 = 1.
-
-// Example 2:
-// Input: n = 3
-// Output: 2
-// Explanation: F(3) = F(2) + F(1) = 1 + 1 = 2.
-
-// Example 3:
-// Input: n = 4
-// Output: 3
-
-
-function fibonacciArray(n: number): number {
-    let output = [0, 1]
-
-    for (let i = 2; i <= n; i++) {
-        output[i] = output[i - 1] + output[i - 2]
-    }
-    return output[n]
+function lettersOnly(word: string) {
+    return word.replace(/^a-zA-Z]/g, '').trim().toLowerCase()
 }
 
-
-function fibonacciThreePointers(n: number): number {
-    let first = 0
-    let second = 1
-    let current = null
-
-    for (let i = 2; i <= n; i++) {
-        current = first + second
-        first = second
-        second = current
+function ransomableByWords(magazine: string, note: string): boolean {
+    if (note.length === 0) {
+        return true
     }
-    return current
+    const ransomWords = note.split(" ").map(word => lettersOnly(word))
+    const availableWords = magazine.split(" ").map(word => lettersOnly(word))
+        .reduce((count, word) => {
+            count[word] ? count[word]++ : count[word] = 1
+            return count
+        }, {})
+
+    for (const word of ransomWords) {
+        if (availableWords[word]--) {
+            continue
+        }
+        return false
+    }
+
+    return true
 }
 
-
-console.log(fibonacciArray(10))
-console.log(fibonacciThreePointers(10))
+console.log(ransomableByWords(magazine, "sit ad est sint")) // true
+console.log(ransomableByWords(magazine, "sit ad est love")) // false
+console.log(ransomableByWords(magazine, "sit ad est sint in in in")) // true
+console.log(ransomableByWords(magazine, "sit ad est sint in in in in")) // false
+console.log(ransomableByWords(magazine, "reprehenderit")) // true
+console.log(ransomableByWords(magazine, "")) // true
+console.log(ransomableByWords(magazine, "aliquip ex ea commodo")) // true
