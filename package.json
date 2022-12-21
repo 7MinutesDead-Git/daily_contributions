@@ -17,6 +17,10 @@
   },
   "homepage": "https://github.com/7MinutesDead-Git/daily_contributions#readme",
   "devDependencies": {
-    "@types/node": "^18.8.4"
+    "@types/chai": "^4.3.4",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "^18.8.4",
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0"
   }
 }
