@@ -65,7 +65,7 @@ function middleNodeFaster(head: ListNode | null): ListNode | null {
 }
 
 
-// And this is the best of both worlds.
+// And this is the best of both worlds. O(n) time and O(1) space.
 function middleNodeTwoPointer(head: ListNode | null): ListNode | null {
     // In this variant, we'll use two pointers, one moving at twice the speed of the other.
     // When the faster pointer reaches the end, the slower pointer will be at the middle.
