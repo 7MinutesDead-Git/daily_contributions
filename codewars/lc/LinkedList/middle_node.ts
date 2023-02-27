@@ -63,3 +63,19 @@ function middleNodeFaster(head: ListNode | null): ListNode | null {
     // Finally we'll return the node saved at our middle index.
     return nodes.get(midway)
 }
+
+
+// And this is the best of both worlds.
+function middleNodeTwoPointer(head: ListNode | null): ListNode | null {
+    // In this variant, we'll use two pointers, one moving at twice the speed of the other.
+    // When the faster pointer reaches the end, the slower pointer will be at the middle.
+    let slow = head
+    let fast = head
+
+    while (fast && fast.next) {
+        slow = slow.next
+        fast = fast.next.next
+    }
+
+    return slow
+}
